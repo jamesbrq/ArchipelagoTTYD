@@ -246,7 +246,6 @@ async def ttyd_sync_task(ctx: TTYDContext):
                             dolphin.un_hook()
                             await asyncio.sleep(3)
                             continue
-                    await ctx.server_auth()
                     await asyncio.sleep(0.1)
                 except Exception as e:
                     dolphin.un_hook()

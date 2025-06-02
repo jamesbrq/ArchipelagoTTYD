@@ -41,10 +41,10 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
             lambda state: state.has("Emerald Star", world.player),
         "Great Tree Red Key Room: Mushroom":
             lambda state: state.has("Emerald Star", world.player),
-        "Keelhaul Key Grotto Entrance: Wedding Ring":
-            lambda state: state.has("Sapphire Star", world.player),
         "Creepy Steeple Main Hall: Steeple Key":
             lambda state: state.has("Koops", world.player) or state.has("Yoshi", world.player),
+        "Keelhaul Key Grotto Entrance: Wedding Ring":
+            lambda state: state.has("Yoshi", world.player),
         "Creepy Steeple Main Hall: Lucky Start":
             lambda state: StateLogic.super_hammer(state, world.player),
         "Creepy Steeple Upper Room: Ruby Star":
@@ -262,7 +262,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
                            and state.has("Black Key (Paper Curse)", world.player)),
         "Hooktail's Castle Prison Entrance: Attack FX R":
             lambda state: ((state.has("Yoshi", world.player) or state.has("Plane Curse", world.player))
-                           and state.has("Koops", world.player) and state.has("Castle Key", world.player, 1)),
+                           and state.has("Koops", world.player) and state.has("Castle Key", world.player, 1) and state.has("Paper Curse", world.player)),
         "Hooktail's Castle Spikes Room: Black Key (Paper Curse)":
             lambda state: ((state.has("Yoshi", world.player) or state.has("Plane Curse", world.player))
                            and state.has("Koops", world.player) and state.has("Castle Key", world.player, 1)
@@ -396,7 +396,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
         "Pirate's Grotto Cortez' Hoard: Sapphire Star":
             lambda state: state.has("Yoshi", world.player) and state.has("Bobbery", world.player)
                            and state.has("Boat Curse", world.player) and state.has("Gate Handle", world.player)
-                           and state.has("Plane Curse", world.player) and state.has("Grotto Key", world.player),
+                           and state.has("Plane Curse", world.player),
         "Pirate's Grotto Sluice Gate: Star Piece":
             lambda state: state.has("Yoshi", world.player) and state.has("Bobbery", world.player)
                           and StateLogic.super_boots(state, world.player),

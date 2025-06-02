@@ -30,6 +30,7 @@ class TTYDPatchExtension(APPatchExtension):
         starting_fp = seed_options.get("starting_fp", None)
         starting_bp = seed_options.get("starting_bp", None)
         full_run_bar = seed_options.get("full_run_bar", None)
+        fast_travel = seed_options.get("fast_travel", None)
         caller.patcher.dol.data.seek(0x1FF)
         caller.patcher.dol.data.write(name_length.to_bytes(1, "big"))
         caller.patcher.dol.data.seek(0x200)
@@ -70,6 +71,9 @@ class TTYDPatchExtension(APPatchExtension):
         if full_run_bar is not None:
             caller.patcher.dol.data.seek(0x230)
             caller.patcher.dol.data.write(full_run_bar.to_bytes(1, "big"))
+        if fast_travel is not None:
+            caller.patcher.dol.data.seek(0x231)
+            caller.patcher.dol.data.write(fast_travel.to_bytes(1, "big"))
         caller.patcher.dol.data.seek(0x240)
         caller.patcher.dol.data.write(seed_options["yoshi_name"].encode("utf-8")[0:8] + b"\x00")
         caller.patcher.dol.data.seek(0xEB6B6)
@@ -203,7 +207,8 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         "starting_hp": world.options.starting_hp.value,
         "starting_fp": world.options.starting_fp.value,
         "starting_bp": world.options.starting_bp.value,
-        "full_run_bar": world.options.full_run_bar.value
+        "full_run_bar": world.options.full_run_bar.value,
+        "fast_travel": world.options.fast_travel.value
     }
     patch.write_file("options.json", json.dumps(options_dict).encode("UTF-8"))
     patch.write_file(f"locations.json", json.dumps(locations_to_dict(world.multiworld.get_locations(world.player))).encode("UTF-8"))

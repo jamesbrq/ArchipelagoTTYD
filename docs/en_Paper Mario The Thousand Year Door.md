@@ -13,7 +13,7 @@ would in the vanilla game.
 
 The game has been changed to an open-world style as opposed to the linear style the vanilla game has.
 
-Other Features such as Turbo through textboxes (Hold B) and Warping to Rogueport from anywhere (Hold L+R+START) have been added for convenience.
+Other Features such as Turbo through textboxes (Hold B) and Warping to Rogueport from anywhere (a new Key Item called the Return Pipe you'll start with) have been added for convenience.
 
 ## What is the goal of Paper Mario The Thousand Year Door when randomized?
 

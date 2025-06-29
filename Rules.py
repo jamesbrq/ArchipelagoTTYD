@@ -73,7 +73,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
         "Creepy Steeple Main Hall: Lucky Start":
             lambda state: StateLogic.super_hammer(state, world.player),
         "Creepy Steeple Upper Room: Ruby Star":
-            lambda state: state.has("Steeple Key", world.player) and state.has("The Letter \"P\"", world.player),
+            lambda state: state.has("Steeple Key", world.player) and state.has("The Letter \"p\"", world.player),
         "Creepy Steeple Underground Tube Passage: Shine Sprite":
             lambda state: state.has("Vivian", world.player),
         "Creepy Steeple Boo Chest Room: Star Piece":
@@ -86,7 +86,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
             lambda state: state.has("Vivian", world.player),
         "Creepy Steeple Parrot Room: Steeple Key 2":
             lambda state: state.has("Vivian", world.player),
-        "Creepy Steeple Parrot Room: The Letter \"P\"":
+        "Creepy Steeple Parrot Room: The Letter \"p\"":
             lambda state: state.has("Vivian", world.player),
         "Excess Express Middle Passenger Car: Blanket":
             lambda state: state.has("Autograph", world.player) and state.has("Vivian", world.player)
@@ -528,7 +528,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
                            and StateLogic.tube_curse(state, world.player)
                            and (StateLogic.ultra_boots(state, world.player) or state.has("Koops", world.player))
                            and state.has("Flurrie", world.player)),
-        "Riverside Station Ultra Boots Room: Elevator Key":
+        "Riverside Station Ultra Boots Room: Elevator Key (Riverside)":
             lambda state: (state.has("Station Key 1", world.player) and state.has("Station Key 2", world.player)
                            and StateLogic.tube_curse(state, world.player) and StateLogic.ultra_boots(state, world.player)
                            and state.has("Flurrie", world.player) and state.has("Yoshi", world.player)),
@@ -541,15 +541,15 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
             lambda state: state.has("Station Key 1", world.player) and StateLogic.ultra_boots(state, world.player),
         "Poshley Heights Sanctum Altar: Garnet Star":
             lambda state: (StateLogic.riverside(state, world.player) and state.has("Station Key 1", world.player)
-                           and StateLogic.ultra_boots(state, world.player) and state.has("Elevator Key", world.player)
+                           and StateLogic.ultra_boots(state, world.player) and state.has("Elevator Key (Riverside)", world.player)
                            and state.has("Plane Curse", world.player) and StateLogic.super_hammer(state, world.player)),
         "Poshley Heights Sanctum Altar: L Emblem":
             lambda state: (StateLogic.riverside(state, world.player) and state.has("Station Key 1", world.player)
-                           and StateLogic.ultra_boots(state, world.player) and state.has("Elevator Key", world.player)
+                           and StateLogic.ultra_boots(state, world.player) and state.has("Elevator Key (Riverside)", world.player)
                            and state.has("Plane Curse", world.player) and StateLogic.super_hammer(state, world.player)),
         "Poshley Heights Sanctum Altar: Shine Sprite":
             lambda state: (StateLogic.riverside(state, world.player) and state.has("Station Key 1", world.player)
-                           and StateLogic.ultra_boots(state, world.player) and state.has("Elevator Key", world.player)
+                           and StateLogic.ultra_boots(state, world.player) and state.has("Elevator Key (Riverside)", world.player)
                            and state.has("Plane Curse", world.player) and StateLogic.super_hammer(state, world.player)),
         "Rogueport Sewers Boggly Woods Pipe: Star Piece":
             lambda state: StateLogic.super_boots(state, world.player) and (state.has("Paper Curse", world.player) or StateLogic.super_hammer(state, world.player)),

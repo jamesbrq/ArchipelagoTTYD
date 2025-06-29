@@ -71,7 +71,7 @@ def riverside(state, player):
 
 
 def poshley_heights(state, player):
-    return state.has("Station Key 1", player) and state.has("Elevator Key", player) and super_hammer(state, player) and ultra_boots(state, player)
+    return state.has("Station Key 1", player) and state.has("Elevator Key (Riverside)", player) and super_hammer(state, player) and ultra_boots(state, player)
 
 
 def fahr_outpost(state, player):

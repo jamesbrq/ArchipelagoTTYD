@@ -418,7 +418,7 @@ creepy_steeple: typing.List[LocationData] = [
     LocationData("Creepy Steeple Parrot Room: Power Plus", 78780446, Rels.jin, [0x13DB0]),
     LocationData("Creepy Steeple Parrot Room: Star Piece", 78780447, Rels.jin, [0x14050]),
     LocationData("Creepy Steeple Parrot Room: Steeple Key 2", 78780448, Rels.jin, [0x13798]),
-    LocationData("Creepy Steeple Parrot Room: The Letter \"P\"", 78780449, Rels.jin, [0x13674]),
+    LocationData("Creepy Steeple Parrot Room: The Letter \"p\"", 78780449, Rels.jin, [0x13674]),
     LocationData("Creepy Steeple Well Entrance: Shine Sprite", 78780450, Rels.jin, [0x14244]),
     LocationData("Creepy Steeple Buzzy Room: Tornado Jump", 78780451, Rels.jin, [0x14DB8]),
     LocationData("Creepy Steeple Underground Tube Passage: Shine Sprite", 78780452, Rels.jin, [0x15060])
@@ -527,7 +527,7 @@ riverside: typing.List[LocationData] = [
     LocationData("Riverside Station Back Exterior: Thunder Rage", 78780542, Rels.eki, [0xDD20]),
     LocationData("Riverside Station Tube Mode Maze: Dried Shroom", 78780543, Rels.eki, [0xE628]),
     LocationData("Riverside Station Tube Mode Maze: P-Up D-Down", 78780544, Rels.eki, [0xE650]),
-    LocationData("Riverside Station Ultra Boots Room: Elevator Key", 78780545, Rels.eki, [0xEB7C, 0xEA28]),
+    LocationData("Riverside Station Ultra Boots Room: Elevator Key (Riverside)", 78780545, Rels.eki, [0xEB7C, 0xEA28]),
     LocationData("Riverside Station Ultra Boots Room: Ultra Boots", 78780546, Rels.eki, [0xE990]),
     LocationData("Riverside Station Goomba Room: Shine Sprite", 78780547, Rels.eki, [0xF5D4])
 ]

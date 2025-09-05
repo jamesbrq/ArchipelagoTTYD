@@ -111,7 +111,7 @@ rogueport_westside: typing.List[LocationData] = [
     #LocationData("Rogueport Westside: Maple Syrup", 78780701, Rels.dol, [0x3C7288]),
     #LocationData("Rogueport Westside: Money Money", 78780081, Rels.dol, [0x3C72C8]),
     #LocationData("Rogueport Westside: Multibounce", 78780700, Rels.dol, [0x3C72A8]),
-    LocationData("Rogueport Westside: Mushroom", 78780082, Rels.gor, [0x59E18]),
+    LocationData("Rogueport Westside: Lottery", 78780082, Rels.gor, [0x59E18]),
     #LocationData("Rogueport Westside: Power Jump", 78780083, Rels.dol, [0x3C728C]),
     #LocationData("Rogueport Westside: Power Rush", 78780084, Rels.dol, [0x3C72B4]),
     #LocationData("Rogueport Westside: Power Rush P", 78780085, Rels.dol, [0x3C72BC]),

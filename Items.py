@@ -23,6 +23,7 @@ class TTYDItem(Item):
 itemList: typing.List[ItemData] = [
     ItemData(77772000, "10 Coins", ItemClassification.filler),
     ItemData(77772002, "All or Nothing", ItemClassification.filler),
+    ItemData(77772220, "Attack FX B", ItemClassification.useful),
     ItemData(77772003, "Attack FX G", ItemClassification.useful),
     ItemData(77772004, "Attack FX P", ItemClassification.useful),
     ItemData(77772005, "Attack FX R", ItemClassification.useful),
@@ -37,7 +38,7 @@ itemList: typing.List[ItemData] = [
     ItemData(77772014, "Blue Key", ItemClassification.progression),
     ItemData(77772015, "Boat Curse", ItemClassification.progression),
     ItemData(77772016, "Bobbery", ItemClassification.progression),
-    ItemData(77772017, "Boo's Sheet", ItemClassification.filler,),
+    ItemData(77772017, "Boo's Sheet", ItemClassification.filler),
     ItemData(77772018, "Briefcase", ItemClassification.progression),
     ItemData(77772019, "Bump Attack", ItemClassification.filler),
     ItemData(77772020, "Cake Mix", ItemClassification.filler),

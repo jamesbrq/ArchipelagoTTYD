@@ -752,6 +752,7 @@ location_gsw_info = {
 item_prices = {
     77772000: 10,  # 10 Coins
     77772002: 50,  # All or Nothing - 50 buy price
+    77772220: 50,  # Attack FX B - 50 buy price
     77772003: 50,  # Attack FX G - 50 buy price
     77772004: 50,  # Attack FX P - 50 buy price
     77772005: 50,  # Attack FX R - 50 buy price
@@ -766,7 +767,7 @@ item_prices = {
     77772014: 30,  # Blue Key
     77772015: 30,  # Boat Curse
     77772016: 30,  # Bobbery
-    77772017: 50,  # Boo's Sheet - Attack FX B - 50 buy price
+    77772017: 20,  # Boo's Sheet
     77772018: 30,  # Briefcase
     77772019: 80,  # Bump Attack - 80 buy price
     77772020: 5,  # Cake Mix

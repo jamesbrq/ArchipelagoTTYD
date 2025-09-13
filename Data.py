@@ -862,7 +862,7 @@ item_prices = {
     77772112: 10,  # Maple Syrup
     77772113: 30,  # Mega Rush - 30 buy price
     77772114: 30,  # Mega Rush P - 30 buy price
-    77772115: 10,  # Mini Mr.Mini
+    77772115: 10,  # Mini Mr. Mini
     77772116: 90,  # Money Money - 90 buy price
     77772117: 30,  # Moon Stone
     77772118: 8,  # Mr. Softener
@@ -917,7 +917,7 @@ item_prices = {
     77772167: 30,  # Simplifier - 30 buy price
     77772168: 30,  # Skull Gem
     77772169: 8,  # Sleepy Sheep
-    77772219: 50,  # Sleepy Sheep
+    77772219: 50,  # Sleepy Stomp
     77772170: 10,  # Slow Go - 10 buy price
     77772171: 15,  # Slow Shroom
     77772172: 40,  # Soft Stomp - 40 buy price
@@ -929,7 +929,7 @@ item_prices = {
     77772178: 30,  # Station Key 1
     77772179: 30,  # Station Key 2
     77772180: 30,  # Steeple Key
-    77772182: 12,  # Stopwatch
+    77772182: 12,  # Stop Watch
     77772183: 30,  # Storage Key 1
     77772184: 30,  # Storage Key 2
     77772185: 20,  # Strange Sack

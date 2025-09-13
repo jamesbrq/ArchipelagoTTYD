@@ -37,7 +37,7 @@ rogueport: typing.List[LocationData] = [
     #LocationData("Rogueport Center: Damage Dodge P", 78780011, Rels.gor),
     #LocationData("Rogueport Center: Double Pain", 78780012, Rels.gor),
     #LocationData("Rogueport Center: Dried Shroom", 78780013, Rels.gor),
-    #LocationData("Rogueport Center: Earthquake", 78780014, Rels.gor),
+    #LocationData("Rogueport Center: Earth Quake", 78780014, Rels.gor),
     #LocationData("Rogueport Center: Fire Drive", 78780015, Rels.gor),
     LocationData("Rogueport Center: Fire Flower", 78780003, Rels.gor, [0x36C74, 0x36CA4]),
     #LocationData("Rogueport Center: First Attack", 78780017, Rels.gor),
@@ -73,7 +73,7 @@ rogueport: typing.List[LocationData] = [
     LocationData("Rogueport Center: Star Piece 3", 78780047, Rels.gor, [0x3C58C]),
     LocationData("Rogueport Center: Star Piece 4", 78780048, Rels.gor, [0x3C5B4]),
     LocationData("Rogueport Center: Star Piece 5", 78780049, Rels.gor, [0x3C5DC]),
-    #LocationData("Rogueport Center: Stopwatch", 78780050, Rels.gor),
+    #LocationData("Rogueport Center: Stop Watch", 78780050, Rels.gor),
     #LocationData("Rogueport Center: Super Appeal", 78780051, Rels.gor),
     #LocationData("Rogueport Center: Super Appeal P", 78780052, Rels.gor),
     LocationData("Rogueport Center: Tasty Tonic", 78780053, Rels.gor, [0x36C6C, 0x36C9C]),
@@ -184,7 +184,7 @@ sewers_westside: typing.List[LocationData] = [
     LocationData("Rogueport Sewers Town: Star Piece 2", 78780128, Rels.tik, [0x13598]),
     LocationData("Rogueport Sewers Town: Star Piece 3", 78780129, Rels.tik, [0x13534]),
     LocationData("Rogueport Sewers Town: Star Piece 4", 78780130, Rels.tik, [0x13548]),
-    LocationData("Rogueport Sewers Town: Ultra Mushroom", 78780131, Rels.tik, [0xDDA8]),
+    LocationData("Rogueport Sewers Town: Ultra Shroom", 78780131, Rels.tik, [0xDDA8]),
     LocationData("Rogueport Sewers West Entrance: Shine Sprite", 78780144, Rels.tik, [0x20474]),
     LocationData("Rogueport Sewers West Entrance: Star Piece 2", 78780146, Rels.tik, [0x2048C])
 ]
@@ -305,7 +305,7 @@ great_tree: typing.List[LocationData] = [
     LocationData("Great Tree Shop: Honey Syrup", 78780246, Rels.mri, [0x40FC8]),
     LocationData("Great Tree Shop: HP Drain", 78780247, Rels.mri, [0x40FA8]),
     LocationData("Great Tree Shop: Ice Storm", 78780248, Rels.mri, [0x40FB0]),
-    LocationData("Great Tree Shop: Mini Mr.Mini", 78780249, Rels.mri, [0x40FC0]),
+    LocationData("Great Tree Shop: Mini Mr. Mini", 78780249, Rels.mri, [0x40FC0]),
     LocationData("Great Tree Shop: Mushroom", 78780250, Rels.mri, [0x40FD0]),
     LocationData("Great Tree Shop: Mystery", 78780251, Rels.mri, [0x40FB8]),
     LocationData("Great Tree Blue Key Room: Blue Key", 78780252, Rels.mri, [0x44258]),
@@ -377,7 +377,7 @@ twilight_town_region: typing.List[LocationData] = [
     LocationData("Twilight Town Rightside: Maple Syrup", 78780312, Rels.usu, [0x15C00]),
     LocationData("Twilight Town Rightside: Spite Pouch", 78780313, Rels.usu, [0x15BF0]),
     LocationData("Twilight Town Rightside: Star Piece", 78780314, Rels.usu, [0x16D38]),
-    LocationData("Twilight Town Rightside: Stopwatch", 78780315, Rels.usu, [0x15BF8]),
+    LocationData("Twilight Town Rightside: Stop Watch", 78780315, Rels.usu, [0x15BF8]),
     LocationData("Twilight Town Rightside: Super Shroom", 78780316, Rels.usu, [0x15C08]),
     LocationData("Twilight Town Rightside: Thunder Rage", 78780317, Rels.usu, [0x15BE8]),
     LocationData("Twilight Town Rightside: Tube Curse", 78780318, Rels.usu, [0x162E8]),
@@ -393,7 +393,7 @@ twilight_trail: typing.List[LocationData] = [
     LocationData("Twilight Trail Fallen Tree: Star Piece 1", 78780325, Rels.gra, [0x5358]),
     LocationData("Twilight Trail Fallen Tree: Star Piece 2", 78780326, Rels.gra, [0x5380]),
     LocationData("Twilight Trail Dark Woods First Room: 10 Coins", 78780327, Rels.gra, [0x559C]),
-    LocationData("Twilight Trail Dark Woods First Room: Earthquake", 78780328, Rels.gra, [0x55C4]),
+    LocationData("Twilight Trail Dark Woods First Room: Earth Quake", 78780328, Rels.gra, [0x55C4]),
     LocationData("Twilight Trail Dark Woods Second Room: Hammer Throw", 78780329, Rels.gra, [0x5D2C]),
     LocationData("Twilight Trail Dark Woods Third Room: 10 Coins", 78780330, Rels.gra, [0x6C74]),
     LocationData("Twilight Trail Dark Woods Third Room: Shine Sprite", 78780331, Rels.gra, [0x6C9C]),
@@ -413,7 +413,7 @@ creepy_steeple: typing.List[LocationData] = [
     LocationData("Creepy Steeple Cookbook Room: Star Piece", 78780441, Rels.jin, [0x11E40]),
     LocationData("Creepy Steeple Under Statue: Flower Saver", 78780442, Rels.jin, [0x120A8]),
     LocationData("Creepy Steeple Boo Chest Room: Star Piece", 78780443, Rels.jin, [0x131B4]),
-    LocationData("Creepy Steeple Boo Chest Room: Ultra Mushroom", 78780444, Rels.jin, [0x12F6C, 0x12F90, 0x12FB4]),
+    LocationData("Creepy Steeple Boo Chest Room: Ultra Shroom", 78780444, Rels.jin, [0x12F6C, 0x12F90, 0x12FB4]),
     LocationData("Creepy Steeple Parrot Room: Mr. Softener", 78780445, Rels.jin, [0x13E38]),
     LocationData("Creepy Steeple Parrot Room: Power Plus", 78780446, Rels.jin, [0x13DB0]),
     LocationData("Creepy Steeple Parrot Room: Star Piece", 78780447, Rels.jin, [0x14050]),
@@ -452,7 +452,7 @@ keelhaul_key: typing.List[LocationData] = [
     LocationData("Keelhaul Key Jungle Winding Climb: Coin 1", 78780476, Rels.muj, [0x2628C]),
     LocationData("Keelhaul Key Jungle Winding Climb: Coin 2", 78780477, Rels.muj, [0x26108]),
     LocationData("Keelhaul Key Jungle Winding Climb: Jammin' Jelly", 78780478, Rels.muj, [0x26350]),
-    LocationData("Keelhaul Key Jungle Winding Climb: Mini Mr.Mini", 78780479, Rels.muj, [0x260B8]),
+    LocationData("Keelhaul Key Jungle Winding Climb: Mini Mr. Mini", 78780479, Rels.muj, [0x260B8]),
     LocationData("Keelhaul Key Jungle Winding Climb: Shine Sprite", 78780480, Rels.muj, [0x26304]),
     LocationData("Keelhaul Key Jungle Winding Climb: Star Piece", 78780481, Rels.muj, [0x2636C]),
     LocationData("Keelhaul Key Jungle Winding Climb: Thunder Rage", 78780482, Rels.muj, [0x26328]),
@@ -561,7 +561,7 @@ fahr_outpost: typing.List[LocationData] = [
     LocationData("Fahr Outpost Town: Space Food", 78780570, Rels.bom, [0x11CAC]),
     LocationData("Fahr Outpost Town: Star Piece 1", 78780571, Rels.bom, [0x11F34]),
     LocationData("Fahr Outpost Town: Star Piece 2", 78780572, Rels.bom, [0x11F48]),
-    LocationData("Fahr Outpost Town: Stopwatch", 78780573, Rels.bom, [0x1118C]),
+    LocationData("Fahr Outpost Town: Stop Watch", 78780573, Rels.bom, [0x1118C]),
     LocationData("Fahr Outpost Town: Super Shroom", 78780574, Rels.bom, [0x1119C]),
     LocationData("Fahr Outpost West Enemy Room: Shine Sprite", 78780575, Rels.bom, [0x1264C]),
     LocationData("Fahr Outpost West Enemy Room: Star Piece", 78780576, Rels.bom, [0x12664]),
@@ -570,7 +570,7 @@ fahr_outpost: typing.List[LocationData] = [
 ]
 
 xnaut_fortress: typing.List[LocationData] = [
-    LocationData("Moon Landing Site: Stopwatch", 78780579, Rels.moo, [0x52B8]),
+    LocationData("Moon Landing Site: Stop Watch", 78780579, Rels.moo, [0x52B8]),
     LocationData("Moon East Room 1: Volt Shroom", 78780807, Rels.moo, [0x55AC]),
     LocationData("Moon Fortress View: Power Punch", 78780580, Rels.moo, [0x5C68]),
     LocationData("Moon Fortress View: Star Piece", 78780581, Rels.moo, [0x5B14]),
@@ -601,7 +601,7 @@ xnaut_fortress: typing.List[LocationData] = [
 ]
 
 palace: typing.List[LocationData] = [
-    LocationData("Palace of Shadow Swoopula Staircase: Stopwatch", 78780605, Rels.las, [0x1BF04]),
+    LocationData("Palace of Shadow Swoopula Staircase: Stop Watch", 78780605, Rels.las, [0x1BF04]),
     LocationData("Palace of Shadow Bullet Bill Hallway: Shooting Star", 78780606, Rels.las, [0x1C2A4]),
     LocationData("Palace of Shadow Spike Trap Room: All or Nothing", 78780607, Rels.las, [0x1C970]),
     LocationData("Palace of Shadow Fire Trap Room: Boo's Sheet", 78780608, Rels.las, [0x1D098]),

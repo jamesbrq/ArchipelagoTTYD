@@ -196,7 +196,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
         "Great Tree Shop: Ice Storm":
             lambda state: StateLogic.key_any(state, world.player) and state.has("Puni Orb", world.player)
                           and state.has("Flurrie", world.player),
-        "Great Tree Shop: Mini Mr.Mini":
+        "Great Tree Shop: Mini Mr. Mini":
             lambda state: StateLogic.key_any(state, world.player) and state.has("Puni Orb", world.player)
                           and state.has("Flurrie", world.player),
         "Great Tree Shop: Mushroom":
@@ -614,7 +614,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
             lambda state: state.has("Shop Key", world.player),
         "Twilight Town Rightside: Spite Pouch":
             lambda state: state.has("Shop Key", world.player),
-        "Twilight Town Rightside: Stopwatch":
+        "Twilight Town Rightside: Stop Watch":
             lambda state: state.has("Shop Key", world.player),
         "Twilight Town Rightside: Super Shroom":
             lambda state: state.has("Shop Key", world.player),
@@ -628,7 +628,7 @@ def get_rules_dict(world: "TTYDWorld") -> dict[str, Any]:
             lambda state: state.has("Flurrie", world.player),
         "Twilight Trail Dark Woods First Room: 10 Coins":
             lambda state: state.has("Flurrie", world.player),
-        "Twilight Trail Dark Woods First Room: Earthquake":
+        "Twilight Trail Dark Woods First Room: Earth Quake":
             lambda state: state.has("Flurrie", world.player),
         "Twilight Trail Dark Woods Second Room: Hammer Throw":
             lambda state: state.has("Flurrie", world.player),

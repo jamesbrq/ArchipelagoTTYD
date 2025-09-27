@@ -10,7 +10,7 @@ from .Data import starting_partners, limit_eight, stars, chapter_items, limited_
     pit_exclusive_tattle_stars_required
 from .Locations import all_locations, location_table, location_id_to_name, TTYDLocation, locationName_to_data, \
     get_locations_by_tags, get_vanilla_item_names, get_location_names, LocationData
-from .Options import TTYDOptions, YoshiColor, StartingPartner, PitItems, LimitChapterEight, Goal
+from .Options import Piecesanity, TTYDOptions, YoshiColor, StartingPartner, PitItems, LimitChapterEight, Goal
 from .Items import TTYDItem, itemList, item_table, ItemData
 from .Regions import create_regions, connect_regions, get_regions_dict, register_indirect_connections
 from .Rom import TTYDProcedurePatch, write_files
@@ -165,8 +165,11 @@ class TTYDWorld(World):
             self.lock_item("Palace of Shadow Gloomtail Room: Star Key", "Star Key")
         if self.options.pit_items == PitItems.option_vanilla:
             self.lock_vanilla_items(get_locations_by_tags("pit_floor"))
-        if not self.options.panelsanity:
-            self.lock_vanilla_items(get_locations_by_tags("panel"))
+        if not self.options.piecesanity == Piecesanity.option_all:
+            if self.options.piecesanity == Piecesanity.option_vanilla:
+                self.lock_vanilla_items(get_locations_by_tags("star_piece"))
+            elif self.options.piecesanity == Piecesanity.option_nonpanel_only:
+                self.lock_vanilla_items(get_locations_by_tags("panel"))
         if not self.options.shopsanity:
             self.lock_vanilla_items(get_locations_by_tags("shop"))
 
@@ -225,7 +228,7 @@ class TTYDWorld(World):
             if item.item_name != starting_partners[self.options.starting_partner.value - 1]:
                 useful_items += [item.item_name for _ in range(item.frequency)]
         for item_name in useful_items:
-            if not self.options.panelsanity and "Star Piece" in item_name:
+            if self.options.piecesanity == Piecesanity.option_vanilla and "Star Piece" in item_name:
                 continue
             self.items.append(self.create_item(item_name))
             added_items += 1

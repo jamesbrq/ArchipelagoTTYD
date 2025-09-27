@@ -60,11 +60,18 @@ class TattleSanityOption(Toggle):
     display_name = "Tattlesanity"
 
 
-class Panelsanity(DefaultOnToggle):
+class Piecesanity(DefaultOnToggle):
     """
-    Star Piece panels will be randomized.
+    Determines if Star Piece locations will be randomized.
+    vanilla: Star Piece locations will remain in their original locations.
+    nonpanel_only: Only Star Pieces that are not in panels will be randomized.
+    all: All Star Pieces will be randomized.
     """
-    display_name = "Star Piece Panels"
+    display_name = "Star Piecesanity"
+    option_vanilla = 0
+    option_nonpanel_only = 1
+    option_all = 2
+    default = 2
 
 
 class Shopsanity(DefaultOnToggle):
@@ -293,7 +300,7 @@ class TTYDOptions(PerGameCommonOptions):
     goal_stars: GoalStars
     palace_stars: PalaceStars
     tattlesanity: TattleSanityOption
-    panelsanity: Panelsanity
+    piecesanity: Piecesanity
     shopsanity: Shopsanity
     pit_items: PitItems
     limit_chapter_logic: LimitChapterLogic

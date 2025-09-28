@@ -284,7 +284,7 @@
     "id": 77772039,
     "progression": "progression",
     "rom_id": 120,
-    "frequency": 0
+    "frequency": 1
   },
   {
     "item_name": "Damage Dodge",
@@ -319,7 +319,7 @@
     "id": 77772044,
     "progression": "progression",
     "rom_id": 114,
-    "frequency": 0
+    "frequency": 1
   },
   {
     "item_name": "Dizzy Dial",
@@ -403,7 +403,7 @@
     "id": 77772055,
     "progression": "progression",
     "rom_id": 115,
-    "frequency": 0
+    "frequency": 1
   },
   {
     "item_name": "Feeling Fine",
@@ -508,7 +508,7 @@
     "id": 77772070,
     "progression": "progression",
     "rom_id": 119,
-    "frequency": 0
+    "frequency": 1
   },
   {
     "item_name": "Gate Handle",
@@ -543,7 +543,7 @@
     "id": 77772075,
     "progression": "progression",
     "rom_id": 116,
-    "frequency": 0
+    "frequency": 1
   },
   {
     "item_name": "Goldbob Guide",
@@ -1145,7 +1145,7 @@
     "id": 77772158,
     "progression": "progression",
     "rom_id": 117,
-    "frequency": 0
+    "frequency": 1
   },
   {
     "item_name": "Ruin Powder",
@@ -1159,7 +1159,7 @@
     "id": 77772160,
     "progression": "progression",
     "rom_id": 118,
-    "frequency": 0
+    "frequency": 1
   },
   {
     "item_name": "Shell Earrings",

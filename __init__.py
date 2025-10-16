@@ -298,6 +298,8 @@ class TTYDWorld(World):
             "disable_intermissions": self.options.disable_intermissions.value,
             "cutscene_skip": self.options.cutscene_skip.value,
             "death_link": self.options.death_link.value,
+            "piecesanity": self.options.piecesanity.value,
+            "shinesanity": self.options.shinesanity.value
         }
 
     def create_item(self, name: str) -> TTYDItem:

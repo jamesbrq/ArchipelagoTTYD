@@ -298,6 +298,7 @@ def classification_to_color(classification: ItemClassification = ItemClassificat
     else:
         return "00d6d6"
 
+
 def locations_to_dict(locations: Iterable[Location]) -> Dict[str, Tuple]:
     result = {}
     for location in locations:
@@ -313,6 +314,8 @@ def locations_to_dict(locations: Iterable[Location]) -> Dict[str, Tuple]:
     return result
 
 def sanitize_string(input_string) -> str:
-    allowed_chars = ' !"#$%&\'()=~|-^\\[]P{{}};:+*/?_,.@`abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789‘’‚“”„Œœ¡¤ª«²³º»¼½¾¿ÀÁÂÄÇÈÉÊËÌÍÎÏÐÑÒÓÔÖ×ØÙÚÛÜÞßàáâäçèéêëìíîïñòóôöùúûü'
+    input_string = input_string.replace('<3', 'Ð') # Use the built in heart symbol
+    allowed_chars = ' !"#$%&\'()=~|-^\\[]P{};:+*/?_,.@`abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789‘’‚“”„Œœ¡¤ª«²³º»¼½¾¿ÀÁÂÄÇÈÉÊËÌÍÎÏÐÑÒÓÔÖ×ØÙÚÛÜÞßàáâäçèéêëìíîïñòóôöùúûü'
     filtered_chars = [char for char in input_string if char in allowed_chars]
     return "".join(filtered_chars)
+    

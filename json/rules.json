@@ -2335,24 +2335,7 @@
     ]
   },
   "Rogueport Sewers Boggly Woods Pipe: Star Piece": {
-    "and": [
-      {
-        "function": "super_boots"
-      },
-      {
-        "or": [
-          {
-            "has": "Paper Mode"
-          },
-          {
-            "function": "super_hammer"
-          }
-        ]
-      }
-    ]
-  },
-  "Rogueport Sewers Boggly Woods Pipe: Damage Dodge": {
-    "has": "Paper Mode"
+    "function": "super_boots"
   },
   "Rogueport Sewers Town: Shine Sprite": {
     "function": "ultra_boots"
@@ -2363,85 +2346,25 @@
   "Rogueport Sewers West Entrance: Flower Saver P": {
     "function": "ultra_boots"
   },
-  "Rogueport Sewers West Entrance: Shine Sprite": {
-    "or": [
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Yoshi"
-      }
-    ]
-  },
-  "Rogueport Sewers West Entrance: Star Piece 2": {
-    "or": [
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Yoshi"
-      }
-    ]
-  },
   "Rogueport Sewers Spania Room: Defend Plus": {
-    "and": [
+    "or": [
       {
-        "has": "Flurrie"
+        "has": "Yoshi"
       },
       {
-        "has": "Boat Mode"
-      },
-      {
-        "or": [
+        "and": [
           {
-            "has": "Yoshi"
+            "has": "Koops"
           },
           {
-            "and": [
-              {
-                "has": "Koops"
-              },
-              {
-                "function": "ultra_boots"
-              }
-            ]
+            "function": "ultra_boots"
           }
         ]
       }
     ]
   },
-  "Rogueport Sewers Spania Room: Shine Sprite 1": {
-    "and": [
-      {
-        "has": "Flurrie"
-      },
-      {
-        "has": "Boat Mode"
-      }
-    ]
-  },
   "Rogueport Sewers Spania Room: Shine Sprite 2": {
-    "and": [
-      {
-        "has": "Flurrie"
-      },
-      {
-        "has": "Boat Mode"
-      },
-      {
-        "function": "ultra_boots"
-      }
-    ]
-  },
-  "Rogueport Sewers Spania Room: Shine Sprite 3": {
-    "and": [
-      {
-        "has": "Flurrie"
-      },
-      {
-        "has": "Boat Mode"
-      }
-    ]
+    "function": "ultra_boots"
   },
   "Rogueport Blimp Room: Star Piece 1": {
     "has": "Blimp Ticket"
@@ -2456,9 +2379,6 @@
     "or": [
       {
         "and": [
-          {
-            "function": "ttyd"
-          },
           {
             "has": "Paper Mode"
           },
@@ -2480,14 +2400,7 @@
     ]
   },
   "Rogueport Sewers Thousand-Year Door: Star Piece": {
-    "and": [
-      {
-        "function": "ttyd"
-      },
-      {
-        "function": "super_boots"
-      }
-    ]
+    "function": "super_boots"
   },
   "Twilight Town Leftside: Vivian": {
     "has": "Superbombomb"
@@ -2845,47 +2758,10 @@
     "has": "Flurrie"
   },
   "Rogueport Sewers Spike Room: Spike Shield": {
-    "and": [
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Vivian"
-      }
-    ]
+    "has": "Vivian"
   },
   "Rogueport Sewers Petal Meadows Pipe: Shine Sprite": {
-    "and": [
-      {
-        "has": "Plane Mode"
-      },
-      {
-        "has": "Boat Mode"
-      }
-    ]
-  },
-  "Rogueport Sewers Star Piece House: Star Piece": {
-    "and": [
-      {
-        "has": "Plane Mode"
-      },
-      {
-        "function": "ultra_boots"
-      }
-    ]
-  },
-  "Rogueport Sewers East Entrance: Defend Plus P": {
-    "and": [
-      {
-        "has": "Plane Mode"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Bobbery"
-      }
-    ]
+    "has": "Boat Mode"
   },
   "Rogueport Docks: Star Piece": {
     "function": "super_boots"

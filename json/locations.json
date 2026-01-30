@@ -652,7 +652,7 @@
     "vanilla_item": 77772043,
     "tags": [
       "sewers",
-      "sewer_east"
+      "sewer_east_top"
     ]
   },
   {
@@ -693,7 +693,7 @@
     "tags": [
       "sewers",
       "panel",
-      "sewer_puni"
+      "sewer_puni_exit"
     ]
   },
   {

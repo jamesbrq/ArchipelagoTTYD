@@ -32,9 +32,22 @@ SHOP_ITEM_PURCHASED = 0xD7
 GAME_ID_ADDRESS = 0x80000000
 EXPECTED_GAME_ID = b"G8ME01"
 
+def _check_universal_tracker_version() -> bool:
+    import re
+    if tracker_loaded:
+        match = re.search(r"v\d+.(\d+).(\d+)", UT_VERSION)
+        if len(match.groups()) < 2:
+            return False
+        if int(match.groups()[0]) < 2:
+            return False
+        if int(match.groups()[1]) < 12:
+            return False
+        return True
+    return False
+
 tracker_loaded = False
 try:
-    from worlds.tracker.TrackerClient import TrackerGameContext as cmmCtx
+    from worlds.tracker.TrackerClient import TrackerGameContext as cmmCtx, UT_VERSION
     tracker_loaded = True
 except ModuleNotFoundError:
     from CommonClient import CommonContext as cmmCtx
@@ -166,11 +179,16 @@ class TTYDContext(cmmCtx):
         self.seed_verified = False
 
     def make_gui(self) -> "type[kvui.GameManager]":
-        ui = super().make_gui()
-        ui.logging_pairs = [("Client", "Archipelago")]
-        ui.base_title = "Archipelago TTYD Client"
-
-        return ui
+        from kvui import GameManager
+        class TTYDManager(GameManager):
+            logging_pairs = [("Client", "Archipelago")]
+            base_title = "Archipelago TTYD Client"
+        if not _check_universal_tracker_version():
+            return TTYDManager
+        class TrackerManager(super().make_gui()):
+            logging_pairs = [("Client", "Archipelago")]
+            base_title = f"Archipelago TTYD Client with {UT_VERSION}"
+        return TrackerManager
 
     async def receive_items(self):
         current_length = dolphin.read_word(RECEIVED_LENGTH)

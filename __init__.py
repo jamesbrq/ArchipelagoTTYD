@@ -152,7 +152,6 @@ class TTYDWorld(World):
                 for _ in range(self.options.goal_stars.value - len(self.required_chapters)):
                     self.required_chapters.append(
                         remaining_chapters.pop(self.multiworld.random.randint(0, len(remaining_chapters) - 1)))
-        logging.info(f"{self.player_name}'s required chapters: {self.required_chapters}")
         if self.options.limit_chapter_logic:
             self.limited_chapters += [chapter for chapter in chapters if chapter not in self.required_chapters]
         if self.options.limit_chapter_eight:
@@ -339,10 +338,6 @@ class TTYDWorld(World):
         self.random.shuffle(filler_items)
         self.random.shuffle(useful_items)
         self.random.shuffle(required_items)
-
-        if unfilled < len(required_items) + len(star_pieces):
-            logging.info(f"Unfilled locations that arent limited: {[location.name for location in self.multiworld.get_unfilled_locations(self.player) if location not in self.limited_misc_locations and all(location not in locs for chapter_locs in self.limited_chapter_locations.values() for locs in chapter_locs.values())]}")
-            raise Exception(f"Not enough item pool to fill all locations for player {self.player}. Player has {unfilled} unfilled locations, and {len(required_items) + len(star_pieces)} required items.")
 
         for item in required_items + star_pieces:
             self.multiworld.itempool.append(item)

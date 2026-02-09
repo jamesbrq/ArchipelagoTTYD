@@ -67,7 +67,7 @@
     ]
   },
   {
-    "name": "Rogueport Center: Fire Flower",
+    "name": "Rogueport Center Shop: Fire Flower",
     "id": 78780003,
     "rel": "gor",
     "offsets": [
@@ -82,7 +82,7 @@
     ]
   },
   {
-    "name": "Rogueport Center: Fright Mask",
+    "name": "Rogueport Center Shop: Fright Mask",
     "id": 78780019,
     "rel": "gor",
     "offsets": [
@@ -97,7 +97,7 @@
     ]
   },
   {
-    "name": "Rogueport Center: Honey Syrup",
+    "name": "Rogueport Center Shop: Honey Syrup",
     "id": 78780023,
     "rel": "gor",
     "offsets": [
@@ -112,7 +112,7 @@
     ]
   },
   {
-    "name": "Rogueport Center: Mushroom",
+    "name": "Rogueport Center Shop: Mushroom",
     "id": 78780030,
     "rel": "gor",
     "offsets": [
@@ -127,7 +127,7 @@
     ]
   },
   {
-    "name": "Rogueport Center: Sleepy Sheep",
+    "name": "Rogueport Center Shop: Sleepy Sheep",
     "id": 78780041,
     "rel": "gor",
     "offsets": [
@@ -212,7 +212,7 @@
     ]
   },
   {
-    "name": "Rogueport Center: Tasty Tonic",
+    "name": "Rogueport Center Shop: Tasty Tonic",
     "id": 78780053,
     "rel": "gor",
     "offsets": [
@@ -405,7 +405,7 @@
     ]
   },
   {
-    "name": "Rogueport Westside: Dizzy Dial",
+    "name": "Rogueport Westside Shop: Dizzy Dial",
     "id": 78780072,
     "rel": "gor",
     "offsets": [
@@ -419,7 +419,7 @@
     ]
   },
   {
-    "name": "Rogueport Westside: Dried Shroom",
+    "name": "Rogueport Westside Shop: Dried Shroom",
     "id": 78780073,
     "rel": "gor",
     "offsets": [
@@ -433,7 +433,7 @@
     ]
   },
   {
-    "name": "Rogueport Westside: Life Shroom",
+    "name": "Rogueport Westside Shop: Life Shroom",
     "id": 78780080,
     "rel": "gor",
     "offsets": [
@@ -544,7 +544,7 @@
     ]
   },
   {
-    "name": "Rogueport Westside: Super Shroom 1",
+    "name": "Rogueport Westside Shop: Super Shroom",
     "id": 78780096,
     "rel": "gor",
     "offsets": [
@@ -558,7 +558,7 @@
     ]
   },
   {
-    "name": "Rogueport Westside: Thunder Bolt",
+    "name": "Rogueport Westside Shop: Thunder Bolt",
     "id": 78780098,
     "rel": "gor",
     "offsets": [
@@ -572,7 +572,7 @@
     ]
   },
   {
-    "name": "Rogueport Westside: Volt Shroom",
+    "name": "Rogueport Westside Shop: Volt Shroom",
     "id": 78780102,
     "rel": "gor",
     "offsets": [
@@ -885,7 +885,7 @@
     ]
   },
   {
-    "name": "Rogueport Sewers Town: Gold Bar",
+    "name": "Rogueport Sewers Town Shop: Gold Bar",
     "id": 78780110,
     "rel": "tik",
     "offsets": [
@@ -899,7 +899,7 @@
     ]
   },
   {
-    "name": "Rogueport Sewers Town: Gold Bar x3",
+    "name": "Rogueport Sewers Town Shop: Gold Bar x3",
     "id": 78780111,
     "rel": "tik",
     "offsets": [
@@ -913,7 +913,7 @@
     ]
   },
   {
-    "name": "Rogueport Sewers Town: Gradual Syrup",
+    "name": "Rogueport Sewers Town Shop: Gradual Syrup",
     "id": 78780112,
     "rel": "tik",
     "offsets": [
@@ -927,7 +927,7 @@
     ]
   },
   {
-    "name": "Rogueport Sewers Town: Jammin' Jelly",
+    "name": "Rogueport Sewers Town Shop: Jammin' Jelly",
     "id": 78780118,
     "rel": "tik",
     "offsets": [
@@ -955,7 +955,7 @@
     ]
   },
   {
-    "name": "Rogueport Sewers Town: Slow Shroom",
+    "name": "Rogueport Sewers Town Shop: Slow Shroom",
     "id": 78780125,
     "rel": "tik",
     "offsets": [
@@ -1024,7 +1024,7 @@
     ]
   },
   {
-    "name": "Rogueport Sewers Town: Ultra Shroom",
+    "name": "Rogueport Sewers Town Shop: Ultra Shroom",
     "id": 78780131,
     "rel": "tik",
     "offsets": [
@@ -1385,7 +1385,7 @@
     ]
   },
   {
-    "name": "Petalburg Westside: Courage Shell",
+    "name": "Petalburg Westside Shop: Courage Shell",
     "id": 78780172,
     "rel": "nok",
     "offsets": [
@@ -1400,7 +1400,7 @@
     ]
   },
   {
-    "name": "Petalburg Westside: Fire Flower",
+    "name": "Petalburg Westside Shop: Fire Flower",
     "id": 78780173,
     "rel": "nok",
     "offsets": [
@@ -1415,7 +1415,7 @@
     ]
   },
   {
-    "name": "Petalburg Westside: Honey Syrup",
+    "name": "Petalburg Westside Shop: Honey Syrup",
     "id": 78780174,
     "rel": "nok",
     "offsets": [
@@ -1430,7 +1430,7 @@
     ]
   },
   {
-    "name": "Petalburg Westside: Mr. Softener",
+    "name": "Petalburg Westside Shop: Mr. Softener",
     "id": 78780175,
     "rel": "nok",
     "offsets": [
@@ -1445,7 +1445,7 @@
     ]
   },
   {
-    "name": "Petalburg Westside: Mushroom",
+    "name": "Petalburg Westside Shop: Mushroom",
     "id": 78780176,
     "rel": "nok",
     "offsets": [
@@ -1460,7 +1460,7 @@
     ]
   },
   {
-    "name": "Petalburg Westside: POW Block",
+    "name": "Petalburg Westside Shop: POW Block",
     "id": 78780177,
     "rel": "nok",
     "offsets": [
@@ -2776,7 +2776,7 @@
     ]
   },
   {
-    "name": "Glitzville Main Square: Earth Quake",
+    "name": "Glitzville Main Square Shop: Earth Quake",
     "id": 78780268,
     "rel": "tou",
     "offsets": [
@@ -2819,7 +2819,7 @@
     ]
   },
   {
-    "name": "Glitzville Main Square: Point Swap",
+    "name": "Glitzville Main Square Shop: Point Swap",
     "id": 78780271,
     "rel": "tou",
     "offsets": [
@@ -2848,7 +2848,7 @@
     ]
   },
   {
-    "name": "Glitzville Main Square: Power Punch",
+    "name": "Glitzville Main Square Shop: Power Punch",
     "id": 78780273,
     "rel": "tou",
     "offsets": [
@@ -2863,7 +2863,7 @@
     ]
   },
   {
-    "name": "Glitzville Main Square: Repel Cape",
+    "name": "Glitzville Main Square Shop: Repel Cape",
     "id": 78780274,
     "rel": "tou",
     "offsets": [
@@ -2996,7 +2996,7 @@
     ]
   },
   {
-    "name": "Glitzville Main Square: Super Shroom",
+    "name": "Glitzville Main Square Shop: Super Shroom",
     "id": 78780283,
     "rel": "tou",
     "offsets": [
@@ -3011,7 +3011,7 @@
     ]
   },
   {
-    "name": "Glitzville Main Square: Thunder Bolt",
+    "name": "Glitzville Main Square Shop: Thunder Bolt",
     "id": 78780284,
     "rel": "tou",
     "offsets": [
@@ -3376,7 +3376,7 @@
     ]
   },
   {
-    "name": "Twilight Town Rightside: Life Shroom 1",
+    "name": "Twilight Town Rightside Shop: Life Shroom",
     "id": 78780310,
     "rel": "usu",
     "offsets": [
@@ -3390,7 +3390,7 @@
     ]
   },
   {
-    "name": "Twilight Town Rightside: Life Shroom 2",
+    "name": "Twilight Town Rightside: Life Shroom",
     "id": 78780311,
     "rel": "usu",
     "offsets": [
@@ -3403,7 +3403,7 @@
     ]
   },
   {
-    "name": "Twilight Town Rightside: Maple Syrup",
+    "name": "Twilight Town Rightside Shop: Maple Syrup",
     "id": 78780312,
     "rel": "usu",
     "offsets": [
@@ -3417,7 +3417,7 @@
     ]
   },
   {
-    "name": "Twilight Town Rightside: Spite Pouch",
+    "name": "Twilight Town Rightside Shop: Spite Pouch",
     "id": 78780313,
     "rel": "usu",
     "offsets": [
@@ -3445,7 +3445,7 @@
     ]
   },
   {
-    "name": "Twilight Town Rightside: Stopwatch",
+    "name": "Twilight Town Rightside Shop: Stopwatch",
     "id": 78780315,
     "rel": "usu",
     "offsets": [
@@ -3459,7 +3459,7 @@
     ]
   },
   {
-    "name": "Twilight Town Rightside: Super Shroom",
+    "name": "Twilight Town Rightside Shop: Super Shroom",
     "id": 78780316,
     "rel": "usu",
     "offsets": [
@@ -3473,7 +3473,7 @@
     ]
   },
   {
-    "name": "Twilight Town Rightside: Thunder Rage",
+    "name": "Twilight Town Rightside Shop: Thunder Rage",
     "id": 78780317,
     "rel": "usu",
     "offsets": [
@@ -4100,7 +4100,7 @@
     ]
   },
   {
-    "name": "Keelhaul Key Town: Fire Flower",
+    "name": "Keelhaul Key Town Shop: Fire Flower",
     "id": 78780462,
     "rel": "muj",
     "offsets": [
@@ -4114,7 +4114,7 @@
     ]
   },
   {
-    "name": "Keelhaul Key Town: Fright Mask",
+    "name": "Keelhaul Key Town Shop: Fright Mask",
     "id": 78780463,
     "rel": "muj",
     "offsets": [
@@ -4128,7 +4128,7 @@
     ]
   },
   {
-    "name": "Keelhaul Key Town: Honey Syrup",
+    "name": "Keelhaul Key Town Shop: Honey Syrup",
     "id": 78780464,
     "rel": "muj",
     "offsets": [
@@ -4142,7 +4142,7 @@
     ]
   },
   {
-    "name": "Keelhaul Key Town: Ice Storm",
+    "name": "Keelhaul Key Town Shop: Ice Storm",
     "id": 78780465,
     "rel": "muj",
     "offsets": [
@@ -4156,7 +4156,7 @@
     ]
   },
   {
-    "name": "Keelhaul Key Town: Sleepy Sheep",
+    "name": "Keelhaul Key Town Shop: Sleepy Sheep",
     "id": 78780466,
     "rel": "muj",
     "offsets": [
@@ -4198,7 +4198,7 @@
     ]
   },
   {
-    "name": "Keelhaul Key Town: Super Shroom",
+    "name": "Keelhaul Key Town Shop: Super Shroom",
     "id": 78780469,
     "rel": "muj",
     "offsets": [
@@ -4934,7 +4934,7 @@
     ]
   },
   {
-    "name": "Excess Express Dining Car: Boo's Sheet",
+    "name": "Excess Express Dining Car Shop: Boo's Sheet",
     "id": 78780524,
     "rel": "rsh",
     "offsets": [
@@ -4948,7 +4948,7 @@
     ]
   },
   {
-    "name": "Excess Express Dining Car: Maple Syrup",
+    "name": "Excess Express Dining Car Shop: Maple Syrup",
     "id": 78780525,
     "rel": "rsh",
     "offsets": [
@@ -4962,7 +4962,7 @@
     ]
   },
   {
-    "name": "Excess Express Dining Car: Mystery",
+    "name": "Excess Express Dining Car Shop: Mystery",
     "id": 78780526,
     "rel": "rsh",
     "offsets": [
@@ -5004,7 +5004,7 @@
     ]
   },
   {
-    "name": "Excess Express Dining Car: Super Shroom",
+    "name": "Excess Express Dining Car Shop: Super Shroom",
     "id": 78780529,
     "rel": "rsh",
     "offsets": [
@@ -5018,7 +5018,7 @@
     ]
   },
   {
-    "name": "Excess Express Dining Car: Tasty Tonic",
+    "name": "Excess Express Dining Car Shop: Tasty Tonic",
     "id": 78780530,
     "rel": "rsh",
     "offsets": [
@@ -5032,7 +5032,7 @@
     ]
   },
   {
-    "name": "Excess Express Dining Car: Thunder Rage",
+    "name": "Excess Express Dining Car Shop: Thunder Rage",
     "id": 78780531,
     "rel": "rsh",
     "offsets": [
@@ -5478,7 +5478,7 @@
     ]
   },
   {
-    "name": "Fahr Outpost Town: Ice Storm",
+    "name": "Fahr Outpost Town Shop: Ice Storm",
     "id": 78780564,
     "rel": "bom",
     "offsets": [
@@ -5505,7 +5505,7 @@
     ]
   },
   {
-    "name": "Fahr Outpost Town: Maple Syrup",
+    "name": "Fahr Outpost Town Shop: Maple Syrup",
     "id": 78780566,
     "rel": "bom",
     "offsets": [
@@ -5519,7 +5519,7 @@
     ]
   },
   {
-    "name": "Fahr Outpost Town: Ruin Powder",
+    "name": "Fahr Outpost Town Shop: Ruin Powder",
     "id": 78780567,
     "rel": "bom",
     "offsets": [
@@ -5547,7 +5547,7 @@
     ]
   },
   {
-    "name": "Fahr Outpost Town: Shooting Star",
+    "name": "Fahr Outpost Town Shop: Shooting Star",
     "id": 78780569,
     "rel": "bom",
     "offsets": [
@@ -5601,7 +5601,7 @@
     ]
   },
   {
-    "name": "Fahr Outpost Town: Stopwatch",
+    "name": "Fahr Outpost Town Shop: Stopwatch",
     "id": 78780573,
     "rel": "bom",
     "offsets": [
@@ -5615,7 +5615,7 @@
     ]
   },
   {
-    "name": "Fahr Outpost Town: Super Shroom",
+    "name": "Fahr Outpost Town Shop: Super Shroom",
     "id": 78780574,
     "rel": "bom",
     "offsets": [

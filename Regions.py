@@ -205,6 +205,15 @@ def get_region_connections_dict(world: "TTYDWorld") -> dict[tuple[str, str], typ
         lambda state: StateLogic.palace(state, world, world.options.goal_stars.value)
     }
 
+    if world.options.blue_pipe_toggle:
+        connections[("Rogueport Sewers", "Petal Meadows (Right)")] = lambda state: StateLogic.super_blue_pipes(state, world.player)
+        connections[("Rogueport Sewers", "Boggly Woods")] = lambda state: StateLogic.super_blue_pipes(state, world.player)
+        connections[("Rogueport Sewers", "Keelhaul Key")] = lambda state: StateLogic.ultra_blue_pipes(state, world.player)
+        connections[("Rogueport Sewers", "Poshley Heights")] = lambda state: StateLogic.ultra_blue_pipes(state, world.player)
+
+    return connections
+
+
 
 def create_regions(world: "TTYDWorld"):
     # Create menu region (always included)
@@ -255,8 +264,6 @@ def connect_regions(world: "TTYDWorld"):
             connect(world, names, source, target, rule)
             add_edge(source, target)
         except Exception:
-            # Skip connections where the region doesn't exist
-            # This could happen if one region was excluded by a different mechanism
             continue
 
 

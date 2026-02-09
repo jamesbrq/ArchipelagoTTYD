@@ -1,9 +1,5 @@
-import typing
 from .Data import star_locations
 from .Options import StarShuffle
-
-if typing.TYPE_CHECKING:
-    from . import TTYDWorld
 
 
 def westside(state, player):
@@ -37,16 +33,12 @@ def petal_left(state, player):
     return state.has("Plane Mode", player)
 
 
-def petal_right(state, player):
-    return super_hammer(state, player) and super_boots(state, player)
-
-
 def hooktails_castle(state, player):
     return state.has("Sun Stone", player) and state.has("Moon Stone", player) and (state.has("Koops", player) or state.has("Bobbery", player))
 
 
 def boggly_woods(state, player):
-    return state.has("Paper Mode", player) or (super_hammer(state, player) and super_boots(state, player))
+    return state.has("Paper Mode", player)
 
 
 def great_tree(state, player):
@@ -72,7 +64,7 @@ def steeple(state, player):
 
 
 def keelhaul_key(state, player):
-    return (state.has("Yoshi", player) and tube_curse(state, player) and state.has("Old Letter", player))
+    return state.has("Yoshi", player) and tube_curse(state, player) and state.has("Old Letter", player)
 
 
 def pirates_grotto(state, player):
@@ -113,8 +105,8 @@ def pit_westside_ground(state, player):
     return state.has("Flurrie", player) and ((state.has("Contact Lens", player) and state.has("Paper Mode", player)) or state.has("Bobbery", player) or tube_curse(state, player) or ultra_hammer(state, player))
 
 
-def palace(state, world: "TTYDWorld", chapters: int):
-    return ttyd(state, world.player) and (state.has("stars", world.player, chapters) if world.options.star_shuffle == StarShuffle.option_all else state.has("required_stars", world.player, chapters))
+def palace(state, player, chapters: int, star_shuffle: int):
+    return ttyd(state, player) and (state.has("stars", player, chapters) if star_shuffle == StarShuffle.option_all else state.has("required_stars", player, chapters))
 
 
 def riddle_tower(state, player):
@@ -139,3 +131,9 @@ def chapter_completions(state, player, count):
 
 def partner_press_switch(state, player):
     return state.has("Koops", player) or state.has("Bobbery", player)
+
+def super_blue_pipes(state, player):
+    return super_hammer(state, player) and super_boots(state, player)
+
+def ultra_blue_pipes(state, player):
+    return ultra_hammer(state, player) and super_boots(state, player)

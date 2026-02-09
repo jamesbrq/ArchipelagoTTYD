@@ -1,5 +1,5 @@
 from Options import Range, StartInventoryPool, PerGameCommonOptions, Choice, FreeText, Toggle, DeathLink, \
-    DefaultOnToggle
+    DefaultOnToggle, OptionSet
 from dataclasses import dataclass
 
 
@@ -42,6 +42,27 @@ class LoadingZoneShuffle(Toggle):
     Randomizes loading zones.
     """
     display_name = "Loading Zone Shuffle"
+
+
+class RequiredStarsToggle(Toggle):
+    """
+    Toggles the Required Stars setting.
+    This will force the stars selected in Required Stars to be needed to enter the Palace of Shadow.
+    Leaving this off will cause the stars needed to be chosen randomly.
+    """
+    display_name = "Required Stars Selection"
+
+
+class RequiredStars(OptionSet):
+    """
+    Select which stars are required to enter the Palace of Shadow.
+    If you do not toggle this option the stars will be chosen randomly.
+    If this has more stars in it than goal stars required, it will use the ones that come first in the list.
+    If this has fewer stars in it than goal stars required, it will fill the rest in randomly.
+    """
+    display_name = "Required Stars"
+    valid_keys = ["Diamond Star", "Emerald Star", "Gold Star", "Ruby Star", "Sapphire Star", "Garnet Star", "Crystal Star"]
+    default = valid_keys
 
 
 class StarShuffle(Choice):
@@ -102,11 +123,35 @@ class Shopsanity(DefaultOnToggle):
     display_name = "Shopsanity"
 
 
+class ShopPurchaseLimit(Choice):
+    """
+    This determines which items in the shop will be replenished infinitely when purchasing.
+    infinite: All non-progression items in shops can be purchased infinitely.
+    consumables_only: Only consumable items can be purchased infinitely.
+    badges_only: Only badges can be purchased infinitely.
+    limited: No items can be purchased infinitely.
+    """
+    display_name = "Shop Purchase Limit"
+    option_infinite = 0
+    option_consumables_only = 1
+    option_badges_only = 2
+    option_limited = 3
+    default = 1
+
+
 class Shinesanity(DefaultOnToggle):
     """
     Shine Sprites will be randomized.
     """
     display_name = "Shinesanity"
+
+
+class Keysanity(DefaultOnToggle):
+    """
+    Chapter specific keys will be added to the item pool.
+    Disabling this will place the keys in their own chapters dungeon.
+    """
+    display_name = "Keysanity"
 
 
 class DazzleRewards(Choice):
@@ -139,6 +184,14 @@ class LimitChapterEight(Toggle):
     display_name = "Limit Chapter 8"
 
 
+class BluePipeToggle(DefaultOnToggle):
+    """
+    Toggle whether the blue pipes in Rogueport Sewers are usable.
+    Disabling this will remove the blue switches and the pipes will become inaccessible.
+    """
+    display_name = "Blue Pipe Warp"
+
+
 class PalaceSkip(Toggle):
     """
     Entering the Thousand-Year door will take you straight to Grodus.
@@ -159,6 +212,32 @@ class OpenWestside(Toggle):
     Rogueport Westside is open from the start.
     """
     display_name = "Open West Side"
+
+
+class GrubbaBribeDirection(Choice):
+    """
+    Sets how bribing grubba behaves in-game.
+    Set if you want grubba to require coins for moving up or down the rankings respectively.
+    up_rank_only: Grubba accepts coins to move up the rankings. (20 -> 1). Moving down is free.
+    down_rank_only: Grubba accepts coins bribes to move down the rankings. (1 -> 20). Moving up is free.
+    both_directions: Grubba accepts coins for moving both up and down the rankings.
+    """
+    display_name = "Grubba Bribe Direction"
+    option_up_rank_only = 0
+    option_down_rank_only = 1
+    option_both_directions = 2
+    default = 2
+
+
+class GrubbaBribeCost(Range):
+    """
+    Sets the cost to bribe Grubba to move up the rankings.
+    Grubba can be found in his office after your first battle in the glitz pit.
+    """
+    display_name = "Grubba Bribe Cost"
+    range_start = 0
+    range_end = 50
+    default = 20
 
 
 class PermanentPeekaboo(Toggle):
@@ -339,21 +418,28 @@ class TTYDOptions(PerGameCommonOptions):
     goal_stars: GoalStars
     palace_stars: PalaceStars
     loading_zone: LoadingZoneShuffle
+    required_stars_toggle: RequiredStarsToggle
+    required_stars: RequiredStars
     star_shuffle: StarShuffle
     tattlesanity: TattleSanityOption
     piecesanity: Piecesanity
     shopsanity: Shopsanity
+    shop_purchase_limit: ShopPurchaseLimit
     shinesanity: Shinesanity
+    keysanity: Keysanity
     dazzle_rewards: DazzleRewards
     pit_items: PitItems
     limit_chapter_logic: LimitChapterLogic
     limit_chapter_eight: LimitChapterEight
+    blue_pipe_toggle: BluePipeToggle
     palace_skip: PalaceSkip
     cutscene_skip: CutsceneSkip
     disable_intermissions: DisableIntermissions
     fast_travel: FastTravel
     succeed_conditions: AlwaysSucceedConditions
     open_westside: OpenWestside
+    grubba_bribe_direction: GrubbaBribeDirection
+    grubba_bribe_cost: GrubbaBribeCost
     permanent_peekaboo: PermanentPeekaboo
     full_run_bar: FullRunBar
     first_attack: ZeroBPFirstAttack

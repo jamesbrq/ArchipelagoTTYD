@@ -3,8 +3,10 @@ import pkgutil
 import typing
 
 from worlds.generic.Rules import add_rule, forbid_items_for_player
-from . import StateLogic, location_id_to_name, Goal, PitItems, pit_exclusive_tattle_stars_required, \
-    get_locations_by_tags, stars
+from . import StateLogic
+from .Options import Goal, PitItems
+from .Data import stars, pit_exclusive_tattle_stars_required
+from .Locations import get_location_ids, get_locations_by_tags, location_id_to_name
 from .Options import PalaceSkip
 
 if typing.TYPE_CHECKING:
@@ -23,7 +25,7 @@ def set_rules(world: "TTYDWorld"):
     for location in get_locations_by_tags("shop"):
         if location.name in world.disabled_locations:
             continue
-        forbid_items_for_player(world.get_location(location.name), set([item for item in stars]), world.player)
+        forbid_items_for_player(world.get_location(location.name), set([item for item in stars.values()]), world.player)
 
     for location in get_locations_by_tags("dazzle"):
         if location.name in world.disabled_locations:
@@ -49,7 +51,7 @@ def set_tattle_rules(world: "TTYDWorld"):
         else:
             # Require access to any of the listed locations
             if world.options.pit_items != PitItems.option_all and location_name not in pit_exclusive_tattle_stars_required:
-                locations = [loc for loc in locations if loc not in get_locations_by_tags("pit_floor")]
+                locations = [loc for loc in locations if loc not in get_location_ids(get_locations_by_tags("pit_floor"))]
                 if len(locations) == 0:
                     continue
             valid_locations = [

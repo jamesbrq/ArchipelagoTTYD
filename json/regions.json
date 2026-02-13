@@ -1,7 +1,7 @@
 [
     {
         "name": "Rogueport Docks",
-        "tag": "docks",
+        "tag": "rogue_docks",
         "chapter": "Prologue"
     },
     {
@@ -341,13 +341,13 @@
         "chapter": "One"
     },
     {
-        "name": "Hooktail's Castle Drawbridge Bottom",
+        "name": "Hooktail's Castle Drawbridge West Bottom",
         "tag": "hooktail_drawbridge_bottom",
         "chapter": "One"
     },
     {
-        "name": "Hooktail's Castle Drawbridge Top East",
-        "tag": "hooktail_drawbridge_top_east",
+        "name": "Hooktail's Castle Drawbridge West Top",
+        "tag": "hooktail_drawbridge_west_top",
         "chapter": "One"
     },
     {
@@ -416,6 +416,11 @@
         "chapter": "One"
     },
     {
+        "name": "Hooktail's Life Shroom Room",
+        "tag": "hooktail_life_shroom",
+        "chapter": "One"
+    },
+    {
         "name": "Hooktail's Life Shroom Room Upper Level",
         "tag": "hooktail_life_shroom_upper",
         "chapter": "One"
@@ -423,6 +428,11 @@
     {
         "name": "Hooktail's Castle Plane Rafters Room",
         "tag": "hooktail_plane_rafter",
+        "chapter": "One"
+    },
+    {
+        "name": "Hooktail's Castle Central Staircase",
+        "tag": "hooktail_stair_central",
         "chapter": "One"
     },
     {
@@ -621,6 +631,11 @@
         "chapter": "Three"
     },
     {
+        "name": "Glitzville Promoter's Office Vent",
+        "tag": "glitzville_promoter_vent",
+        "chapter": "Three"
+    },
+    {
         "name": "Glitzville Minor League",
         "tag": "glitzville_minor",
         "chapter": "Three"
@@ -716,6 +731,11 @@
         "chapter": "Four"
     },
     {
+        "name": "Creepy Steeple Well Buzzy Room Vivian",
+        "tag": "steeple_well_buzzy_vivian",
+        "chapter": "Four"
+    },
+    {
         "name": "Creepy Steeple Underground Tube Passage",
         "tag": "steeple_underground_tube",
         "chapter": "Four"
@@ -743,6 +763,16 @@
     {
         "name": "Creepy Steeple Main Hall",
         "tag": "steeple_main",
+        "chapter": "Four"
+    },
+    {
+        "name": "Creepy Steeple Main Hall Upper",
+        "tag": "steeple_main_upper",
+        "chapter": "Four"
+    },
+    {
+        "name": "Creepy Steeple Main Hall Upper South",
+        "tag": "steeple_main_upper_south",
         "chapter": "Four"
     },
     {
@@ -910,6 +940,11 @@
         "chapter": "Five"
     },
     {
+        "name": "Pirate's Grotto Toad Boat Room East",
+        "tag": "grotto_toad_east",
+        "chapter": "Five"
+    },
+    {
         "name": "Pirate's Grotto Cortez's Ship Exterior",
         "tag": "grotto_cortez_exterior",
         "chapter": "Five"
@@ -985,11 +1020,6 @@
         "chapter": "Six"
     },
     {
-        "name": "Riverside Station Elevator Key Room",
-        "tag": "riverside_elevator_key",
-        "chapter": "Six"
-    },
-    {
         "name": "Riverside Station Goomba Room",
         "tag": "riverside_goomba",
         "chapter": "Six"
@@ -997,6 +1027,11 @@
     {
         "name": "Riverside Station Ultra Boots Room",
         "tag": "riverside_ultra_boots",
+        "chapter": "Six"
+    },
+    {
+        "name": "Riverside Station Ultra Boots Room Upper",
+        "tag": "riverside_ultra_boots_upper",
         "chapter": "Six"
     },
     {
@@ -1165,7 +1200,7 @@
         "chapter": "Seven"
     },
     {
-        "name": "X-Naut Fortress Hall Sublevel 3",
+        "name": "X-Naut Fortress Hall Sublevel Three",
         "tag": "fortress_hall_sublevel_three",
         "chapter": "Seven"
     },
@@ -1180,7 +1215,7 @@
         "chapter": "Seven"
     },
     {
-        "name": "X-Naut Fortress Hall Sublevel 4",
+        "name": "X-Naut Fortress Hall Sublevel Four",
         "tag": "fortress_hall_sublevel_four",
         "chapter": "Seven"
     },

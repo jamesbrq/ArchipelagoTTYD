@@ -4,7 +4,7 @@
         "map": "gor_00",
         "bero": "n_bero",
         "target": "Rogueport Center - South",
-        "region": "docks",
+        "region": "rogue_docks",
         "rules": null
     },
     {
@@ -930,7 +930,7 @@
         "bero": "w_bero_2",
         "target": "Hooktail's Castle Vestibule - East Top",
         "rules": null,
-        "region": "hooktail_drawbridge_top_east"
+        "region": "hooktail_drawbridge_west_top"
     },
     {
         "name": "Hooktail's Castle Vestibule - East Top",
@@ -1002,7 +1002,7 @@
         "bero": "e_bero",
         "target": "Hooktail's Castle Stair Switch Room - West",
         "rules": null,
-        "region": "hooktail_stair_switch"
+        "region": "hooktail_red_bones"
     },
     {
         "name": "Hooktail's Castle Nook - West",
@@ -1880,7 +1880,7 @@
         "region": "glitzville_lobby"
     },
     {
-        "name": "Glitzville Halll - Champ Side Entrance",
+        "name": "Glitzville Hall - Champ Side Entrance",
         "map": "tou_04",
         "bero": "w_bero",
         "target": "Glitzville Lobby - Northeast",
@@ -1891,7 +1891,7 @@
         "name": "Glitzville Lobby - Northeast",
         "map": "tou_02",
         "bero": "n_bero_4",
-        "target": "Glitzville Halll - Champ Side Entrance",
+        "target": "Glitzville Hall - Champ Side Entrance",
         "rules": {
             "or": [
                 {
@@ -2027,8 +2027,8 @@
         "map": "tou_05",
         "bero": "w_bero",
         "target": "Glitzville Vents - East",
-        "rules": "False_",
-        "region": "glitzville_promoter"
+        "rules": null,
+        "region": "glitzville_promoter_vent"
     },
     {
         "name": "Glitzville Arena - West",
@@ -2328,7 +2328,7 @@
         "map": "jin_10",
         "bero": "w_bero",
         "target": "Creepy Steeple Well Entrance - East",
-        "rules": "False_",
+        "rules": null,
         "region": "steeple_well_buzzy"
     },
     {
@@ -2352,10 +2352,8 @@
         "map": "jin_10",
         "bero": "n_bero",
         "target": "Creepy Steeple Underground Tube Passage - South",
-        "rules": {
-            "has": "Vivian"
-        },
-        "region": "steeple_well_buzzy"
+        "rules": null,
+        "region": "steeple_well_buzzy_vivian"
     },
     {
         "name": "Creepy Steeple Boo Chest Room Background - Ceiling Panel",
@@ -2563,8 +2561,8 @@
         "map": "jin_00",
         "bero": "e_bero_3",
         "target": "Creepy Steeple Back Stairs - Southwest",
-        "rules": "False_",
-        "region": "steeple_main"
+        "rules": null,
+        "region": "steeple_main_upper_south"
     },
     {
         "name": "Creepy Steeple Back Stairs - Southwest",
@@ -2581,10 +2579,8 @@
         "map": "jin_00",
         "bero": "e_bero_1",
         "target": "Creepy Steeple Main Hall - Northwest",
-        "rules": {
-            "can_reach_entrance": "Creepy Steeple Main Hall - Spire Door"
-        },
-        "region": "steeple_main"
+        "rules": null,
+        "region": "steeple_main_upper"
     },
     {
         "name": "Creepy Steeple Main Hall - Northwest",
@@ -2609,17 +2605,15 @@
         "map": "jin_00",
         "bero": "n_bero_2",
         "target": "Creepy Steeple Spire - South",
-        "rules": {
-            "can_reach_entrance": "Creepy Steeple Main Hall - Northeast"
-        },
-        "region": "steeple_main"
+        "rules": null,
+        "region": "steeple_main_upper"
     },
     {
         "name": "Keelhaul Key Town - Boat Re-Entry",
         "map": "muj_01",
         "bero": "null",
         "target": "One Way",
-        "src_region": "rogue_dock",
+        "src_region": "rogue_docks",
         "rules": {
             "and": [
                 {
@@ -3083,7 +3077,7 @@
         "map": "dou_11",
         "bero": "w_bero",
         "target": "Pirate's Grotto Barrel Room - East Canal",
-        "rules": "False_",
+        "rules": null,
         "region": "grotto_toad"
     },
     {
@@ -3107,17 +3101,8 @@
         "map": "dou_11",
         "bero": "e_bero",
         "target": "Pirate's Grotto Cortez's Ship Exterior - West",
-        "rules": {
-            "and": [
-                {
-                    "has": "Boat Mode"
-                },
-                {
-                    "has": "Plane Mode"
-                }
-            ]
-        },
-        "region": "grotto_toad"
+        "rules": null,
+        "region": "grotto_toad_east"
     },
     {
         "name": "Pirate's Grotto Cortez's Ship Hall - West",
@@ -3341,16 +3326,7 @@
         "map": "eki_05",
         "bero": "n_bero",
         "target": "Riverside Station Tube Mode Maze - South",
-        "rules": {
-            "or": [
-                {
-                    "function": "ultra_boots"
-                },
-                {
-                    "can_reach_entrance": "Riverside Station Ultra Boots Room - West Bottom"
-                }
-            ]
-        },
+        "rules": null,
         "region": "riverside_ultra_boots"
     },
     {
@@ -3376,16 +3352,7 @@
         "map": "eki_05",
         "bero": "w_bero_2",
         "target": "Riverside Station Goomba Room - East Bottom",
-        "rules": {
-            "or": [
-                {
-                    "function": "ultra_boots"
-                },
-                {
-                    "can_reach_entrance": "Riverside Station Ultra Boots Room - West Bottom"
-                }
-            ]
-        },
+        "rules": null,
         "region": "riverside_ultra_boots"
     },
     {
@@ -3395,7 +3362,7 @@
         "target": "One Way",
         "src_region": "riverside_goomba",
         "rules": null,
-        "region": "riverside_ultra_boots"
+        "region": "riverside_ultra_boots_upper"
     },
     {
         "name": "Excess Express Roof - East",

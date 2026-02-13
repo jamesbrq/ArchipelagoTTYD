@@ -147,16 +147,17 @@ class PalaceAccess(Rule["TTYDWorld"], game="Paper Mario TTYD"):
 
     def _instantiate(self, world: "TTYDWorld") -> Rule.Resolved:
         return self.Resolved(
-            ttyd().resolve(world),
-            self.chapters,
-            world.options.star_shuffle,
-            world.player,
+            base_rule=ttyd().resolve(world),
+            chapters=self.chapters,
+            star_shuffle=world.options.star_shuffle.value,
+            player=world.player,
         )
 
     class Resolved(Rule.Resolved):
         base_rule: Rule.Resolved
         chapters: int
         star_shuffle: int
+        player: int
 
         def _evaluate(self, state: CollectionState) -> bool:
             if not self.base_rule(state):
@@ -219,10 +220,14 @@ class ChapterCompletions(Rule["TTYDWorld"], game="Paper Mario TTYD"):
     count: int
 
     def _instantiate(self, world: "TTYDWorld") -> Rule.Resolved:
-        return self.Resolved(self.count, world.player)
+        return self.Resolved(
+            count=self.count,
+            player=world.player,
+        )
 
     class Resolved(Rule.Resolved):
         count: int
+        player: int
 
         def _evaluate(self, state: CollectionState) -> bool:
             return (

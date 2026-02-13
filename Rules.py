@@ -8,6 +8,7 @@ from .Options import Goal, PitItems
 from .Data import stars, pit_exclusive_tattle_stars_required
 from .Locations import get_location_ids, get_locations_by_tags, location_id_to_name
 from .Options import PalaceSkip
+from worlds.generic.Rules import forbid_items_for_player
 
 if typing.TYPE_CHECKING:
     from . import TTYDWorld
@@ -16,7 +17,7 @@ if typing.TYPE_CHECKING:
 def set_rules(world: "TTYDWorld"):
     for location, rule in create_lambda_from_json(pkgutil.get_data(__name__, "json/rules.json").decode(), world).items():
         if location not in world.disabled_locations:
-            world.set_rule(location, rule)
+            world.set_rule(world.get_location(location), rule)
 
     for location in ["Palace of Shadow Final Staircase: Ultra Shroom", "Palace of Shadow Final Staircase: Jammin' Jelly"]:
         if location not in world.disabled_locations:
@@ -70,7 +71,7 @@ def set_tattle_rules(world: "TTYDWorld"):
 def create_lambda_from_json(json_string: str, world: "TTYDWorld") -> typing.Dict[str, typing.Callable]:
     lambda_functions = {}
     for location, requirements in json.loads(json_string).items():
-        lambda_functions[location] = _build_single_lambda(requirements, world)
+        lambda_functions[location] = _build_single_rule(requirements, world)
     return lambda_functions
 
 

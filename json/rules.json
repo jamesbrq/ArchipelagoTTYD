@@ -781,17 +781,7 @@
     ]
   },
   "Pirate's Grotto Staircase: Defend Plus P": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "can": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
-      }
-    ]
+    "has": "Boat Mode"
   },
   "Pirate's Grotto Cortez' Hoard: Sapphire Star": {
     "and": [

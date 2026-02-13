@@ -9,7 +9,7 @@
     "vanilla_item": 77772092,
     "tags": [
       "rogueport",
-      "docks"
+      "rogue_docks"
     ]
   },
   {
@@ -23,7 +23,7 @@
     "tags": [
       "rogueport",
       "panel",
-      "docks"
+      "rogue_docks"
     ]
   },
   {
@@ -37,7 +37,7 @@
     "tags": [
       "rogueport",
       "star_piece",
-      "docks"
+      "rogue_docks"
     ]
   },
   {
@@ -6713,7 +6713,6 @@
     ],
     "vanilla_item": 77772177,
     "tags": [
-      "pit",
       "star_piece",
       "sewer_pit"
     ]

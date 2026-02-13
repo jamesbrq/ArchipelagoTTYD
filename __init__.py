@@ -14,7 +14,7 @@ from .Locations import all_locations, location_table, location_id_to_name, TTYDL
 from .Options import Piecesanity, TTYDOptions, YoshiColor, StartingPartner, PitItems, LimitChapterEight, Goal, \
     DazzleRewards, StarShuffle
 from .Items import TTYDItem, itemList, item_table, ItemData, items_by_id
-from .Regions import create_regions, connect_regions, get_regions_dict, register_indirect_connections
+from .Regions import create_regions, connect_regions, get_regions_dict
 from .Rom import TTYDProcedurePatch, write_files
 from .Rules import set_rules, get_tattle_rules_dict, set_tattle_rules
 from worlds.LauncherComponents import Component, SuffixIdentifier, Type, components, launch_subprocess
@@ -181,7 +181,6 @@ class TTYDWorld(World):
     def create_regions(self) -> None:
         create_regions(self)
         connect_regions(self)
-        register_indirect_connections(self)
         self.lock_item_remove_from_pool("Rogueport Center: Goombella",
                                         starting_partners[self.options.starting_partner.value - 1])
         if self.options.star_shuffle == StarShuffle.option_vanilla:

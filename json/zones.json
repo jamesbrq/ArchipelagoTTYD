@@ -1516,6 +1516,9 @@
                 },
                 {
                     "function": "key_any"
+                },
+                {
+                    "can_reach_region": "Great Tree Red/Blue Cages"
                 }
             ]
         },
@@ -1617,7 +1620,14 @@
         "bero": "e_bero",
         "target": "Great Tree Blue Key Room - West",
         "rules": {
-            "function": "key_any"
+            "and": [
+                {
+                    "function": "key_any"
+                },
+                {
+                    "can_reach_region": "Great Tree Red/Blue Cages"
+                }
+            ]
         },
         "region": "tree_ten_jabbie"
     },
@@ -1669,7 +1679,14 @@
         "bero": "w_bero",
         "target": "Great Tree Large Trunk Room - East Top",
         "rules": {
-            "function": "key_both"
+            "and": [
+                {
+                    "function": "key_both"
+                },
+                {
+                    "can_reach_region": "Great Tree Red/Blue Cages"
+                }
+            ]
         },
         "region": "tree_hundred_jabbie"
     },
@@ -1775,6 +1792,9 @@
                 },
                 {
                     "function": "key_both"
+                },
+                {
+                    "can_reach_region": "Great Tree Red/Blue Cages"
                 }
             ]
         },
@@ -2621,6 +2641,9 @@
                 },
                 {
                     "has": "Old Letter"
+                },
+                {
+                    "can_reach_region": "Rogueport East"
                 }
             ]
         },
@@ -3404,6 +3427,13 @@
                 },
                 {
                     "can_reach_region": "Excess Express Storage Car West"
+                },
+                {
+                    "can_reach_region": "Excess Express Middle Passenger Car"
+                }
+                ,
+                {
+                    "can_reach_region": "Riverside Station Entrance"
                 }
             ]
         },
@@ -3469,6 +3499,13 @@
                 },
                 {
                     "can_reach_region": "Excess Express Storage Car West"
+                },
+                {
+                    "can_reach_region": "Excess Express Middle Passenger Car"
+                }
+                ,
+                {
+                    "can_reach_region": "Riverside Station Entrance"
                 }
             ]
         },

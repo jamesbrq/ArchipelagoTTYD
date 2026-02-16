@@ -280,6 +280,8 @@ def connect_regions(world: "TTYDWorld"):
         source_region = world.multiworld.get_region(source, world.player)
         target_region = world.multiworld.get_region(target, world.player)
         world.create_entrance(source_region, target_region, rule)
+        if source == "Excess Express Storage Car" and target == "Excess Express Storage Car West":
+            add_edge(source, target, ["Riverside Station Entrance", "Excess Express Middle Passenger Car"])
         add_edge(source, target)
 
     tag_to_region = get_region_name_by_tag()
@@ -308,6 +310,7 @@ def connect_regions(world: "TTYDWorld"):
             rule = build_rule_lambda(rule_dict, world)
             source_region = world.multiworld.get_region(src_region, world.player)
             target_region = world.multiworld.get_region(dst_region, world.player)
+            print("Vanilla Entrance: ", dst["name"])
             world.create_entrance(source_region, target_region, rule, dst["name"])
             add_edge(src_region, dst_region, has_region_dependency(rule_dict))
             mark_used(src, dst)
@@ -342,48 +345,32 @@ def connect_regions(world: "TTYDWorld"):
 
         source_region = world.multiworld.get_region(source, world.player)
         target_region = world.multiworld.get_region(target, world.player)
+        print("One Way Entrance: ", b["name"])
         world.create_entrance(source_region, target_region, rule, b["name"])
-    print(one_way)
     limit = 0
+    consecutive_failures = 0
+    max_consecutive_failures = 50
+    dst_zone_contenders = [
+        z
+        for r in unreached_regions
+        for z in zones_by_region[r]
+        if z["name"] not in used_zones and not any(
+            dep in unreached_regions for dep in has_region_dependency(z.get("rules")))
+    ]
+    src_zone_contenders = [
+        z
+        for r in reachable_regions
+        for z in zones_by_region[r]
+        if z["name"] not in used_zones and not any(
+            dep in unreached_regions for dep in has_region_dependency(z.get("rules")))
+    ]
     while unreached_regions:
-        # First, choose destination region and zone
-        dst_region_contenders = [
-            r for r in unreached_regions if unused_zones(r)
-        ]
-
-        if len(dst_region_contenders) == 0:
-            print(unreached_regions)
-            limit = limit + 1
-            if limit == 3:
-                break
-            continue
-
-        dst_region = random.choice(dst_region_contenders)
-        dst_zone_contenders = unused_zones(dst_region)
-        dst_zone = random.choice(dst_zone_contenders)
-
-        # Now find source regions that are reachable WITHOUT using edges dependent on dst_region
-        reachable_without_dst = get_reachable_regions_excluding_dependencies("Menu", dst_region)
-
-        src_region_contenders = [
-            r for r in reachable_without_dst if r in reachable_regions and unused_zones(r)
-        ]
-
-        if len(src_region_contenders) == 0:
-            print(f"No valid source regions for {dst_region}")
-            limit = limit + 1
-            if limit == 3:
-                break
-            continue
-
-        src_region = random.choice(src_region_contenders)
-        src_zone_contenders = unused_zones(src_region)
-
-        if len(src_region_contenders) == 1 and len(src_zone_contenders) == 1 and len(dst_zone_contenders) == 1 and len(
-                unreached_regions) != 1:
-            continue
 
         src_zone = random.choice(src_zone_contenders)
+        dst_zone = random.choice(dst_zone_contenders)
+        src_region = tag_to_region[src_zone.get("region")]
+        dst_region = tag_to_region[dst_zone.get("region")]
+
 
         src_target = zones[src_zone["target"]]
         dst_target = zones[dst_zone["target"]]
@@ -398,14 +385,61 @@ def connect_regions(world: "TTYDWorld"):
         source_region = world.multiworld.get_region(src_region, world.player)
         target_region = world.multiworld.get_region(dst_region, world.player)
 
-        world.create_entrance(source_region, target_region, src_rule, dst_zone["name"])
-        world.create_entrance(target_region, source_region, dst_rule, src_zone["name"])
-
         mark_used(src_zone, dst_zone)
         add_edge(src_region, dst_region, has_region_dependency(src_rule_dict))
         add_edge(dst_region, src_region, has_region_dependency(dst_rule_dict))
         reachable_regions = compute_reachable("Menu")
         unreached_regions = all_regions - reachable_regions - unneeded_regions
+
+        dst_zone_contenders = [
+            z
+            for r in unreached_regions
+            for z in zones_by_region[r]
+            if z["name"] not in used_zones and not any(
+                dep in unreached_regions for dep in has_region_dependency(z.get("rules")))
+        ]
+        src_zone_contenders = [
+            z
+            for r in reachable_regions
+            for z in zones_by_region[r]
+            if z["name"] not in used_zones and not any(
+                dep in unreached_regions for dep in has_region_dependency(z.get("rules")))
+        ]
+
+        if len(dst_zone_contenders) != 0 and len(src_zone_contenders) == 0:
+            del warp_table[(src_target["map"], src_target["bero"])]
+            del warp_table[(dst_target["map"], dst_target["bero"])]
+            mark_unused(src_zone, dst_zone)
+            remove_edge(src_region, dst_region, has_region_dependency(src_rule_dict))
+            remove_edge(dst_region, src_region, has_region_dependency(dst_rule_dict))
+            reachable_regions = compute_reachable("Menu")
+            unreached_regions = all_regions - reachable_regions - unneeded_regions
+            dst_zone_contenders = [
+                z
+                for r in unreached_regions
+                for z in zones_by_region[r]
+                if z["name"] not in used_zones and not any(
+                    dep in unreached_regions for dep in has_region_dependency(z.get("rules")))
+            ]
+            src_zone_contenders = [
+                z
+                for r in reachable_regions
+                for z in zones_by_region[r]
+                if z["name"] not in used_zones and not any(
+                    dep in unreached_regions for dep in has_region_dependency(z.get("rules")))
+            ]
+            consecutive_failures += 1
+            if consecutive_failures > max_consecutive_failures:
+                print("YOU LOSE GOOD DAY SIR")
+                break
+            continue
+
+        print("Unreached Entrance: ", dst_zone["name"])
+        world.create_entrance(source_region, target_region, src_rule, dst_zone["name"])
+        print("Unreached Entrance: ", src_zone["name"])
+        world.create_entrance(target_region, source_region, dst_rule, src_zone["name"])
+
+
 
     # Process remaining zones
     remaining_zones = [
@@ -435,7 +469,10 @@ def connect_regions(world: "TTYDWorld"):
 
         source_region = world.multiworld.get_region(src_region, world.player)
         target_region = world.multiworld.get_region(dst_region, world.player)
+
+        print("Remaining Entrance: ", dst["name"])
         world.create_entrance(source_region, target_region, src_rule, dst["name"])
+        print("Remaining Entrance: ", src["name"])
         world.create_entrance(target_region, source_region, dst_rule, src["name"])
 
     print(warp_table)
@@ -511,11 +548,18 @@ def mark_used(*zones):
     for z in zones:
         used_zones.add(z["name"])
 
+def mark_unused(*zones):
+    for z in zones:
+        used_zones.discard(z["name"])
 
 def add_edge(a: str, b: str, dependencies: list[str] = None):
     region_graph[a].add(b)
     if dependencies:
         edge_dependencies[(a, b)] = set(dependencies)
+
+def remove_edge(a: str, b: str):
+    region_graph[a].discard(b)
+    edge_dependencies.pop((a, b), None)
 
 
 def compute_reachable(start: str, excluding_region: str = None) -> set[str]:

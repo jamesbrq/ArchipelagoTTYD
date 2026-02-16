@@ -203,7 +203,6 @@ def sewer_westside_ground():
 def key_any():
     return (
         (Has("Red Key") | Has("Blue Key"))
-        & CanReachRegion("Great Tree Red/Blue Cages")
     )
 
 
@@ -211,7 +210,6 @@ def key_both():
     return (
         Has("Red Key")
         & Has("Blue Key")
-        & CanReachRegion("Great Tree Red/Blue Cages")
     )
 
 

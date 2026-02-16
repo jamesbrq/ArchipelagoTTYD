@@ -539,7 +539,7 @@ def get_region_name_by_tag():
     return {r["tag"]: r["name"] for r in region_defs}
 
 def unused_zones(state: RegionState, region):
-    return [z for z in zones_by_region[region] if z["name"] not in used_zones]
+    return [z for z in state.zones_by_region[region] if z["name"] not in state.used_zones]
 
 def mark_used(state: RegionState, *zones):
     for z in zones:
@@ -547,11 +547,11 @@ def mark_used(state: RegionState, *zones):
 
 def mark_unused(state: RegionState, *zones):
     for z in zones:
-        used_zones.discard(z["name"])
+        state.used_zones.discard(z["name"])
 
 
-def add_edge(a: str, b: str, dependencies: list[str] = None):
-    region_graph[a].add(b)
+def add_edge(state: RegionState,a: str, b: str, dependencies: list[str] = None):
+    state.region_graph[a].add(b)
     if dependencies:
         state.edge_dependencies[(a, b)] = set(dependencies)
 

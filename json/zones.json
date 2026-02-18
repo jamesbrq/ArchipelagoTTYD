@@ -5,7 +5,10 @@
         "bero": "n_bero",
         "target": "Rogueport Center - South",
         "region": "rogue_docks",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Center - South",
@@ -13,7 +16,10 @@
         "bero": "s_bero",
         "target": "Rogueport Docks - North",
         "region": "rogue_center",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Center - East",
@@ -21,7 +27,10 @@
         "bero": "e_bero",
         "target": "Rogueport East - West",
         "region": "rogue_center",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Center - West",
@@ -31,7 +40,10 @@
         "region": "rogue_center",
         "rules": {
             "has": "Contact Lens"
-        }
+        },
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport East - West",
@@ -39,7 +51,10 @@
         "bero": "w_bero",
         "target": "Rogueport Center - East",
         "region": "rogue_east",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport East - Pipe",
@@ -47,7 +62,10 @@
         "bero": "dokan",
         "target": "Rogueport Sewers East - Pipe1",
         "region": "rogue_east",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport West - East",
@@ -55,7 +73,10 @@
         "bero": "e_bero",
         "target": "Rogueport Center - West",
         "region": "rogue_west",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport West - North",
@@ -63,7 +84,10 @@
         "bero": "n_bero",
         "target": "Rogueport Blimp - South",
         "region": "rogue_west",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport West - Pipe",
@@ -71,7 +95,10 @@
         "bero": "dokan_1",
         "target": "Rogueport Sewers West - Surface Pipe",
         "region": "rogue_west_tall",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Blimp - South",
@@ -79,7 +106,10 @@
         "bero": "s_bero",
         "target": "Rogueport West - North",
         "region": "blimp",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Blimp - Train",
@@ -89,7 +119,11 @@
         "region": "blimp",
         "rules": {
             "has": "Train Ticket"
-        }
+        },
+        "tags": [
+            "Prologue",
+            "Six"
+        ]
     },
     {
         "name": "Rogueport Blimp - Blimp",
@@ -99,7 +133,11 @@
         "region": "blimp",
         "rules": {
             "has": "Blimp Ticket"
-        }
+        },
+        "tags": [
+            "Prologue",
+            "Three"
+        ]
     },
     {
         "name": "Rogueport Sewers East - Pipe1",
@@ -107,7 +145,10 @@
         "bero": "dokan_2",
         "target": "Rogueport East - Pipe",
         "region": "sewer_east",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East - West",
@@ -115,7 +156,10 @@
         "bero": "w_bero_1",
         "target": "Rogueport Sewers Town - East",
         "region": "sewer_east",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East - House1",
@@ -123,7 +167,10 @@
         "bero": "e_bero",
         "target": "Rogueport Sewers Stats",
         "region": "sewer_east_bobbery",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East - Pipe2",
@@ -131,7 +178,10 @@
         "bero": "dokan_1",
         "target": "Rogueport Sewers East Enemy Hall - Entrance Pipe",
         "region": "sewer_east",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East - House2",
@@ -139,7 +189,10 @@
         "bero": "w_dero2",
         "target": "Rogueport Sewers Fortune",
         "region": "sewer_east_fortune",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East - East",
@@ -147,7 +200,10 @@
         "bero": "e_bero_1",
         "target": "Rogueport Sewers Blooper - West",
         "region": "sewer_east_plane",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East - East Top",
@@ -155,7 +211,10 @@
         "bero": "e_bero_2",
         "target": "Rogueport Sewers Blooper - West Top",
         "region": "sewer_east_top",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Stats",
@@ -163,7 +222,10 @@
         "bero": "w_bero",
         "target": "Rogueport Sewers East - House1",
         "region": "sewer_stats",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Fortune",
@@ -171,7 +233,10 @@
         "bero": "e_bero",
         "target": "Rogueport Sewers East - House2",
         "region": "sewer_fortune",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Blooper - West",
@@ -179,7 +244,10 @@
         "bero": "w_bero_1",
         "target": "Rogueport Sewers East - East",
         "region": "blooper",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Blooper - West Top",
@@ -196,7 +264,10 @@
                     "has": "Bobbery"
                 }
             ]
-        }
+        },
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Storage",
@@ -204,7 +275,10 @@
         "bero": "e_bero",
         "target": "Rogueport Sewers Blooper - House",
         "region": "sewer_storage",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Blooper - House",
@@ -214,7 +288,10 @@
         "region": "blooper",
         "rules": {
             "function": "ultra_boots"
-        }
+        },
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Blooper - Pipe",
@@ -222,7 +299,11 @@
         "bero": "dokan",
         "target": "Petal Meadows Entrance - Entrance Pipe",
         "region": "blooper_pipe",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "One"
+        ]
     },
     {
         "name": "Rogueport Sewers Town - East",
@@ -230,7 +311,10 @@
         "bero": "e_bero",
         "target": "Rogueport Sewers East - West",
         "region": "sewer_town_dazzle",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Town - Teleporter",
@@ -238,7 +322,11 @@
         "bero": "null",
         "target": "X-Naut Fortress Teleporter Room - Teleporter",
         "region": "sewer_town_teleporter",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "Seven"
+        ]
     },
     {
         "name": "Rogueport Sewers Town - West",
@@ -246,7 +334,10 @@
         "bero": "w_bero",
         "target": "Rogueport Sewers West - East",
         "region": "sewer_town",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West - East",
@@ -254,7 +345,10 @@
         "bero": "e_bero",
         "target": "Rogueport Sewers Town - West",
         "region": "sewer_west",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West - Door",
@@ -262,7 +356,10 @@
         "bero": "n_bero",
         "target": "Rogueport Sewers Twilight - Door",
         "region": "sewer_west_west",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West - Grate",
@@ -273,7 +370,10 @@
         "region": "sewer_west",
         "rules": {
             "has": "Paper Mode"
-        }
+        },
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West - Surface Pipe",
@@ -281,7 +381,10 @@
         "bero": "dokan_4",
         "target": "Rogueport West - Pipe",
         "region": "sewer_west_bottom",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West - Lower Pipe",
@@ -289,7 +392,10 @@
         "bero": "dokan_2",
         "target": "Rogueport Sewers West Enemy Hall - Entrance Pipe",
         "region": "sewer_west_bottom",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Twilight - Door",
@@ -297,7 +403,10 @@
         "bero": "s_bero",
         "target": "Rogueport Sewers West - Door",
         "region": "rogue_twilight",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Twilight - Pipe",
@@ -305,7 +414,11 @@
         "bero": "dokan",
         "target": "Twilight Town Leftside - Pipe",
         "region": "rogue_twilight",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "Four"
+        ]
     },
     {
         "name": "Rogueport Sewers East Enemy Hall - Entrance Pipe",
@@ -313,7 +426,10 @@
         "bero": "dokan_2",
         "target": "Rogueport Sewers East - Pipe2",
         "region": "sewer_east_enemy",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East Enemy Hall - Barred Door",
@@ -321,7 +437,10 @@
         "bero": "n_bero",
         "target": "Rogueport Sewers Spiked Room",
         "region": "sewer_east_enemy_barred_door",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Spiked Room",
@@ -329,7 +448,10 @@
         "bero": "s_bero",
         "target": "Rogueport Sewers East Enemy Hall - Barred Door",
         "region": "sewer_spikes",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East Enemy Hall - Pipe",
@@ -337,7 +459,10 @@
         "bero": "dokan_1",
         "target": "Rogueport Sewers Black Key Room - Entrance Pipe",
         "region": "sewer_east_enemy",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East Enemy Hall - Warp Room Door",
@@ -345,25 +470,34 @@
         "bero": "w_bero_2",
         "target": "Rogueport Sewers East Warp Room - East Door",
         "region": "sewer_east_enemy",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East Enemy Hall - West Canal Door",
         "map": "tik_15",
         "bero": "w_bero_1",
         "target": "Rogueport Sewers East Warp Room - East Canal Door",
-        "is_vanilla": true,
         "region": "sewer_east_enemy_canal",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers East Enemy Hall - East Canal Door",
         "map": "tik_15",
         "bero": "e_bero_1",
         "target": "Rogueport Sewers Spania Room",
-        "is_vanilla": true,
         "region": "sewer_east_enemy_canal",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers East Warp Room - East Door",
@@ -371,7 +505,10 @@
         "bero": "e_bero_2",
         "target": "Rogueport Sewers East Enemy Hall - Warp Room Door",
         "region": "sewer_east_warp_right",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East Warp Room - West Door",
@@ -379,7 +516,10 @@
         "bero": "w_bero_2",
         "target": "Rogueport Sewers West Warp Room - East Door",
         "region": "sewer_east_warp_left",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers East Warp Room - CH One Warp",
@@ -387,7 +527,11 @@
         "bero": "dokan_2",
         "target": "Petalburg Eastside - Warp Pipe",
         "region": "sewer_east_warp_top",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "One"
+        ]
     },
     {
         "name": "Rogueport Sewers East Warp Room - CH Two Warp",
@@ -395,25 +539,35 @@
         "bero": "dokan_1",
         "target": "Boggly Woods Outside Great Tree - Pipe",
         "region": "sewer_east_warp_top",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "Two"
+        ]
     },
     {
         "name": "Rogueport Sewers East Warp Room - East Canal Door",
         "map": "tik_16",
         "bero": "e_bero_1",
         "target": "Rogueport Sewers East Enemy Hall - West Canal Door",
-        "is_vanilla": true,
         "region": "sewer_east_warp_canal",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers East Warp Room - West Canal Door",
         "map": "tik_16",
         "bero": "w_bero_1",
         "target": "Rogueport Sewers West Warp Room - East Canal Door",
-        "is_vanilla": true,
         "region": "sewer_east_warp_canal",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers West Warp Room - East Door",
@@ -421,7 +575,10 @@
         "bero": "e_bero_2",
         "target": "Rogueport Sewers East Warp Room - West Door",
         "region": "sewer_west_warp_right",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West Warp Room - West Door",
@@ -429,7 +586,10 @@
         "bero": "w_bero_2",
         "target": "Rogueport Sewers West Enemy Hall - Warp Room Door",
         "region": "sewer_west_warp_left",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West Warp Room - CH Five Warp",
@@ -437,7 +597,11 @@
         "bero": "dokan_2",
         "target": "Keelhaul Key Jungle Entrance - Pipe",
         "region": "sewer_west_warp_top",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "Five"
+        ]
     },
     {
         "name": "Rogueport Sewers West Warp Room - CH Six Warp",
@@ -445,25 +609,35 @@
         "bero": "dokan_1",
         "target": "Poshley Heights Sanctum Exterior - Pipe",
         "region": "sewer_west_warp_top",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "Six"
+        ]
     },
     {
         "name": "Rogueport Sewers West Warp Room - East Canal Door",
         "map": "tik_17",
         "bero": "e_bero_1",
         "target": "Rogueport Sewers East Warp Room - West Canal Door",
-        "is_vanilla": true,
         "region": "sewer_west_warp_canal",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers West Warp Room - West Canal Door",
         "map": "tik_17",
         "bero": "w_bero_1",
         "target": "Rogueport Sewers West Enemy Hall - Canal Door",
-        "is_vanilla": true,
         "region": "sewer_west_warp_canal",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers West Enemy Hall - Warp Room Door",
@@ -471,7 +645,10 @@
         "bero": "e_bero_2",
         "target": "Rogueport Sewers West Warp Room - West Door",
         "region": "sewer_west_enemy",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West Enemy Hall - Entrance Pipe",
@@ -479,27 +656,36 @@
         "bero": "dokan_2",
         "target": "Rogueport Sewers West - Lower Pipe",
         "region": "sewer_west_enemy",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West Enemy Hall - Canal Door",
         "map": "tik_18",
         "bero": "e_bero_1",
         "target": "Rogueport Sewers West Warp Room - West Canal Door",
-        "is_vanilla": true,
         "region": "sewer_west_enemy_flurrie",
         "rules": {
             "has": "Boat Mode"
-        }
+        },
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers Spania Room",
         "map": "tik_20",
         "bero": "w_bero",
         "target": "Rogueport Sewers East Enemy Hall - East Canal Door",
-        "is_vanilla": true,
         "region": "spania",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "vanilla"
+        ]
     },
     {
         "name": "Rogueport Sewers Pit Room - One Way Pipe",
@@ -508,7 +694,10 @@
         "target": "One Way",
         "src_region": "sewer_west_enemy_flurrie",
         "region": "sewer_pit",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Pit Room - Door",
@@ -516,7 +705,10 @@
         "bero": "e_bero",
         "target": "TTYD - Pit Door",
         "region": "sewer_pit",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "TTYD - Pit Door",
@@ -533,7 +725,10 @@
                     "has": "Plane Mode"
                 }
             ]
-        }
+        },
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "TTYD - Entrance",
@@ -541,7 +736,10 @@
         "bero": "e_bero",
         "target": "Rogueport Sewers Black Key Room - TTYD Door",
         "region": "ttyd",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Black Key Room - TTYD Door",
@@ -558,7 +756,10 @@
                     "function": "super_hammer"
                 }
             ]
-        }
+        },
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Black Key Room - Entrance Pipe",
@@ -566,7 +767,10 @@
         "bero": "dokan",
         "target": "Rogueport Sewers East Enemy Hall - Pipe",
         "region": "rogue_black_key",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Black Key Room - Puni Door",
@@ -574,7 +778,10 @@
         "bero": "n_bero_1",
         "target": "Rogueport Sewers Puni Room - Entrance",
         "region": "rogue_black_key_puni",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Black Key Room - Curse Door",
@@ -582,7 +789,10 @@
         "bero": "n_bero_5",
         "target": "Rogueport Sewers Curse Room",
         "region": "rogue_black_key",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Curse Room",
@@ -590,7 +800,10 @@
         "bero": "s_bero",
         "target": "Rogueport Sewers Black Key Room - Curse Door",
         "region": "sewer_curse",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Puni Room - Entrance",
@@ -598,7 +811,10 @@
         "bero": "s_bero_1",
         "target": "Rogueport Sewers Black Key Room - Puni Door",
         "region": "sewer_puni",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers Puni Room - CH 2 Pipe",
@@ -606,7 +822,11 @@
         "bero": "dokan",
         "target": "Boggly Woods Entrance - Pipe",
         "region": "sewer_puni_exit",
-        "rules": null
+        "rules": null,
+        "tags": [
+            "Prologue",
+            "Two"
+        ]
     },
     {
         "name": "Petal Meadows Entrance - Entrance Pipe",
@@ -614,7 +834,11 @@
         "bero": "dokan_2",
         "target": "Rogueport Sewers Blooper - Pipe",
         "rules": null,
-        "region": "petal_meadow_entrance"
+        "region": "petal_meadow_entrance",
+        "tags": [
+            "One",
+            "Prologue"
+        ]
     },
     {
         "name": "Petal Meadows Field - West",
@@ -622,7 +846,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Entrance - East",
         "rules": null,
-        "region": "petal_meadow_field"
+        "region": "petal_meadow_field",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Entrance - East",
@@ -630,7 +857,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Field - West",
         "rules": null,
-        "region": "petal_meadow_entrance"
+        "region": "petal_meadow_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Bridge Room - West",
@@ -638,7 +868,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Field - East",
         "rules": null,
-        "region": "petal_meadow_bridge_west"
+        "region": "petal_meadow_bridge_west",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Field - East",
@@ -646,7 +879,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Bridge Room - West",
         "rules": null,
-        "region": "petal_meadow_field"
+        "region": "petal_meadow_field",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petalburg Westside - West",
@@ -654,7 +890,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Bridge Room - East",
         "rules": null,
-        "region": "petalburg_west"
+        "region": "petalburg_west",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Bridge Room - East",
@@ -662,7 +901,10 @@
         "bero": "e_bero",
         "target": "Petalburg Westside - West",
         "rules": null,
-        "region": "petal_meadow_bridge_east"
+        "region": "petal_meadow_bridge_east",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petalburg Eastside - West",
@@ -670,7 +912,10 @@
         "bero": "w_bero",
         "target": "Petalburg Westside - East",
         "rules": null,
-        "region": "petalburg_east"
+        "region": "petalburg_east",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petalburg Westside - East",
@@ -678,7 +923,10 @@
         "bero": "e_bero",
         "target": "Petalburg Eastside - West",
         "rules": null,
-        "region": "petalburg_west"
+        "region": "petalburg_west",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petalburg Eastside - Warp Pipe",
@@ -695,7 +943,11 @@
                 }
             ]
         },
-        "region": "petalburg_east"
+        "region": "petalburg_east",
+        "tags": [
+            "One",
+            "Prologue"
+        ]
     },
     {
         "name": "Petal Meadows First Fort Exterior - West",
@@ -703,7 +955,10 @@
         "bero": "w_bero",
         "target": "Petalburg Eastside - East",
         "rules": null,
-        "region": "petal_fort_one_exterior"
+        "region": "petal_fort_one_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petalburg Eastside - East",
@@ -711,7 +966,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows First Fort Exterior - West",
         "rules": null,
-        "region": "petalburg_east"
+        "region": "petalburg_east",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows First Fort - West",
@@ -719,7 +977,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows First Fort Exterior - East",
         "rules": null,
-        "region": "petal_fort_one"
+        "region": "petal_fort_one",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows First Fort Exterior - East",
@@ -727,7 +988,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows First Fort - West",
         "rules": null,
-        "region": "petal_fort_one_exterior"
+        "region": "petal_fort_one_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Second Fort Exterior - West",
@@ -735,7 +999,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows First Fort - East",
         "rules": null,
-        "region": "petal_fort_two_exterior"
+        "region": "petal_fort_two_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows First Fort - East",
@@ -743,7 +1010,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Second Fort Exterior - West",
         "rules": null,
-        "region": "petal_fort_one"
+        "region": "petal_fort_one",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Second Fort Exterior - East",
@@ -751,7 +1021,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Second Fort - West",
         "rules": null,
-        "region": "petal_fort_two_exterior"
+        "region": "petal_fort_two_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Second Fort - West",
@@ -759,7 +1032,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Second Fort Exterior - East",
         "rules": null,
-        "region": "petal_fort_two"
+        "region": "petal_fort_two",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Third Fort Exterior - West",
@@ -767,7 +1043,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Second Fort - East",
         "rules": null,
-        "region": "petal_fort_three_exterior"
+        "region": "petal_fort_three_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Second Fort - East",
@@ -775,7 +1054,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Third Fort Exterior - West",
         "rules": null,
-        "region": "petal_fort_two"
+        "region": "petal_fort_two",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Third Fort - East",
@@ -783,7 +1065,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Third Fort Exterior - East",
         "rules": null,
-        "region": "petal_fort_three"
+        "region": "petal_fort_three",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Third Fort Exterior - East",
@@ -791,7 +1076,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Third Fort - East",
         "rules": null,
-        "region": "petal_fort_three_exterior"
+        "region": "petal_fort_three_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers Entrance - Entrance Pipe",
@@ -799,7 +1087,10 @@
         "bero": "dokan",
         "target": "Petal Meadows Third Fort - Pipe",
         "rules": null,
-        "region": "petal_sewers_entrance"
+        "region": "petal_sewers_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Third Fort - Pipe",
@@ -807,7 +1098,10 @@
         "bero": "dokan",
         "target": "Petal Meadows Sewers Entrance - Entrance Pipe",
         "rules": null,
-        "region": "petal_fort_three"
+        "region": "petal_fort_three",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers East Enemy Hall - West",
@@ -815,7 +1109,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Sewers Entrance - East",
         "rules": null,
-        "region": "petal_sewers_east_hall"
+        "region": "petal_sewers_east_hall",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers Entrance - East",
@@ -823,7 +1120,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Sewers East Enemy Hall - West",
         "rules": null,
-        "region": "petal_sewers_entrance"
+        "region": "petal_sewers_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers East Key Room - West",
@@ -831,7 +1131,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Sewers East Enemy Hall - East",
         "rules": null,
-        "region": "petal_sewers_east_key"
+        "region": "petal_sewers_east_key",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers East Enemy Hall - East",
@@ -839,7 +1142,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Sewers East Key Room - West",
         "rules": null,
-        "region": "petal_sewers_east_hall"
+        "region": "petal_sewers_east_hall",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers West Enemy Hall - East",
@@ -847,7 +1153,10 @@
         "bero": "e_bero",
         "target": "Petal Meadows Sewers Entrance - West",
         "rules": null,
-        "region": "petal_sewers_west_hall"
+        "region": "petal_sewers_west_hall",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers Entrance - West",
@@ -855,7 +1164,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Sewers West Enemy Hall - East",
         "rules": null,
-        "region": "petal_sewers_entrance"
+        "region": "petal_sewers_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Sewers West Key Room - East",
@@ -863,7 +1175,10 @@
         "bero": "e_bero",
         "target": "Petal  Meadows Sewers West Enemy Hall - West",
         "rules": null,
-        "region": "petal_sewers_west_key"
+        "region": "petal_sewers_west_key",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal  Meadows Sewers West Enemy Hall - West",
@@ -871,7 +1186,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Sewers West Key Room - East",
         "rules": null,
-        "region": "petal_sewers_west_hall"
+        "region": "petal_sewers_west_hall",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Vestibule - West",
@@ -879,7 +1197,10 @@
         "bero": "w_bero",
         "target": "Petal Meadows Entrance - Hooktail's Castle Pipe",
         "rules": null,
-        "region": "hooktail_vestibule"
+        "region": "hooktail_vestibule",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Petal Meadows Entrance - Hooktail's Castle Pipe",
@@ -906,7 +1227,10 @@
                 }
             ]
         },
-        "region": "petal_meadow_entrance"
+        "region": "petal_meadow_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Drawbridge - West Bottom",
@@ -914,7 +1238,10 @@
         "bero": "w_bero_1",
         "target": "Hooktail's Castle Vestibule - East",
         "rules": null,
-        "region": "hooktail_drawbridge_bottom"
+        "region": "hooktail_drawbridge_bottom",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Vestibule - East",
@@ -922,7 +1249,10 @@
         "bero": "e_bero_1",
         "target": "Hooktail's Castle Drawbridge - West Bottom",
         "rules": null,
-        "region": "hooktail_vestibule"
+        "region": "hooktail_vestibule",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Drawbridge - West Top",
@@ -930,7 +1260,10 @@
         "bero": "w_bero_2",
         "target": "Hooktail's Castle Vestibule - East Top",
         "rules": null,
-        "region": "hooktail_drawbridge_west_top"
+        "region": "hooktail_drawbridge_west_top",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Vestibule - East Top",
@@ -938,7 +1271,10 @@
         "bero": "e_bero_3",
         "target": "Hooktail's Castle Drawbridge - West Top",
         "rules": null,
-        "region": "hooktail_vestibule"
+        "region": "hooktail_vestibule",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Entrance - West Bottom",
@@ -946,7 +1282,10 @@
         "bero": "w_bero",
         "target": "Hooktail's Castle Drawbridge - East Bottom",
         "rules": null,
-        "region": "hooktail_entrance"
+        "region": "hooktail_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Drawbridge - East Bottom",
@@ -954,7 +1293,10 @@
         "bero": "e_bero",
         "target": "Hooktail's Castle Entrance - West Bottom",
         "rules": null,
-        "region": "hooktail_drawbridge_east_bottom"
+        "region": "hooktail_drawbridge_east_bottom",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Drawbridge East Top",
@@ -962,7 +1304,10 @@
         "bero": "e_bero_2",
         "target": "Hooktail's Castle Entrance West Top",
         "rules": null,
-        "region": "hooktail_drawbridge_east_top"
+        "region": "hooktail_drawbridge_east_top",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Entrance West Top",
@@ -970,7 +1315,10 @@
         "bero": "w_bero2",
         "target": "Hooktail's Castle Drawbridge East Top",
         "rules": null,
-        "region": "hooktail_entrance"
+        "region": "hooktail_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Red Bones Room - West",
@@ -978,7 +1326,10 @@
         "bero": "w_bero",
         "target": "Hooktail's Castle Entrance - East",
         "rules": null,
-        "region": "hooktail_red_bones"
+        "region": "hooktail_red_bones",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Entrance - East",
@@ -986,7 +1337,10 @@
         "bero": "e_bero",
         "target": "Hooktail's Castle Red Bones Room - West",
         "rules": null,
-        "region": "hooktail_entrance"
+        "region": "hooktail_entrance",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Stair Switch Room - West",
@@ -994,7 +1348,10 @@
         "bero": "w_bero_1",
         "target": "Hooktail's Castle Red Bones Room - East",
         "rules": null,
-        "region": "hooktail_stair_switch"
+        "region": "hooktail_stair_switch",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Red Bones Room - East",
@@ -1002,7 +1359,10 @@
         "bero": "e_bero",
         "target": "Hooktail's Castle Stair Switch Room - West",
         "rules": null,
-        "region": "hooktail_red_bones"
+        "region": "hooktail_red_bones",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Nook - West",
@@ -1010,7 +1370,10 @@
         "bero": "w_bero_2",
         "target": "Hooktail's Castle Stair Switch Room - East Top",
         "rules": null,
-        "region": "hooktail_nook"
+        "region": "hooktail_nook",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Stair Switch Room - East Top",
@@ -1020,7 +1383,10 @@
         "rules": {
             "has": "Koops"
         },
-        "region": "hooktail_stair_switch"
+        "region": "hooktail_stair_switch",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Central Staircase - West",
@@ -1028,7 +1394,10 @@
         "bero": "w_bero_1",
         "target": "Hooktail's Castle Stair Switch Room - East Bottom",
         "rules": null,
-        "region": "hooktail_stair_central"
+        "region": "hooktail_stair_central",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Stair Switch Room - East Bottom",
@@ -1038,7 +1407,10 @@
         "rules": {
             "has": "Castle Key"
         },
-        "region": "hooktail_stair_switch"
+        "region": "hooktail_stair_switch",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Prison - East",
@@ -1048,7 +1420,10 @@
         "rules": {
             "has": "Paper Mode"
         },
-        "region": "hooktail_prison"
+        "region": "hooktail_prison",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Central Staircase - East",
@@ -1056,7 +1431,10 @@
         "bero": "e_bero",
         "target": "Hooktail's Castle Prison - East",
         "rules": null,
-        "region": "hooktail_stair_central"
+        "region": "hooktail_stair_central",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Spikes Room - West",
@@ -1064,7 +1442,10 @@
         "bero": "w_bero",
         "target": "Hooktail's Castle Prison - West",
         "rules": null,
-        "region": "hooktail_spikes"
+        "region": "hooktail_spikes",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Prison - West",
@@ -1081,7 +1462,10 @@
                 }
             ]
         },
-        "region": "hooktail_prison"
+        "region": "hooktail_prison",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Up Arrow Room - West",
@@ -1089,7 +1473,10 @@
         "bero": "w_bero",
         "target": "Hooktail's Castle Spikes Room - East",
         "rules": null,
-        "region": "hooktail_up_arrow"
+        "region": "hooktail_up_arrow",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Spikes Room - East",
@@ -1099,7 +1486,10 @@
         "rules": {
             "has": "Bobbery"
         },
-        "region": "hooktail_spikes"
+        "region": "hooktail_spikes",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Stair Switch Room Upper Level - East",
@@ -1109,7 +1499,10 @@
         "rules": {
             "has": "Koops"
         },
-        "region": "hooktail_stair_switch_upper"
+        "region": "hooktail_stair_switch_upper",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Central Staircase - West Top",
@@ -1126,7 +1519,10 @@
                 }
             ]
         },
-        "region": "hooktail_stair_central"
+        "region": "hooktail_stair_central",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Life Shroom Room - East Bottom",
@@ -1134,7 +1530,10 @@
         "bero": "e_bero_1",
         "target": "Hooktail's Castle Stair Switch Room Upper Level - West",
         "rules": null,
-        "region": "hooktail_life_shroom"
+        "region": "hooktail_life_shroom",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Stair Switch Room Upper Level - West",
@@ -1144,7 +1543,10 @@
         "rules": {
             "has": "Koops"
         },
-        "region": "hooktail_stair_switch_upper"
+        "region": "hooktail_stair_switch_upper",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Storeroom - East",
@@ -1152,7 +1554,10 @@
         "bero": "e_bero",
         "target": "Hooktail's Castle Life Shroom Room - West",
         "rules": null,
-        "region": "hooktail_storeroom"
+        "region": "hooktail_storeroom",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Life Shroom Room - West",
@@ -1172,7 +1577,10 @@
                 }
             ]
         },
-        "region": "hooktail_life_shroom_upper"
+        "region": "hooktail_life_shroom_upper",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Plane Rafters Room - West",
@@ -1180,7 +1588,10 @@
         "bero": "w_bero",
         "target": "Hooktail's Castle Life Shroom Room - East Top",
         "rules": null,
-        "region": "hooktail_plane_rafter"
+        "region": "hooktail_plane_rafter",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Life Shroom Room - East Top",
@@ -1207,7 +1618,10 @@
                 }
             ]
         },
-        "region": "hooktail_life_shroom_upper"
+        "region": "hooktail_life_shroom_upper",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Central Staircase Upper Level - West Bottom",
@@ -1215,7 +1629,10 @@
         "bero": "w_bero_4",
         "target": "Hooktail's Castle Plane Rafters Room - East",
         "rules": null,
-        "region": "hooktail_stair_central_upper"
+        "region": "hooktail_stair_central_upper",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Plane Rafters Room - East",
@@ -1239,7 +1656,10 @@
                 }
             ]
         },
-        "region": "hooktail_plane_rafter"
+        "region": "hooktail_plane_rafter",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Hooktail's Room Exterior - East",
@@ -1247,7 +1667,10 @@
         "bero": "e_bero",
         "target": "Hooktail's Castle Central Staircase Upper Level - West Top",
         "rules": null,
-        "region": "hooktail_room_exterior"
+        "region": "hooktail_room_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Central Staircase Upper Level - West Top",
@@ -1257,7 +1680,10 @@
         "rules": {
             "has": "Castle Key"
         },
-        "region": "hooktail_stair_central_upper"
+        "region": "hooktail_stair_central_upper",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Hooktail's Room - West",
@@ -1265,7 +1691,10 @@
         "bero": "w_bero",
         "target": "Hooktail's Castle Hooktail's Room Exterior - West",
         "rules": null,
-        "region": "hooktail_room"
+        "region": "hooktail_room",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Hooktail's Castle Hooktail's Room Exterior - West",
@@ -1273,7 +1702,10 @@
         "bero": "w_bero",
         "target": "Hooktail's Castle Hooktail's Room - West",
         "rules": null,
-        "region": "hooktail_room_exterior"
+        "region": "hooktail_room_exterior",
+        "tags": [
+            "One"
+        ]
     },
     {
         "name": "Boggly Woods Entrance - Pipe",
@@ -1281,7 +1713,11 @@
         "bero": "dokan1",
         "target": "Rogueport Sewers Puni Room - CH 2 Pipe",
         "rules": null,
-        "region": "boggly_entrance"
+        "region": "boggly_entrance",
+        "tags": [
+            "Two",
+            "Prologue"
+        ]
     },
     {
         "name": "Boggly Woods Shadow Sirens Room - West",
@@ -1289,7 +1725,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Entrance - East",
         "rules": null,
-        "region": "boggly_sirens"
+        "region": "boggly_sirens",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Entrance - East",
@@ -1297,7 +1736,10 @@
         "bero": "e_bero",
         "target": "Boggly Woods Shadow Sirens Room - West",
         "rules": null,
-        "region": "boggly_entrance"
+        "region": "boggly_entrance",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Tree View - West",
@@ -1305,7 +1747,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Shadow Sirens Room - East",
         "rules": null,
-        "region": "boggly_tree_view"
+        "region": "boggly_tree_view",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Shadow Sirens Room - East",
@@ -1313,7 +1758,10 @@
         "bero": "e_bero",
         "target": "Boggly Woods Tree View - West",
         "rules": null,
-        "region": "boggly_sirens"
+        "region": "boggly_sirens",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Plane Panel Room - West",
@@ -1321,7 +1769,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Tree View - East",
         "rules": null,
-        "region": "boggly_plane_panel"
+        "region": "boggly_plane_panel",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Tree View - East",
@@ -1329,7 +1780,10 @@
         "bero": "e_bero",
         "target": "Boggly Woods Plane Panel Room - West",
         "rules": null,
-        "region": "boggly_tree_view"
+        "region": "boggly_tree_view",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Outside Flurrie's House - West",
@@ -1337,7 +1791,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Plane Panel Room - East",
         "rules": null,
-        "region": "boggly_flurrie_outside"
+        "region": "boggly_flurrie_outside",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Plane Panel Room - East",
@@ -1345,7 +1802,10 @@
         "bero": "e_bero",
         "target": "Boggly Woods Outside Flurrie's House - West",
         "rules": null,
-        "region": "boggly_plane_panel_upper"
+        "region": "boggly_plane_panel_upper",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Flurrie's House - West",
@@ -1353,7 +1813,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Outside Flurrie's House - Pipe",
         "rules": null,
-        "region": "boggly_flurrie"
+        "region": "boggly_flurrie",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Outside Flurrie's House - Pipe",
@@ -1361,7 +1824,10 @@
         "bero": "n_bero",
         "target": "Boggly Woods Flurrie's House - West",
         "rules": null,
-        "region": "boggly_flurrie_outside_grass"
+        "region": "boggly_flurrie_outside_grass",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Flurrie's House Backroom - West",
@@ -1369,7 +1835,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Flurrie's House - East",
         "rules": null,
-        "region": "boggly_flurrie_backroom"
+        "region": "boggly_flurrie_backroom",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Flurrie's House - East",
@@ -1379,7 +1848,10 @@
         "rules": {
             "has": "Necklace"
         },
-        "region": "boggly_flurrie"
+        "region": "boggly_flurrie",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Outside Great Tree - West",
@@ -1387,7 +1859,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Tree View - Pipe",
         "rules": null,
-        "region": "boggly_outside_tree"
+        "region": "boggly_outside_tree",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Tree View - Pipe",
@@ -1395,7 +1870,10 @@
         "bero": "n_bero",
         "target": "Boggly Woods Outside Great Tree - West",
         "rules": null,
-        "region": "boggly_tree_view"
+        "region": "boggly_tree_view",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Outside Great Tree - Pipe",
@@ -1412,7 +1890,11 @@
                 }
             ]
         },
-        "region": "boggly_outside_tree"
+        "region": "boggly_outside_tree",
+        "tags": [
+            "Two",
+            "Prologue"
+        ]
     },
     {
         "name": "Great Tree Entrance - West",
@@ -1420,7 +1902,10 @@
         "bero": "w_bero",
         "target": "Boggly Woods Outside Great Tree - Great Tree Door",
         "rules": null,
-        "region": "tree_entrance"
+        "region": "tree_entrance",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Boggly Woods Outside Great Tree - Great Tree Door",
@@ -1430,7 +1915,10 @@
         "rules": {
             "has": "Flurrie"
         },
-        "region": "boggly_outside_tree"
+        "region": "boggly_outside_tree",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 10-Puni Pedistal - Pipe Down",
@@ -1438,7 +1926,10 @@
         "bero": "dokan1",
         "target": "Great Tree Entrance - Pipe",
         "rules": null,
-        "region": "tree_ten_puni"
+        "region": "tree_ten_puni",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Entrance - Pipe",
@@ -1446,7 +1937,10 @@
         "bero": "dokan",
         "target": "Great Tree 10-Puni Pedistal - Pipe Down",
         "rules": null,
-        "region": "tree_entrance"
+        "region": "tree_entrance",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Upper Duplex - Pipe Bottom",
@@ -1454,7 +1948,10 @@
         "bero": "dokan2",
         "target": "Great Tree 10-Puni Pedistal - Pipe Up",
         "rules": null,
-        "region": "tree_upper_duplex"
+        "region": "tree_upper_duplex",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 10-Puni Pedistal - Pipe Up",
@@ -1462,7 +1959,10 @@
         "bero": "dokan3",
         "target": "Great Tree Upper Duplex - Pipe Bottom",
         "rules": null,
-        "region": "tree_ten_puni"
+        "region": "tree_ten_puni",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Red/Blue Cages - Pipe",
@@ -1470,7 +1970,10 @@
         "bero": "dokan",
         "target": "Great Tree Upper Duplex - Pipe Up",
         "rules": null,
-        "region": "tree_red_blue_cage"
+        "region": "tree_red_blue_cage",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Upper Duplex - Pipe Up",
@@ -1478,7 +1981,10 @@
         "bero": "dokan1",
         "target": "Great Tree Red/Blue Cages - Pipe",
         "rules": null,
-        "region": "tree_upper_duplex"
+        "region": "tree_upper_duplex",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Red Key Room - East",
@@ -1486,7 +1992,10 @@
         "bero": "e_bero",
         "target": "Great Tree Red/Blue Cages - West",
         "rules": null,
-        "region": "tree_red_key"
+        "region": "tree_red_key",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Red/Blue Cages - West",
@@ -1494,7 +2003,10 @@
         "bero": "w_bero",
         "target": "Great Tree Red Key Room - East",
         "rules": null,
-        "region": "tree_red_blue_cage"
+        "region": "tree_red_blue_cage",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Bubble Room - Pipe Up",
@@ -1502,7 +2014,10 @@
         "bero": "dokan3",
         "target": "Great Tree 10-Puni Pedistal - Pedistal Pipe",
         "rules": null,
-        "region": "tree_bubble"
+        "region": "tree_bubble",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 10-Puni Pedistal - Pedistal Pipe",
@@ -1522,7 +2037,10 @@
                 }
             ]
         },
-        "region": "tree_ten_puni"
+        "region": "tree_ten_puni",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Entrance - Locked Door",
@@ -1532,7 +2050,10 @@
         "rules": {
             "can_reach_region": "Great Tree Bubble Room"
         },
-        "region": "tree_entrance"
+        "region": "tree_entrance",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Bubble Room - Locked Door",
@@ -1540,7 +2061,10 @@
         "bero": "w_bero",
         "target": "Great Tree Entrance - Locked Door",
         "rules": null,
-        "region": "tree_bubble"
+        "region": "tree_bubble",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Middle Duplex - Pipe Top",
@@ -1548,7 +2072,10 @@
         "bero": "dokan1",
         "target": "Great Tree Bubble Room - Pipe Bottom",
         "rules": null,
-        "region": "tree_middle_duplex"
+        "region": "tree_middle_duplex",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Bubble Room - Pipe Bottom",
@@ -1556,7 +2083,10 @@
         "bero": "dokan4",
         "target": "Great Tree Middle Duplex - Pipe Top",
         "rules": null,
-        "region": "tree_bubble"
+        "region": "tree_bubble",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree ZigZag Room - Pipe",
@@ -1564,7 +2094,10 @@
         "bero": "dokan1",
         "target": "Great Tree Middle Duplex - Pipe Bottom",
         "rules": null,
-        "region": "tree_zigzag"
+        "region": "tree_zigzag",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Middle Duplex - Pipe Bottom",
@@ -1572,7 +2105,10 @@
         "bero": "dokan2",
         "target": "Great Tree ZigZag Room - Pipe",
         "rules": null,
-        "region": "tree_middle_duplex"
+        "region": "tree_middle_duplex",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 10-Jabbies - West",
@@ -1580,7 +2116,10 @@
         "bero": "w_bero",
         "target": "Great Tree ZigZag Room - East",
         "rules": null,
-        "region": "tree_ten_jabbie"
+        "region": "tree_ten_jabbie",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree ZigZag Room - East",
@@ -1588,7 +2127,10 @@
         "bero": "e_bero02",
         "target": "Great Tree 10-Jabbies - West",
         "rules": null,
-        "region": "tree_zigzag"
+        "region": "tree_zigzag",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Blue Key Room - West",
@@ -1596,7 +2138,10 @@
         "bero": "w_bero",
         "target": "Great Tree 10-Jabbies - East",
         "rules": null,
-        "region": "tree_blue_key"
+        "region": "tree_blue_key",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Super Boots Room - South",
@@ -1604,7 +2149,10 @@
         "bero": "s_bero",
         "target": "Great Tree Blue Key Room - North",
         "rules": null,
-        "region": "tree_boots"
+        "region": "tree_boots",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Blue Key Room - North",
@@ -1612,7 +2160,10 @@
         "bero": "n_bero",
         "target": "Great Tree Super Boots Room - South",
         "rules": null,
-        "region": "tree_blue_key"
+        "region": "tree_blue_key",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 10-Jabbies - East",
@@ -1629,7 +2180,10 @@
                 }
             ]
         },
-        "region": "tree_ten_jabbie"
+        "region": "tree_ten_jabbie",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Shop - East",
@@ -1637,7 +2191,10 @@
         "bero": "e_bero",
         "target": "Great Tree ZigZag Room - West Bottom",
         "rules": null,
-        "region": "tree_shop"
+        "region": "tree_shop",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree ZigZag Room - West Bottom",
@@ -1647,7 +2204,10 @@
         "rules": {
             "has": "Flurrie"
         },
-        "region": "tree_zigzag"
+        "region": "tree_zigzag",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 100-Jabbies - East",
@@ -1655,7 +2215,10 @@
         "bero": "e_bero",
         "target": "Great Tree ZigZag Room - West Top",
         "rules": null,
-        "region": "tree_hundred_jabbie"
+        "region": "tree_hundred_jabbie",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree ZigZag Room - West Top",
@@ -1663,7 +2226,10 @@
         "bero": "w_bero02",
         "target": "Great Tree 100-Jabbies - East",
         "rules": null,
-        "region": "tree_zigzag"
+        "region": "tree_zigzag",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Large Trunk Room - East Top",
@@ -1671,7 +2237,10 @@
         "bero": "e_bero",
         "target": "Great Tree 100-Jabbies - West",
         "rules": null,
-        "region": "tree_trunk"
+        "region": "tree_trunk",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 100-Jabbies - West",
@@ -1688,7 +2257,10 @@
                 }
             ]
         },
-        "region": "tree_hundred_jabbie"
+        "region": "tree_hundred_jabbie",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Fake Pedestal - West",
@@ -1696,7 +2268,10 @@
         "bero": "w_bero",
         "target": "Great Tree Large Trunk Room - East Bottom",
         "rules": null,
-        "region": "tree_fake_pedestal"
+        "region": "tree_fake_pedestal",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Large Trunk Room - East Bottom",
@@ -1704,7 +2279,10 @@
         "bero": "e_bero_2",
         "target": "Great Tree Fake Pedestal - West",
         "rules": null,
-        "region": "tree_trunk"
+        "region": "tree_trunk",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Lower Duplex - Pipe Top",
@@ -1712,7 +2290,10 @@
         "bero": "dokan1",
         "target": "Great Tree Large Trunk Room - Pipe",
         "rules": null,
-        "region": "tree_lower_duplex"
+        "region": "tree_lower_duplex",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Large Trunk Room - Pipe",
@@ -1722,7 +2303,10 @@
         "rules": {
             "function": "super_boots"
         },
-        "region": "tree_trunk"
+        "region": "tree_trunk",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Pool Room - Pipe Top",
@@ -1730,7 +2314,10 @@
         "bero": "dokan2",
         "target": "Great Tree Lower Duplex - Pipe Bottom",
         "rules": null,
-        "region": "tree_pool"
+        "region": "tree_pool",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 100-Puni Pedestal - Pipe",
@@ -1738,7 +2325,10 @@
         "bero": "dokan",
         "target": "Great Tree Pool Room - Pipe Bottom",
         "rules": null,
-        "region": "tree_hundred_puni"
+        "region": "tree_hundred_puni",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Pool Room - Pipe Bottom",
@@ -1746,7 +2336,10 @@
         "bero": "dokan7",
         "target": "Great Tree 100-Puni Pedestal - Pipe",
         "rules": null,
-        "region": "tree_pool"
+        "region": "tree_pool",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Lower Duplex - Pipe Bottom",
@@ -1754,7 +2347,10 @@
         "bero": "dokan2",
         "target": "Great Tree Pool Room - Pipe Top",
         "rules": null,
-        "region": "tree_lower_duplex"
+        "region": "tree_lower_duplex",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Emerald Star Room - West",
@@ -1762,7 +2358,10 @@
         "bero": "w_bero",
         "target": "Great Tree 100-Puni Pedestal - East",
         "rules": null,
-        "region": "tree_star_room"
+        "region": "tree_star_room",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree 100-Puni Pedestal - East",
@@ -1770,7 +2369,10 @@
         "bero": "e_bero",
         "target": "Great Tree Emerald Star Room - West",
         "rules": null,
-        "region": "tree_hundred_puni"
+        "region": "tree_hundred_puni",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Ambush Room - Pipe",
@@ -1778,7 +2380,10 @@
         "bero": "dokan",
         "target": "Great Tree Emerald Star Room - Pipe",
         "rules": null,
-        "region": "tree_ambush"
+        "region": "tree_ambush",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Emerald Star Room - Pipe",
@@ -1798,7 +2403,10 @@
                 }
             ]
         },
-        "region": "tree_star_room"
+        "region": "tree_star_room",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree ZigZag Room - Locked Door",
@@ -1808,7 +2416,10 @@
         "rules": {
             "can_reach_region": "Great Tree Ambush Room"
         },
-        "region": "tree_zigzag"
+        "region": "tree_zigzag",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Great Tree Ambush Room - Door",
@@ -1816,7 +2427,10 @@
         "bero": "w_bero",
         "target": "Great Tree ZigZag Room - Locked Door",
         "rules": null,
-        "region": "tree_ambush"
+        "region": "tree_ambush",
+        "tags": [
+            "Two"
+        ]
     },
     {
         "name": "Glitzville Main Square - Blimp",
@@ -1824,7 +2438,11 @@
         "bero": "null",
         "target": "Rogueport Blimp - Blimp",
         "rules": null,
-        "region": "glitzville_main_square"
+        "region": "glitzville_main_square",
+        "tags": [
+            "Three",
+            "Prologue"
+        ]
     },
     {
         "name": "Glitzville Lobby - South",
@@ -1832,7 +2450,10 @@
         "bero": "s_bero",
         "target": "Glitzville Main Square - North",
         "rules": null,
-        "region": "glitzville_lobby"
+        "region": "glitzville_lobby",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Main Square - North",
@@ -1840,7 +2461,10 @@
         "bero": "a_door_mon",
         "target": "Glitzville Lobby - South",
         "rules": null,
-        "region": "glitzville_main_square"
+        "region": "glitzville_main_square",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Arena Stands - South Bottom",
@@ -1848,7 +2472,10 @@
         "bero": "s_bero_1",
         "target": "Glitzville Lobby - North Bottom",
         "rules": null,
-        "region": "glitzville_arena_stands_bottom"
+        "region": "glitzville_arena_stands_bottom",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Lobby - North Bottom",
@@ -1856,7 +2483,10 @@
         "bero": "n_bero_1",
         "target": "Glitzville Arena Stands - South Bottom",
         "rules": null,
-        "region": "glitzville_lobby"
+        "region": "glitzville_lobby",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Arena Stands - South Top",
@@ -1864,7 +2494,10 @@
         "bero": "s_bero_2",
         "target": "Glitzville Lobby - North Top",
         "rules": null,
-        "region": "glitzville_arena_stands_top"
+        "region": "glitzville_arena_stands_top",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Lobby - North Top",
@@ -1872,7 +2505,10 @@
         "bero": "n_bero_2",
         "target": "Glitzville Arena Stands - South Top",
         "rules": null,
-        "region": "glitzville_lobby"
+        "region": "glitzville_lobby",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Locker Side Entrance",
@@ -1880,7 +2516,10 @@
         "bero": "e_bero",
         "target": "Glitzville Lobby - Northwest",
         "rules": null,
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Lobby - Northwest",
@@ -1897,7 +2536,10 @@
                 }
             ]
         },
-        "region": "glitzville_lobby"
+        "region": "glitzville_lobby",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Champ Side Entrance",
@@ -1905,7 +2547,10 @@
         "bero": "w_bero",
         "target": "Glitzville Lobby - Northeast",
         "rules": null,
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Lobby - Northeast",
@@ -1922,7 +2567,10 @@
                 }
             ]
         },
-        "region": "glitzville_lobby"
+        "region": "glitzville_lobby",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Promoter's Office - North",
@@ -1930,7 +2578,10 @@
         "bero": "n_bero",
         "target": "Glitzville Hall - Promoter's Office Door",
         "rules": null,
-        "region": "glitzville_promoter"
+        "region": "glitzville_promoter",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Promoter's Office Door",
@@ -1938,7 +2589,10 @@
         "bero": "s_bero_5",
         "target": "Glitzville Promoter's Office - North",
         "rules": null,
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Minor League Door",
@@ -1948,7 +2602,10 @@
         "rules": {
             "can_reach_region": "Glitzville Promoter's Office"
         },
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Minor League - North",
@@ -1956,7 +2613,10 @@
         "bero": "n_bero",
         "target": "Glitzville Hall - Minor League Door",
         "rules": null,
-        "region": "glitzville_minor"
+        "region": "glitzville_minor",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Major League Door",
@@ -1976,7 +2636,10 @@
                 }
             ]
         },
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Major League - North",
@@ -1984,7 +2647,10 @@
         "bero": "n_bero",
         "target": "Glitzville Hall - Major League Door",
         "rules": null,
-        "region": "glitzville_major"
+        "region": "glitzville_major",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Champ's Room Door",
@@ -2007,7 +2673,10 @@
                 }
             ]
         },
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Champ's Room - North",
@@ -2015,7 +2684,10 @@
         "bero": "n_bero",
         "target": "Glitzville Hall - Champ's Room Door",
         "rules": null,
-        "region": "glitzville_champ"
+        "region": "glitzville_champ",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Vents - West",
@@ -2023,7 +2695,10 @@
         "bero": "e_bero_",
         "target": "Glitzville Champ's Room - East",
         "rules": null,
-        "region": "glitzville_vent"
+        "region": "glitzville_vent",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Champ's Room - East",
@@ -2040,7 +2715,10 @@
                 }
             ]
         },
-        "region": "glitzville_champ"
+        "region": "glitzville_champ",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Promoter's Office - West",
@@ -2048,7 +2726,10 @@
         "bero": "w_bero",
         "target": "Glitzville Vents - East",
         "rules": null,
-        "region": "glitzville_promoter_vent"
+        "region": "glitzville_promoter_vent",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Arena - West",
@@ -2056,7 +2737,10 @@
         "bero": "w_bero",
         "target": "Glitzville Hall - Arena Door",
         "rules": null,
-        "region": "glitzville_arena"
+        "region": "glitzville_arena",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Arena Door",
@@ -2066,7 +2750,10 @@
         "rules": {
             "can_reach_region": "Glitzville Promoter's Office Vent"
         },
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Storage Room - North",
@@ -2074,7 +2761,10 @@
         "bero": "n_bero",
         "target": "Glitzville Hall - Storage Door",
         "rules": null,
-        "region": "glitzville_storage"
+        "region": "glitzville_storage",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Hall - Storage Door",
@@ -2084,7 +2774,10 @@
         "rules": {
             "has": "Storage Key 1"
         },
-        "region": "glitzville_hall"
+        "region": "glitzville_hall",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Attic - Entrance",
@@ -2105,7 +2798,10 @@
                 }
             ]
         },
-        "region": "glitzville_attic"
+        "region": "glitzville_attic",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Storage - Attic Drop",
@@ -2116,7 +2812,10 @@
         "rules": {
             "has": "Paper Mode"
         },
-        "region": "glitzville_storage"
+        "region": "glitzville_storage",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Storage Backroom - West",
@@ -2124,7 +2823,10 @@
         "bero": "w_bero",
         "target": "Glitzville Storage - East",
         "rules": null,
-        "region": "glitzville_storage_backroom"
+        "region": "glitzville_storage_backroom",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Glitzville Storage - East",
@@ -2144,7 +2846,10 @@
                 }
             ]
         },
-        "region": "glitzville_storage"
+        "region": "glitzville_storage",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Twilight Town Leftside - Pipe",
@@ -2152,7 +2857,11 @@
         "bero": "dokan_1",
         "target": "Rogueport Sewers Twilight - Pipe",
         "rules": null,
-        "region": "twilight_town_left"
+        "region": "twilight_town_left",
+        "tags": [
+            "Four",
+            "Prologue"
+        ]
     },
     {
         "name": "Twilight Town Rightside - West",
@@ -2160,7 +2869,10 @@
         "bero": "w_bero",
         "target": "Twilight Town Leftside - East",
         "rules": null,
-        "region": "twilight_town_right"
+        "region": "twilight_town_right",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Town Leftside - East",
@@ -2168,7 +2880,10 @@
         "bero": "e_bero",
         "target": "Twilight Town Rightside - West",
         "rules": null,
-        "region": "twilight_town_left"
+        "region": "twilight_town_left",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Entrance - West",
@@ -2176,7 +2891,10 @@
         "bero": "w_bero",
         "target": "Twilight Town Rightside - East",
         "rules": null,
-        "region": "twilight_trail_entrance"
+        "region": "twilight_trail_entrance",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Town Rightside - East",
@@ -2186,7 +2904,10 @@
         "rules": {
             "can_reach_region": "Twilight Town Leftside"
         },
-        "region": "twilight_town_right"
+        "region": "twilight_town_right",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Hyper Goomba Room - West",
@@ -2194,7 +2915,10 @@
         "bero": "w_bero1",
         "target": "Twilight Trail Entrance - East",
         "rules": null,
-        "region": "twilight_trail_goomba"
+        "region": "twilight_trail_goomba",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Entrance - East",
@@ -2202,7 +2926,10 @@
         "bero": "e_bero",
         "target": "Twilight Trail Hyper Goomba Room - West",
         "rules": null,
-        "region": "twilight_trail_entrance"
+        "region": "twilight_trail_entrance",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Fallen Tree - West",
@@ -2212,7 +2939,10 @@
         "rules": {
             "function": "tube_curse"
         },
-        "region": "twilight_trail_tree"
+        "region": "twilight_trail_tree",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Hyper Goomba Room - East",
@@ -2220,7 +2950,10 @@
         "bero": "e_bero1",
         "target": "Twilight Trail Fallen Tree - West",
         "rules": null,
-        "region": "twilight_trail_goomba"
+        "region": "twilight_trail_goomba",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Glitzville Vents - East",
@@ -2230,7 +2963,10 @@
         "rules": {
             "function": "super_hammer"
         },
-        "region": "glitzville_vent"
+        "region": "glitzville_vent",
+        "tags": [
+            "Three"
+        ]
     },
     {
         "name": "Twilight Trail Dark Woods First Room - East",
@@ -2240,7 +2976,10 @@
         "rules": {
             "has": "Paper Mode"
         },
-        "region": "twilight_trail_wood_one"
+        "region": "twilight_trail_wood_one",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Fallen Tree - Pipe",
@@ -2257,7 +2996,10 @@
                 }
             ]
         },
-        "region": "twilight_trail_tree"
+        "region": "twilight_trail_tree",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Dark Woods Second Room - East",
@@ -2265,7 +3007,10 @@
         "bero": "e_bero",
         "target": "Twilight Trail Dark Woods First Room - West",
         "rules": null,
-        "region": "twilight_trail_wood_two"
+        "region": "twilight_trail_wood_two",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Dark Woods First Room - West",
@@ -2275,7 +3020,10 @@
         "rules": {
             "has": "Paper Mode"
         },
-        "region": "twilight_trail_wood_one"
+        "region": "twilight_trail_wood_one",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Dark Woods Third Room - West",
@@ -2283,7 +3031,10 @@
         "bero": "w_bero",
         "target": "Twilight Trail Dark Woods Second Room - West",
         "rules": null,
-        "region": "twilight_trail_wood_three"
+        "region": "twilight_trail_wood_three",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Dark Woods Second Room - West",
@@ -2300,7 +3051,10 @@
                 }
             ]
         },
-        "region": "twilight_trail_wood_two"
+        "region": "twilight_trail_wood_two",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Steeple Exterior - West",
@@ -2308,7 +3062,10 @@
         "bero": "sw_bero",
         "target": "Twilight Trail Dark Woods Thrid Room - East",
         "rules": null,
-        "region": "twilight_trail_steeple"
+        "region": "twilight_trail_steeple",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Dark Woods Thrid Room - East",
@@ -2325,7 +3082,10 @@
                 }
             ]
         },
-        "region": "twilight_trail_wood_three"
+        "region": "twilight_trail_wood_three",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Well Entrance - Entrance",
@@ -2333,7 +3093,10 @@
         "bero": "null",
         "target": "Twilight Trail Steeple Exterior - Well",
         "rules": null,
-        "region": "steeple_well_entrance"
+        "region": "steeple_well_entrance",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Steeple Exterior - Well",
@@ -2341,7 +3104,10 @@
         "bero": "ana",
         "target": "Creepy Steeple Well Entrance - Entrance",
         "rules": null,
-        "region": "twilight_trail_steeple"
+        "region": "twilight_trail_steeple",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Well Buzzy Room - West",
@@ -2349,7 +3115,10 @@
         "bero": "w_bero",
         "target": "Creepy Steeple Well Entrance - East",
         "rules": null,
-        "region": "steeple_well_buzzy"
+        "region": "steeple_well_buzzy",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Well Entrance - East",
@@ -2357,7 +3126,10 @@
         "bero": "e_bero",
         "target": "Creepy Steeple Well Buzzy Room - West",
         "rules": null,
-        "region": "steeple_well_entrance"
+        "region": "steeple_well_entrance",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Underground Tube Passage - South",
@@ -2365,7 +3137,10 @@
         "bero": "s_bero",
         "target": "Creepy Steeple Well Buzzy Room - North",
         "rules": null,
-        "region": "steeple_underground_tube"
+        "region": "steeple_underground_tube",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Well Buzzy Room - North",
@@ -2373,7 +3148,10 @@
         "bero": "n_bero",
         "target": "Creepy Steeple Underground Tube Passage - South",
         "rules": null,
-        "region": "steeple_well_buzzy_vivian"
+        "region": "steeple_well_buzzy_vivian",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Boo Chest Room Background - Ceiling Panel",
@@ -2391,7 +3169,10 @@
                 }
             ]
         },
-        "region": "steeple_boo_background"
+        "region": "steeple_boo_background",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Parrot Room - East Tube",
@@ -2402,7 +3183,10 @@
         "rules": {
             "function": "tube_curse"
         },
-        "region": "steeple_parrot"
+        "region": "steeple_parrot",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Boo Chest Room - West",
@@ -2419,7 +3203,10 @@
                 }
             ]
         },
-        "region": "steeple_boo"
+        "region": "steeple_boo",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Parrot Room - East Door",
@@ -2427,7 +3214,10 @@
         "bero": "e_bero_1",
         "target": "Creepy Steeple Boo Chest Room - West",
         "rules": null,
-        "region": "steeple_parrot"
+        "region": "steeple_parrot",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Under Statue - West",
@@ -2435,7 +3225,10 @@
         "bero": "w_bero",
         "target": "Creepy Steeple Boo Chest Room - East",
         "rules": null,
-        "region": "steeple_statue"
+        "region": "steeple_statue",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Boo Chest Room - East",
@@ -2443,7 +3236,10 @@
         "bero": "e_bero",
         "target": "Creepy Steeple Under Statue - West",
         "rules": null,
-        "region": "steeple_boo"
+        "region": "steeple_boo",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - Statue",
@@ -2451,7 +3247,10 @@
         "bero": "ana",
         "target": "Creepy Steeple Under Statue - Ceiling",
         "rules": null,
-        "region": "steeple_main"
+        "region": "steeple_main",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Under Statue - Ceiling",
@@ -2459,7 +3258,10 @@
         "bero": "null",
         "target": "Creepy Steeple Main Hall - Statue",
         "rules": null,
-        "region": "steeple_statue"
+        "region": "steeple_statue",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Cookbook Room - South",
@@ -2469,7 +3271,10 @@
         "rules": {
             "function": "tube_curse"
         },
-        "region": "steeple_cookbook"
+        "region": "steeple_cookbook",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - North Tube",
@@ -2479,7 +3284,10 @@
         "rules": {
             "function": "tube_curse"
         },
-        "region": "steeple_main"
+        "region": "steeple_main",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Twilight Trail Steeple Exterior - North",
@@ -2489,7 +3297,10 @@
         "rules": {
             "function": "tube_curse"
         },
-        "region": "twilight_trail_steeple"
+        "region": "twilight_trail_steeple",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - West",
@@ -2497,7 +3308,10 @@
         "bero": "w_bero",
         "target": "Twilight Trail Steeple Exterior - North",
         "rules": null,
-        "region": "steeple_main"
+        "region": "steeple_main",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple North Hall - Southwest",
@@ -2505,7 +3319,10 @@
         "bero": "s_bero_1",
         "target": "Creepy Steeple Main Hall - North Door",
         "rules": null,
-        "region": "steeple_north"
+        "region": "steeple_north",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - North Door",
@@ -2515,7 +3332,10 @@
         "rules": {
             "can_reach_region": "Creepy Steeple Boo Chest Room"
         },
-        "region": "steeple_main"
+        "region": "steeple_main",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple South Hall - Northwest",
@@ -2523,7 +3343,10 @@
         "bero": "n_bero_1",
         "target": "Creepy Steeple Main Hall - South",
         "rules": null,
-        "region": "steeple_south"
+        "region": "steeple_south",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - South",
@@ -2533,7 +3356,10 @@
         "rules": {
             "can_reach_region": "Creepy Steeple Boo Chest Room"
         },
-        "region": "steeple_main"
+        "region": "steeple_main",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Back Stairs - South",
@@ -2541,7 +3367,10 @@
         "bero": "s_bero",
         "target": "Creepy Steeple South Hall - Northeast",
         "rules": null,
-        "region": "steeple_back_stair"
+        "region": "steeple_back_stair",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple South Hall - Northeast",
@@ -2549,7 +3378,10 @@
         "bero": "n_bero_2",
         "target": "Creepy Steeple Back Stairs - South",
         "rules": null,
-        "region": "steeple_south"
+        "region": "steeple_south",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple North Hall - Southeast",
@@ -2557,7 +3389,10 @@
         "bero": "s_bero_2",
         "target": "Creepy Steeple Back Stairs - North",
         "rules": null,
-        "region": "steeple_north"
+        "region": "steeple_north",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Back Stairs - North",
@@ -2565,7 +3400,10 @@
         "bero": "n_bero",
         "target": "Creepy Steeple North Hall - Southeast",
         "rules": null,
-        "region": "steeple_back_stair"
+        "region": "steeple_back_stair",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - East",
@@ -2574,7 +3412,10 @@
         "target": "One Way",
         "src_region": "steeple_back_stair",
         "rules": null,
-        "region": "steeple_main"
+        "region": "steeple_main",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - Southeast",
@@ -2582,7 +3423,10 @@
         "bero": "e_bero_3",
         "target": "Creepy Steeple Back Stairs - Southwest",
         "rules": null,
-        "region": "steeple_main_upper_south"
+        "region": "steeple_main_upper_south",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Back Stairs - Southwest",
@@ -2592,7 +3436,10 @@
         "rules": {
             "can_reach_region": "Creepy Steeple South Hall"
         },
-        "region": "steeple_back_stair"
+        "region": "steeple_back_stair",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - Northeast",
@@ -2600,7 +3447,10 @@
         "bero": "e_bero_1",
         "target": "Creepy Steeple Main Hall - Northwest",
         "rules": null,
-        "region": "steeple_main_upper"
+        "region": "steeple_main_upper",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - Northwest",
@@ -2610,7 +3460,10 @@
         "rules": {
             "can_reach_region": "Creepy Steeple North Hall"
         },
-        "region": "steeple_back_stair"
+        "region": "steeple_back_stair",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Spire - South",
@@ -2618,7 +3471,10 @@
         "bero": "s_bero",
         "target": "Creepy Steeple Main Hall - Spire Door",
         "rules": null,
-        "region": "steeple_spire"
+        "region": "steeple_spire",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Creepy Steeple Main Hall - Spire Door",
@@ -2626,7 +3482,10 @@
         "bero": "n_bero_2",
         "target": "Creepy Steeple Spire - South",
         "rules": null,
-        "region": "steeple_main_upper"
+        "region": "steeple_main_upper",
+        "tags": [
+            "Four"
+        ]
     },
     {
         "name": "Keelhaul Key Town - Boat Re-Entry",
@@ -2647,7 +3506,10 @@
                 }
             ]
         },
-        "region": "keelhaul_town"
+        "region": "keelhaul_town",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Landing Site - East",
@@ -2655,7 +3517,10 @@
         "bero": "e_bero",
         "target": "Keelhaul Key Town - West",
         "rules": null,
-        "region": "keelhaul_landing"
+        "region": "keelhaul_landing",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Town - West",
@@ -2663,7 +3528,10 @@
         "bero": "w_bero",
         "target": "Keelhaul Key Landing Site - East",
         "rules": null,
-        "region": "keelhaul_town"
+        "region": "keelhaul_town",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Jungle Entrance - West",
@@ -2671,7 +3539,10 @@
         "bero": "w_bero",
         "target": "Keelhaul Key Town - East",
         "rules": null,
-        "region": "keelhaul_jungle_entrance"
+        "region": "keelhaul_jungle_entrance",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Town - East",
@@ -2679,7 +3550,10 @@
         "bero": "e_bero1",
         "target": "Keelhaul Key Jungle Entrance - West",
         "rules": null,
-        "region": "keelhaul_town"
+        "region": "keelhaul_town",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Jungle Winding Climb - West",
@@ -2687,7 +3561,10 @@
         "bero": "w_bero",
         "target": "Keelhaul Key Jungle Entrance - East",
         "rules": null,
-        "region": "keelhaul_winding"
+        "region": "keelhaul_winding",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Jungle Entrance - East",
@@ -2695,7 +3572,10 @@
         "bero": "e_bero",
         "target": "Keelhaul Key Jungle Winding Climb - West",
         "rules": null,
-        "region": "keelhaul_jungle_entrance"
+        "region": "keelhaul_jungle_entrance",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Jungle Bridge - West",
@@ -2703,7 +3583,10 @@
         "bero": "w_bero",
         "target": "Keelhaul Key Jungle Winding Climb - East",
         "rules": null,
-        "region": "keelhaul_jungle_bridge"
+        "region": "keelhaul_jungle_bridge",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Jungle Winding Climb - East",
@@ -2713,7 +3596,10 @@
         "rules": {
             "has": "Yoshi"
         },
-        "region": "keelhaul_winding"
+        "region": "keelhaul_winding",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Grotto Entrance - West",
@@ -2721,7 +3607,10 @@
         "bero": "w_bero",
         "target": "Keelhaul Key Bridge - East",
         "rules": null,
-        "region": "keelhaul_grotto_entrance"
+        "region": "keelhaul_grotto_entrance",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Bridge - East",
@@ -2729,7 +3618,10 @@
         "bero": "e_bero",
         "target": "Keelhaul Key Grotto Entrance - West",
         "rules": null,
-        "region": "keelhaul_jungle_bridge"
+        "region": "keelhaul_jungle_bridge",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Entrance - West",
@@ -2737,7 +3629,10 @@
         "bero": "w_bero",
         "target": "Keelhaul Key Grotto Entrance - East",
         "rules": null,
-        "region": "grotto_entrance"
+        "region": "grotto_entrance",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Keelhaul Key Grotto Entrance - East",
@@ -2754,7 +3649,10 @@
                 }
             ]
         },
-        "region": "keelhaul_grotto_entrance"
+        "region": "keelhaul_grotto_entrance",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Spring Room - West",
@@ -2762,7 +3660,10 @@
         "bero": "w_bero",
         "target": "Pirate's Grotto Entrance - East",
         "rules": null,
-        "region": "grotto_spring"
+        "region": "grotto_spring",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Entrance - East",
@@ -2770,7 +3671,10 @@
         "bero": "e_bero",
         "target": "Pirate's Grotto Spring Room - West",
         "rules": null,
-        "region": "grotto_entrance"
+        "region": "grotto_entrance",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Handle Room - West",
@@ -2787,7 +3691,10 @@
                 }
             ]
         },
-        "region": "grotto_handle"
+        "region": "grotto_handle",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Spring Room - East",
@@ -2795,7 +3702,10 @@
         "bero": "e_bero",
         "target": "Pirate's Grotto Handle Room - West",
         "rules": null,
-        "region": "grotto_spring"
+        "region": "grotto_spring",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Bullet Bill Bridge - West Door",
@@ -2803,7 +3713,10 @@
         "bero": "w_bero_2",
         "target": "Pirate's Grotto Handle Room - East Door",
         "rules": null,
-        "region": "grotto_bullet_bridge"
+        "region": "grotto_bullet_bridge",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Handle Room - East Door",
@@ -2820,7 +3733,10 @@
                 }
             ]
         },
-        "region": "grotto_handle"
+        "region": "grotto_handle",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Sluice Gate - West Bottom Door",
@@ -2828,7 +3744,10 @@
         "bero": "w_bero_2",
         "target": "Pirate's Grotto Bullet Bill Bridge - East Door",
         "rules": null,
-        "region": "grotto_gate"
+        "region": "grotto_gate",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Bullet Bill Bridge - East Door",
@@ -2836,7 +3755,10 @@
         "bero": "e_bero_2",
         "target": "Pirate's Grotto Sluice Gate - West Bottom Door",
         "rules": null,
-        "region": "grotto_bullet_bridge"
+        "region": "grotto_bullet_bridge",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Staircase - West Bottom",
@@ -2844,7 +3766,10 @@
         "bero": "w_bero_1",
         "target": "Pirate's Grotto Sluice Gate - East Bottom Door",
         "rules": null,
-        "region": "grotto_staircase"
+        "region": "grotto_staircase",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Sluice Gate - East Bottom Door",
@@ -2852,7 +3777,10 @@
         "bero": "e_bero_1",
         "target": "Pirate's Grotto Staircase - West Bottom",
         "rules": null,
-        "region": "grotto_gate"
+        "region": "grotto_gate",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Parabuzzy Room - West",
@@ -2860,7 +3788,10 @@
         "bero": "w_bero",
         "target": "Pirate's Grotto Staircase - East",
         "rules": null,
-        "region": "grotto_parabuzzy"
+        "region": "grotto_parabuzzy",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Staircase - East",
@@ -2870,7 +3801,10 @@
         "rules": {
             "has": "Grotto Key"
         },
-        "region": "grotto_staircase"
+        "region": "grotto_staircase",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Spike Wall Room - North",
@@ -2887,7 +3821,10 @@
                 }
             ]
         },
-        "region": "grotto_spike_wall"
+        "region": "grotto_spike_wall",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Parabuzzy Room - South",
@@ -2895,7 +3832,10 @@
         "bero": "s_bero",
         "target": "Pirate's Grotto Spike Wall Room - North",
         "rules": null,
-        "region": "grotto_parabuzzy"
+        "region": "grotto_parabuzzy",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Barrel Room - East Door",
@@ -2903,7 +3843,10 @@
         "bero": "e_bero_2",
         "target": "Pirate's Grotto Spike Wall Room - West Door",
         "rules": null,
-        "region": "grotto_barrel"
+        "region": "grotto_barrel",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Spike Wall Room - West Door",
@@ -2920,7 +3863,10 @@
                 }
             ]
         },
-        "region": "grotto_spike_wall"
+        "region": "grotto_spike_wall",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Bullet Bill Steps Room - East",
@@ -2928,7 +3874,10 @@
         "bero": "e_bero_1",
         "target": "Pirate's Grotto Barrel Room - West Door",
         "rules": null,
-        "region": "grotto_bullet_step"
+        "region": "grotto_bullet_step",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Barrel Room - West Door",
@@ -2936,7 +3885,10 @@
         "bero": "w_bero",
         "target": "Pirate's Grotto Bullet Bill Steps Room - East",
         "rules": null,
-        "region": "grotto_barrel"
+        "region": "grotto_barrel",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Broken Ship Exterior - East",
@@ -2946,7 +3898,10 @@
         "rules": {
             "has": "Boat Mode"
         },
-        "region": "grotto_broken_ship"
+        "region": "grotto_broken_ship",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Bullet Bill Steps Room - West",
@@ -2954,7 +3909,10 @@
         "bero": "w_bero",
         "target": "Pirate's Grotto Broken Ship Exterior - East",
         "rules": null,
-        "region": "grotto_bullet_step"
+        "region": "grotto_bullet_step",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Curse Chest Room - South",
@@ -2962,7 +3920,10 @@
         "bero": "s_bero",
         "target": "Pirate's Grotto Broken Ship Exterior - North",
         "rules": null,
-        "region": "grotto_curse"
+        "region": "grotto_curse",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Broken Ship Exterior - North",
@@ -2970,7 +3931,10 @@
         "bero": "n_bero",
         "target": "Pirate's Grotto Curse Chest Room - South",
         "rules": null,
-        "region": "grotto_broken_ship"
+        "region": "grotto_broken_ship",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Sluice Gate - East Top Door",
@@ -2978,7 +3942,10 @@
         "bero": "e_bero_3",
         "target": "Pirate's Grotto Staircase - West Top Door",
         "rules": null,
-        "region": "grotto_gate_upper"
+        "region": "grotto_gate_upper",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Staircase - West Top Door",
@@ -2988,7 +3955,10 @@
         "rules": {
             "has": "Bobbery"
         },
-        "region": "grotto_staircase"
+        "region": "grotto_staircase",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Storeroom - East",
@@ -2996,7 +3966,10 @@
         "bero": "e_bero",
         "target": "Pirate's Grotto Sluice Gate - West Top Door",
         "rules": null,
-        "region": "grotto_storeroom"
+        "region": "grotto_storeroom",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Sluice Gate - West Top Door",
@@ -3004,77 +3977,100 @@
         "bero": "w_bero_3",
         "target": "Pirate's Grotto Storeroom - East",
         "rules": null,
-        "region": "grotto_gate_upper"
+        "region": "grotto_gate_upper",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Staircase - West Top Canal",
         "map": "dou_05",
         "bero": "w_bero_2",
         "target": "Pirate's Grotto Sluice Gate - East Top Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_staircase_canal"
+        "region": "grotto_staircase_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Sluice Gate - East Top Canal",
         "map": "dou_03",
         "bero": "e_bero_2",
         "target": "Pirate's Grotto Staircase - West Top Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_gate_upper_canal"
+        "region": "grotto_gate_upper_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Bullet Bill Bridge - East Canal",
         "map": "dou_12",
         "bero": "e_bero_1",
         "target": "Pirate's Grotto Sluice Gate - West Bottom Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_bullet_bridge_canal"
+        "region": "grotto_bullet_bridge_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Sluice Gate - West Bottom Canal",
         "map": "dou_03",
         "bero": "w_bero_1",
         "target": "Pirate's Grotto Bullet Bill Bridge - East Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_gate_canal"
+        "region": "grotto_gate_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Handle Room - East Canal",
         "map": "dou_02",
         "bero": "e_bero_1",
         "target": "Pirate's Grotto Bullet Bill Bridge - West Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_handle_canal"
+        "region": "grotto_handle_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Bullet Bill Bridge - West Canal",
         "map": "dou_12",
         "bero": "w_bero_1",
         "target": "Pirate's Grotto Handle Room - East Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_bullet_bridge_canal"
+        "region": "grotto_bullet_bridge_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Barrel Room - North",
         "map": "dou_09",
         "bero": "n_bero",
         "target": "Pirate's Grotto Sluice Gate - South",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_barrel_canal"
+        "region": "grotto_barrel_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Sluice Gate - South",
         "map": "dou_03",
         "bero": "s_bero",
         "target": "Pirate's Grotto Barrel Room - North",
-        "is_vanilla": true,
         "rules": {
             "and": [
                 {
@@ -3085,43 +4081,59 @@
                 }
             ]
         },
-        "region": "grotto_gate_canal"
+        "region": "grotto_gate_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Spike Wall Room - West Canal",
         "map": "dou_10",
         "bero": "w_bero_1",
         "target": "Pirate's Grotto Barrel Room - East Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_spike_wall_canal"
+        "region": "grotto_spike_wall_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Barrel Room - East Canal",
         "map": "dou_09",
         "bero": "e_bero_1",
         "target": "Pirate's Grotto Spike Wall Room - West Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_barrel_canal"
+        "region": "grotto_barrel_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Toad Boat Room - West",
         "map": "dou_11",
         "bero": "w_bero",
         "target": "Pirate's Grotto Spike Wall Room - East Canal",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_toad"
+        "region": "grotto_toad",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Spike Wall Room - East Canal",
         "map": "dou_10",
         "bero": "e_bero",
         "target": "Pirate's Grotto Toad Boat Room - West",
-        "is_vanilla": true,
         "rules": null,
-        "region": "grotto_spike_wall_canal"
+        "region": "grotto_spike_wall_canal",
+        "tags": [
+            "Five",
+            "vanilla"
+        ]
     },
     {
         "name": "Pirate's Grotto Cortez's Ship Exterior - West",
@@ -3129,7 +4141,10 @@
         "bero": "w_bero",
         "target": "Pirate's Grotto Toad Boat Room - East",
         "rules": null,
-        "region": "grotto_cortez_exterior"
+        "region": "grotto_cortez_exterior",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Toad Boat Room - East",
@@ -3137,7 +4152,10 @@
         "bero": "e_bero",
         "target": "Pirate's Grotto Cortez's Ship Exterior - West",
         "rules": null,
-        "region": "grotto_toad_east"
+        "region": "grotto_toad_east",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Cortez's Ship Hall - West",
@@ -3145,7 +4163,10 @@
         "bero": "w_bero",
         "target": "Pirate's Grotto Cortez's Ship Exterior - East",
         "rules": null,
-        "region": "grotto_cortez_hall"
+        "region": "grotto_cortez_hall",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Cortez's Ship Exterior - East",
@@ -3153,7 +4174,10 @@
         "bero": "A_b_bero03",
         "target": "Pirate's Grotto Cortez's Ship Hall - West",
         "rules": null,
-        "region": "grotto_cortez_exterior"
+        "region": "grotto_cortez_exterior",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Pirate's Grotto Cortez's Hoard - West",
@@ -3162,7 +4186,10 @@
         "target": "One Way",
         "src_region": "grotto_cortez_hall",
         "rules": null,
-        "region": "grotto_cortez_hoard"
+        "region": "grotto_cortez_hoard",
+        "tags": [
+            "Five"
+        ]
     },
     {
         "name": "Excess Express Dining Car - East",
@@ -3170,7 +4197,10 @@
         "bero": "e_bero",
         "target": "Excess Express Middle Passenger Car - West",
         "rules": null,
-        "region": "express_diner"
+        "region": "express_diner",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Middle Passenger Car - West",
@@ -3178,7 +4208,10 @@
         "bero": "w_bero",
         "target": "Excess Express Dining Car - East",
         "rules": null,
-        "region": "express_middle_car"
+        "region": "express_middle_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Back Passenger Car - East",
@@ -3186,7 +4219,10 @@
         "bero": "e_bero",
         "target": "Excess Express Dining Car - West",
         "rules": null,
-        "region": "express_back_car"
+        "region": "express_back_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Dining Car - West",
@@ -3194,7 +4230,10 @@
         "bero": "w_bero",
         "target": "Excess Express Back Passenger Car - East",
         "rules": null,
-        "region": "express_diner"
+        "region": "express_diner",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Storage Car - East",
@@ -3202,7 +4241,10 @@
         "bero": "e_bero",
         "target": "Excess Express Back Passenger Car - West",
         "rules": null,
-        "region": "express_storage"
+        "region": "express_storage",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Back Passenger Car - West",
@@ -3210,7 +4252,10 @@
         "bero": "w_bero",
         "target": "Excess Express Storage Car - East",
         "rules": null,
-        "region": "express_back_car"
+        "region": "express_back_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Front Passenger Car - West",
@@ -3218,7 +4263,10 @@
         "bero": "w_bero",
         "target": "Excess Express Middle Passenger Car - East",
         "rules": null,
-        "region": "express_front_car"
+        "region": "express_front_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Middle Passenger Car - East",
@@ -3226,7 +4274,10 @@
         "bero": "e_bero",
         "target": "Excess Express Front Passenger Car - West",
         "rules": null,
-        "region": "express_middle_car"
+        "region": "express_middle_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Locomotive - West",
@@ -3234,7 +4285,10 @@
         "bero": "w_bero",
         "target": "Excess Express Front Passenger Car - East",
         "rules": null,
-        "region": "express_locomotive"
+        "region": "express_locomotive",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Front Passenger Car - East",
@@ -3242,7 +4296,10 @@
         "bero": "e_bero",
         "target": "Excess Express Locomotive - West",
         "rules": null,
-        "region": "express_front_car"
+        "region": "express_front_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Front Passenger Car - South",
@@ -3250,7 +4307,11 @@
         "bero": "s_bero",
         "target": "Rogueport Blimp - Train",
         "rules": null,
-        "region": "express_front_car"
+        "region": "express_front_car",
+        "tags": [
+            "Six",
+            "Prologue"
+        ]
     },
     {
         "name": "Riverside Station Drawbridge - Train Door",
@@ -3258,7 +4319,10 @@
         "bero": "n_bero_1",
         "target": "Excess Express Front Passenger Car - South Riverside Entrance",
         "rules": null,
-        "region": "riverside_drawbridge"
+        "region": "riverside_drawbridge",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Front Passenger Car - South Riverside Entrance",
@@ -3266,7 +4330,10 @@
         "bero": "s_bero",
         "target": "Riverside Station Drawbridge - Train Door",
         "rules": null,
-        "region": "express_front_car"
+        "region": "express_front_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Entrance - South",
@@ -3274,7 +4341,10 @@
         "bero": "s_bero",
         "target": "Riverside Station Drawbridge - North",
         "rules": null,
-        "region": "riverside_entrance"
+        "region": "riverside_entrance",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Drawbridge - North",
@@ -3284,7 +4354,10 @@
         "rules": {
             "has": "Station Key 1"
         },
-        "region": "riverside_drawbridge"
+        "region": "riverside_drawbridge",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Stairs - West Bottom",
@@ -3292,7 +4365,10 @@
         "bero": "w_dero",
         "target": "Riverside Station Entrance - East",
         "rules": null,
-        "region": "riverside_stairs"
+        "region": "riverside_stairs",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Entrance - East",
@@ -3300,7 +4376,10 @@
         "bero": "e_bero",
         "target": "Riverside Station Stairs - West Bottom",
         "rules": null,
-        "region": "riverside_entrance"
+        "region": "riverside_entrance",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Clockwork Room - South",
@@ -3308,7 +4387,10 @@
         "bero": "s_bero",
         "target": "Riverside Station Stairs - North",
         "rules": null,
-        "region": "riverside_clockwork"
+        "region": "riverside_clockwork",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Stairs - North",
@@ -3318,7 +4400,10 @@
         "rules": {
             "function": "tube_curse"
         },
-        "region": "riverside_stairs"
+        "region": "riverside_stairs",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Back Exterior - West Top",
@@ -3326,7 +4411,10 @@
         "bero": "w_bero_1",
         "target": "Riverside Station Stairs - East",
         "rules": null,
-        "region": "riverside_back"
+        "region": "riverside_back",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Stairs - East",
@@ -3336,7 +4424,10 @@
         "rules": {
             "has": "Station Key 2"
         },
-        "region": "riverside_stairs"
+        "region": "riverside_stairs",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Tube Mode Maze - East",
@@ -3344,7 +4435,10 @@
         "bero": "e_bero",
         "target": "Riverside Station Back Exterior - West Bottom",
         "rules": null,
-        "region": "riverside_tube"
+        "region": "riverside_tube",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Back Exterior - West Bottom",
@@ -3354,7 +4448,10 @@
         "rules": {
             "has": "Flurrie"
         },
-        "region": "riverside_back"
+        "region": "riverside_back",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Ultra Boots Room - North",
@@ -3362,7 +4459,10 @@
         "bero": "n_bero",
         "target": "Riverside Station Tube Mode Maze - South",
         "rules": null,
-        "region": "riverside_ultra_boots"
+        "region": "riverside_ultra_boots",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Tube Mode Maze - South",
@@ -3372,7 +4472,10 @@
         "rules": {
             "function": "tube_curse"
         },
-        "region": "riverside_tube"
+        "region": "riverside_tube",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Goomba Room - East Bottom",
@@ -3380,7 +4483,10 @@
         "bero": "e_bero_1",
         "target": "Riverside Station Ultra Boots Room - West Bottom",
         "rules": null,
-        "region": "riverside_goomba"
+        "region": "riverside_goomba",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Ultra Boots Room - West Bottom",
@@ -3388,7 +4494,10 @@
         "bero": "w_bero_2",
         "target": "Riverside Station Goomba Room - East Bottom",
         "rules": null,
-        "region": "riverside_ultra_boots"
+        "region": "riverside_ultra_boots",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Riverside Station Ultra Boots Room - West Top",
@@ -3397,7 +4506,10 @@
         "target": "One Way",
         "src_region": "riverside_goomba",
         "rules": null,
-        "region": "riverside_ultra_boots_upper"
+        "region": "riverside_ultra_boots_upper",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Roof - East",
@@ -3405,7 +4517,10 @@
         "bero": "w_bero",
         "target": "Excess Express Storage Car - West",
         "rules": null,
-        "region": "express_roof"
+        "region": "express_roof",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Storage Car - West",
@@ -3431,7 +4546,10 @@
                 }
             ]
         },
-        "region": "express_storage_west"
+        "region": "express_storage_west",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Station - North",
@@ -3448,8 +4566,7 @@
                 },
                 {
                     "can_reach_region": "Excess Express Middle Passenger Car"
-                }
-                ,
+                },
                 {
                     "can_reach_region": "Riverside Station Entrance"
                 },
@@ -3464,7 +4581,10 @@
                 }
             ]
         },
-        "region": "poshley_station"
+        "region": "poshley_station",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Excess Express Front Passenger Car - South Poshley",
@@ -3472,7 +4592,10 @@
         "bero": "s_bero",
         "target": "Poshley Heights Station - North",
         "rules": null,
-        "region": "express_front_car"
+        "region": "express_front_car",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Downtown - Northwest",
@@ -3480,7 +4603,10 @@
         "bero": "nw_bero",
         "target": "Poshley Heights Station - Southeast",
         "rules": null,
-        "region": "poshley_downtown"
+        "region": "poshley_downtown",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Station - Southeast",
@@ -3488,7 +4614,10 @@
         "bero": "se_bero",
         "target": "Poshley Heights Downtown - Northwest",
         "rules": null,
-        "region": "poshley_station"
+        "region": "poshley_station",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Sanctum Exterior - Northwest",
@@ -3496,7 +4625,10 @@
         "bero": "nw_bero",
         "target": "Poshley Heights Downtown - Southeast",
         "rules": null,
-        "region": "poshley_sanctum_exterior"
+        "region": "poshley_sanctum_exterior",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Downtown - Southeast",
@@ -3504,7 +4636,10 @@
         "bero": "se_bero",
         "target": "Poshley Heights Sanctum Exterior - Northwest",
         "rules": null,
-        "region": "poshley_downtown"
+        "region": "poshley_downtown",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Sanctum - South",
@@ -3512,7 +4647,10 @@
         "bero": "s_bero",
         "target": "Poshley Heights Sanctum Exterior - Northeast",
         "rules": null,
-        "region": "poshley_sanctum"
+        "region": "poshley_sanctum",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Sanctum Exterior - Northeast",
@@ -3544,7 +4682,10 @@
                 }
             ]
         },
-        "region": "poshley_sanctum_exterior"
+        "region": "poshley_sanctum_exterior",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Sanctum Altar - South",
@@ -3552,7 +4693,10 @@
         "bero": "s_bero",
         "target": "Poshley Heights Sanctum - North",
         "rules": null,
-        "region": "poshley_sanctum_altar"
+        "region": "poshley_sanctum_altar",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Poshley Heights Sanctum - North",
@@ -3569,7 +4713,10 @@
                 }
             ]
         },
-        "region": "poshley_sanctum"
+        "region": "poshley_sanctum",
+        "tags": [
+            "Six"
+        ]
     },
     {
         "name": "Fahr Outpost Entrance - Pipe",
@@ -3577,7 +4724,11 @@
         "bero": "dokan",
         "target": "Rogueport Sewers West - Fahr Outpost Pipe",
         "rules": null,
-        "region": "fahr_entrance"
+        "region": "fahr_entrance",
+        "tags": [
+            "Seven",
+            "Prologue"
+        ]
     },
     {
         "name": "Rogueport Sewers West - Fahr Outpost Pipe",
@@ -3585,7 +4736,11 @@
         "bero": "dokan__1",
         "target": "Fahr Outpost Entrance - Pipe",
         "rules": null,
-        "region": "sewer_west_fahr"
+        "region": "sewer_west_fahr",
+        "tags": [
+            "Prologue",
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost West Enemy Room - West",
@@ -3593,7 +4748,10 @@
         "bero": "w_bero",
         "target": "Fahr Outpost Entrance - East",
         "rules": null,
-        "region": "fahr_west_enemy"
+        "region": "fahr_west_enemy",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost Entrance - East",
@@ -3601,7 +4759,10 @@
         "bero": "e_bero",
         "target": "Fahr Outpost West Enemy Room - West",
         "rules": null,
-        "region": "fahr_entrance"
+        "region": "fahr_entrance",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost East Enemy Room - West",
@@ -3609,7 +4770,10 @@
         "bero": "w_bero4",
         "target": "Fahr Outpost West Enemy Room - East",
         "rules": null,
-        "region": "fahr_east_enemy"
+        "region": "fahr_east_enemy",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost West Enemy Room - East",
@@ -3617,7 +4781,10 @@
         "bero": "e_bero",
         "target": "Fahr Outpost East Enemy Room - West",
         "rules": null,
-        "region": "fahr_west_enemy"
+        "region": "fahr_west_enemy",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost Town Outskirts - West",
@@ -3625,7 +4792,10 @@
         "bero": "w_bero",
         "target": "Fahr Outpost East Enemy Room - East",
         "rules": null,
-        "region": "fahr_town_outskirts"
+        "region": "fahr_town_outskirts",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost East Enemy Room - East",
@@ -3633,7 +4803,10 @@
         "bero": "e_bero4",
         "target": "Fahr Outpost Town Outskirts - West",
         "rules": null,
-        "region": "fahr_east_enemy"
+        "region": "fahr_east_enemy",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost Town - West",
@@ -3641,7 +4814,10 @@
         "bero": "w_bero",
         "target": "Fahr Outpost Town Outskirts - East",
         "rules": null,
-        "region": "fahr_town"
+        "region": "fahr_town",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Fahr Outpost Town Outskirts - East",
@@ -3649,7 +4825,10 @@
         "bero": "e_bero",
         "target": "Fahr Outpost Town - West",
         "rules": null,
-        "region": "fahr_town_outskirts"
+        "region": "fahr_town_outskirts",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon Landing Site - Landing",
@@ -3667,7 +4846,10 @@
                 }
             ]
         },
-        "region": "moon_landing"
+        "region": "moon_landing",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon West Room 1 - East",
@@ -3675,7 +4857,10 @@
         "bero": "e_bero",
         "target": "Moon Landing Site - West",
         "rules": null,
-        "region": "moon_west_one"
+        "region": "moon_west_one",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon Landing Site - West",
@@ -3683,7 +4868,10 @@
         "bero": "w_bero",
         "target": "Moon West Room 1 - East",
         "rules": null,
-        "region": "moon_landing"
+        "region": "moon_landing",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon West Room 2 - East",
@@ -3691,7 +4879,10 @@
         "bero": "e_bero",
         "target": "Moon West Room 1 - West",
         "rules": null,
-        "region": "moon_west_two"
+        "region": "moon_west_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon West Room 1 - West",
@@ -3699,7 +4890,10 @@
         "bero": "w_bero",
         "target": "Moon West Room 2 - East",
         "rules": null,
-        "region": "moon_west_one"
+        "region": "moon_west_one",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon Fortress View - East",
@@ -3707,7 +4901,10 @@
         "bero": "e_bero",
         "target": "Moon West Room 2 - West",
         "rules": null,
-        "region": "moon_fortress_view"
+        "region": "moon_fortress_view",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon West Room 2 - West",
@@ -3715,7 +4912,10 @@
         "bero": "w_bero",
         "target": "Moon Fortress View - East",
         "rules": null,
-        "region": "moon_west_two"
+        "region": "moon_west_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon East Room 1 - West",
@@ -3723,7 +4923,10 @@
         "bero": "w_bero",
         "target": "Moon Landing Site - East",
         "rules": null,
-        "region": "moon_east_one"
+        "region": "moon_east_one",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon Landing Site - East",
@@ -3731,7 +4934,10 @@
         "bero": "e_bero",
         "target": "Moon East Room 1 - West",
         "rules": null,
-        "region": "moon_landing"
+        "region": "moon_landing",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon East Room 2 - West",
@@ -3739,7 +4945,10 @@
         "bero": "w_bero",
         "target": "Moon East Room 1 - East",
         "rules": null,
-        "region": "moon_east_two"
+        "region": "moon_east_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon East Room 1 - East",
@@ -3747,7 +4956,10 @@
         "bero": "e_bero",
         "target": "Moon East Room 2 - West",
         "rules": null,
-        "region": "moon_east_one"
+        "region": "moon_east_one",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon Fortress View - West",
@@ -3755,7 +4967,10 @@
         "bero": "w_bero",
         "target": "Moon East Room 2 - East",
         "rules": null,
-        "region": "moon_fortress_view"
+        "region": "moon_fortress_view",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon East Room 2 - East",
@@ -3763,7 +4978,10 @@
         "bero": "e_bero",
         "target": "Moon Fortress View - West",
         "rules": null,
-        "region": "moon_fortress_view"
+        "region": "moon_fortress_view",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Escalator - West",
@@ -3771,7 +4989,10 @@
         "bero": "w_bero",
         "target": "Moon Fortress View - Pipe",
         "rules": null,
-        "region": "fortress_escalator"
+        "region": "fortress_escalator",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Moon Fortress View - Pipe",
@@ -3781,7 +5002,10 @@
         "rules": {
             "has": "Bobbery"
         },
-        "region": "moon_fortress_view"
+        "region": "moon_fortress_view",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Entrance - West",
@@ -3789,7 +5013,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Escalator - East",
         "rules": null,
-        "region": "fortress_entrance"
+        "region": "fortress_entrance",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Escalator - East",
@@ -3797,7 +5024,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Entrance - West",
         "rules": null,
-        "region": "fortress_escalator"
+        "region": "fortress_escalator",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Ground Floor West",
@@ -3805,7 +5035,10 @@
         "bero": "w_bero_1",
         "target": "X-Naut Fortress Entrance - East",
         "rules": null,
-        "region": "fortress_hall_ground"
+        "region": "fortress_hall_ground",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Entrance - East",
@@ -3813,7 +5046,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Hall - Ground Floor West",
         "rules": null,
-        "region": "fortress_entrance"
+        "region": "fortress_entrance",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Elevator Key Room - West",
@@ -3821,7 +5057,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Hall - Ground Floor East",
         "rules": null,
-        "region": "fortress_elevator_key"
+        "region": "fortress_elevator_key",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Ground Floor East",
@@ -3829,7 +5068,10 @@
         "bero": "e_bero_1",
         "target": "X-Naut Fortress Elevator Key Room - West",
         "rules": null,
-        "region": "fortress_hall_ground"
+        "region": "fortress_hall_ground",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Crane Room - East",
@@ -3837,7 +5079,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Hall - Sublevel One West",
         "rules": null,
-        "region": "fortress_crane"
+        "region": "fortress_crane",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel One West",
@@ -3845,7 +5090,10 @@
         "bero": "w_bero_2",
         "target": "X-Naut Fortress Crane Room - East",
         "rules": null,
-        "region": "fortress_hall_sublevel_one"
+        "region": "fortress_hall_sublevel_one",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Quiz Room - West",
@@ -3853,7 +5101,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Hall - Sublevel One East",
         "rules": null,
-        "region": "fortress_quiz"
+        "region": "fortress_quiz",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel One East",
@@ -3861,7 +5112,10 @@
         "bero": "e_bero_2",
         "target": "X-Naut Fortress Quiz Room - West",
         "rules": null,
-        "region": "fortress_hall_sublevel_one"
+        "region": "fortress_hall_sublevel_one",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Card Key Room A - East",
@@ -3869,7 +5123,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Hall - Sublevel Two West",
         "rules": null,
-        "region": "fortress_card_a"
+        "region": "fortress_card_a",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel Two West",
@@ -3877,7 +5134,10 @@
         "bero": "w_bero_3",
         "target": "X-Naut Fortress Card Key Room A - East",
         "rules": null,
-        "region": "fortress_hall_sublevel_two"
+        "region": "fortress_hall_sublevel_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Potion Lab - South",
@@ -3885,7 +5145,10 @@
         "bero": "s_bero",
         "target": "X-Naut Fortress Hall - Sublevel Two North One",
         "rules": null,
-        "region": "fortress_potion"
+        "region": "fortress_potion",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel Two North One",
@@ -3893,7 +5156,10 @@
         "bero": "n_bero_1",
         "target": "X-Naut Fortress Potion Lab - South",
         "rules": null,
-        "region": "fortress_hall_sublevel_two"
+        "region": "fortress_hall_sublevel_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Teleporter Room - South",
@@ -3901,7 +5167,10 @@
         "bero": "s_bero",
         "target": "X-Naut Fortress Hall - Sublevel Two North Two",
         "rules": null,
-        "region": "fortress_teleporter"
+        "region": "fortress_teleporter",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel Two North Two",
@@ -3909,7 +5178,10 @@
         "bero": "n_bero_2",
         "target": "X-Naut Fortress Teleporter Room - South",
         "rules": null,
-        "region": "fortress_hall_sublevel_two"
+        "region": "fortress_hall_sublevel_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Teleporter Room - Teleporter",
@@ -3917,7 +5189,11 @@
         "bero": "null",
         "target": "Rogueport Sewers Town - Teleporter",
         "rules": null,
-        "region": "fortress_teleporter"
+        "region": "fortress_teleporter",
+        "tags": [
+            "Seven",
+            "Prologue"
+        ]
     },
     {
         "name": "X-Naut Fortress Vents Room - South",
@@ -3925,7 +5201,10 @@
         "bero": "s_bero_1",
         "target": "X-Naut Fortress Hall - Sublevel Two North Three",
         "rules": null,
-        "region": "fortress_vents"
+        "region": "fortress_vents",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel Two North Three",
@@ -3933,7 +5212,10 @@
         "bero": "n_bero_3",
         "target": "X-Naut Fortress Vents Room - South",
         "rules": null,
-        "region": "fortress_hall_sublevel_two"
+        "region": "fortress_hall_sublevel_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Teleporter Room - Vents",
@@ -3951,7 +5233,10 @@
                 }
             ]
         },
-        "region": "fortress_teleporter"
+        "region": "fortress_teleporter",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Potion Lab - Vents",
@@ -3969,7 +5254,10 @@
                 }
             ]
         },
-        "region": "fortress_potion"
+        "region": "fortress_potion",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Changing Room - South",
@@ -3977,7 +5265,10 @@
         "bero": "s_bero",
         "target": "X-Naut Fortress Hall - Sublevel Two North Four",
         "rules": null,
-        "region": "fortress_changing"
+        "region": "fortress_changing",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel Two North Four",
@@ -3985,7 +5276,10 @@
         "bero": "n_bero_4",
         "target": "X-Naut Fortress Changing Room - South",
         "rules": null,
-        "region": "fortress_hall_sublevel_two"
+        "region": "fortress_hall_sublevel_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Changing Room - Vent",
@@ -4003,7 +5297,10 @@
                 }
             ]
         },
-        "region": "fortress_changing"
+        "region": "fortress_changing",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Intermission Meeting Room - West",
@@ -4011,7 +5308,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Hall - Sublevel Two East",
         "rules": null,
-        "region": "fortress_intermission_meeting"
+        "region": "fortress_intermission_meeting",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel Two East",
@@ -4019,7 +5319,10 @@
         "bero": "e_bero3",
         "target": "X-Naut Fortress Intermission Meeting Room - West",
         "rules": null,
-        "region": "fortress_hall_sublevel_two"
+        "region": "fortress_hall_sublevel_two",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Office - West",
@@ -4027,7 +5330,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Intermission Meeting Room - East",
         "rules": null,
-        "region": "fortress_office"
+        "region": "fortress_office",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Intermission Meeting Room - East",
@@ -4035,7 +5341,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Office - West",
         "rules": null,
-        "region": "fortress_intermission_meeting"
+        "region": "fortress_intermission_meeting",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Card Key Room B - East",
@@ -4043,7 +5352,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Hall - Sublevel 3 West",
         "rules": null,
-        "region": "fortress_card_b"
+        "region": "fortress_card_b",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel 3 West",
@@ -4051,7 +5363,10 @@
         "bero": "w_bero_4",
         "target": "X-Naut Fortress Card Key Room B - East",
         "rules": null,
-        "region": "fortress_hall_sublevel_three"
+        "region": "fortress_hall_sublevel_three",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Triple Card Key Room - West",
@@ -4059,7 +5374,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Hall - Sublevel 3 East",
         "rules": null,
-        "region": "fortress_triple_card"
+        "region": "fortress_triple_card",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel 3 East",
@@ -4067,7 +5385,10 @@
         "bero": "e_bero_4",
         "target": "X-Naut Fortress Triple Card Key Room - West",
         "rules": null,
-        "region": "fortress_hall_sublevel_three"
+        "region": "fortress_hall_sublevel_three",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Peach's Room - East",
@@ -4075,7 +5396,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Hall - Sublevel 4 West",
         "rules": null,
-        "region": "fortress_peach_room"
+        "region": "fortress_peach_room",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Hall - Sublevel 4 West",
@@ -4083,7 +5407,10 @@
         "bero": "w_bero_5",
         "target": "X-Naut Fortress Peach's Room - East",
         "rules": null,
-        "region": "fortress_hall_sublevel_four"
+        "region": "fortress_hall_sublevel_four",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Peach's Bathroom - East",
@@ -4091,7 +5418,10 @@
         "bero": "e_bero",
         "target": "X-Naut Fortress Peach's Room - West",
         "rules": null,
-        "region": "fortress_peach_bathroom"
+        "region": "fortress_peach_bathroom",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Peach's Room - West",
@@ -4099,7 +5429,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Peach's Bathroom - East",
         "rules": null,
-        "region": "fortress_peach_room"
+        "region": "fortress_peach_room",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Factory - West",
@@ -4109,7 +5442,10 @@
         "rules": {
             "has": "Paper Mode"
         },
-        "region": "fortress_factory"
+        "region": "fortress_factory",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Triple Card Key Room - East",
@@ -4129,7 +5465,10 @@
                 }
             ]
         },
-        "region": "fortress_triple_card"
+        "region": "fortress_triple_card",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Boss Room - West",
@@ -4137,7 +5476,10 @@
         "bero": "w_bero",
         "target": "X-Naut Fortress Factory - East",
         "rules": null,
-        "region": "fortress_boss"
+        "region": "fortress_boss",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "X-Naut Fortress Factory - East",
@@ -4160,7 +5502,10 @@
                 }
             ]
         },
-        "region": "fortress_factory"
+        "region": "fortress_factory",
+        "tags": [
+            "Seven"
+        ]
     },
     {
         "name": "Keelhaul Key Jungle Entrance - Pipe",
@@ -4177,7 +5522,11 @@
                 }
             ]
         },
-        "region": "keelhaul_jungle_entrance"
+        "region": "keelhaul_jungle_entrance",
+        "tags": [
+            "Five",
+            "Prologue"
+        ]
     },
     {
         "name": "Poshley Heights Sanctum Exterior - Pipe",
@@ -4194,6 +5543,10 @@
                 }
             ]
         },
-        "region": "poshley_sanctum_exterior"
+        "region": "poshley_sanctum_exterior",
+        "tags": [
+            "Six",
+            "Prologue"
+        ]
     }
 ]

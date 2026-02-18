@@ -8,7 +8,7 @@ import pkgutil
 import random
 from .Data import warp_table
 from .Rules import _build_single_rule
-from rule_builder.rules import Rule, Has, True_, CanReachRegion, CanReachLocation
+from rule_builder.rules import Has, True_, CanReachRegion, CanReachLocation
 from collections import defaultdict, deque
 
 if typing.TYPE_CHECKING:
@@ -23,6 +23,7 @@ class RegionState:
         self.region_graph: dict[str, set[str]] = defaultdict(set)
         self.used_zones: set[str] = set()
         self.edge_dependencies: dict[tuple[str, str], set[str]] = {}
+        self.unneeded_regions: set[str] = set()
 
 
 def get_region_defs_from_json():
@@ -252,16 +253,11 @@ def create_regions(world: "TTYDWorld"):
 def connect_regions(world: "TTYDWorld"):
     # Create fresh state for this generation
     state = RegionState()
-
+    chapters = ["Prologue", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"]
     one_way = []
     vanilla = []
     delayed_connections: dict[str, list] = defaultdict(list)
-    unneeded_regions = {
-        "Tattlesanity",
-        "Palace of Shadow",
-        "Palace of Shadow (Post-Riddle Tower)",
-        "Shadow Queen"
-    }
+
 
     connections_dict = get_region_connections_dict(world)
     zones = get_zone_dict_from_json()
@@ -287,10 +283,20 @@ def connect_regions(world: "TTYDWorld"):
 
     tag_to_region = get_region_name_by_tag()
 
-    print(world.options.open_westside)
-    print(world.options.loading_zone_shuffle)
-    for z in zones.values() or not world.options.loading_zone_shuffle:
-        if "is_vanilla" in z or not world.options.loading_zone_shuffle:
+    # Mark chapter regions not in limited_chapters as unneeded
+    region_defs = get_region_defs_from_json()
+    for region in region_defs:
+        chapter = region.get("chapter")
+        if chapter and chapter in chapters and chapters.index(chapter) in world.limited_chapters:
+            state.unneeded_regions.add(region["name"])
+
+    # Always unneeded
+    state.unneeded_regions.update(
+        {"Tattlesanity", "Palace of Shadow", "Palace of Shadow (Post-Riddle Tower)", "Shadow Queen"})
+
+    for z in zones.values():
+        if "vanilla" in z["tags"] or not world.options.loading_zone_shuffle or any(chapters.index(tag) in world.limited_chapters for tag in z["tags"]):
+            print(z["name"])
             vanilla.append(z)
         elif z["target"] == "One Way":
             one_way.append(z)
@@ -301,7 +307,7 @@ def connect_regions(world: "TTYDWorld"):
             state.zones_by_region[region].append(z)
 
     all_regions = set(tag_to_region.values())
-    unreached_regions = all_regions - reachable_regions - unneeded_regions
+    unreached_regions = all_regions - reachable_regions - state.unneeded_regions
 
     for src in vanilla:
         if not (src["target"] == "" or src["target"] == "One Way" or src["target"] == "filler"):
@@ -314,7 +320,7 @@ def connect_regions(world: "TTYDWorld"):
             source_region = world.multiworld.get_region(src_region, world.player)
             target_region = world.multiworld.get_region(dst_region, world.player)
             region_dependents = has_region_dependency(rule_dict)
-            if region_dependents != []:
+            if region_dependents != [] and world.options.loading_zone_shuffle:
                 for region in region_dependents:
                     delayed_connections[region].append([region_dependents, src, dst])
                 continue
@@ -366,7 +372,7 @@ def connect_regions(world: "TTYDWorld"):
     consecutive_failures = 0
     max_consecutive_failures = 50
     reachable_regions = compute_reachable(state, "Menu")
-    unreached_regions = all_regions - reachable_regions - unneeded_regions
+    unreached_regions = all_regions - reachable_regions - state.unneeded_regions
     dst_zone_contenders = [
         z
         for r in unreached_regions
@@ -410,7 +416,7 @@ def connect_regions(world: "TTYDWorld"):
         add_edge(state, src_region, dst_region, has_region_dependency(src_rule_dict))
         add_edge(state, dst_region, src_region, has_region_dependency(dst_rule_dict))
         reachable_regions = compute_reachable(state, "Menu")
-        unreached_regions = all_regions - reachable_regions - unneeded_regions
+        unreached_regions = all_regions - reachable_regions - state.unneeded_regions
 
         dst_zone_contenders = [
             z
@@ -434,7 +440,7 @@ def connect_regions(world: "TTYDWorld"):
             remove_edge(state, src_region, dst_region)
             remove_edge(state, dst_region, src_region)
             reachable_regions = compute_reachable(state, "Menu")
-            unreached_regions = all_regions - reachable_regions - unneeded_regions
+            unreached_regions = all_regions - reachable_regions - state.unneeded_regions
             dst_zone_contenders = [
                 z
                 for r in unreached_regions
@@ -486,12 +492,54 @@ def connect_regions(world: "TTYDWorld"):
                         print("Delayed Entrance: ", dep_dst["name"])
                         world.create_entrance(dep_src_region, dep_dst_region, dep_src_rule, dep_dst["name"])
             reachable_regions = compute_reachable(state, "Menu")
-            unreached_regions = all_regions - reachable_regions - unneeded_regions
+            unreached_regions = all_regions - reachable_regions - state.unneeded_regions
+
 
         print("Unreached Entrance: ", dst_zone["name"])
         world.create_entrance(source_region, target_region, src_rule, dst_zone["name"])
         print("Unreached Entrance: ", src_zone["name"])
         world.create_entrance(target_region, source_region, dst_rule, src_zone["name"])
+
+    # Process any remaining delayed connections whose dependencies are now all resolved
+    processed = set()
+    for key in list(delayed_connections.keys()):
+        connections = delayed_connections.get(key, [])
+        for connection in connections:
+            # Use id() to identify the connection list itself across multiple entries
+            conn_id = id(connection)
+            if conn_id in processed:
+                continue
+
+            connection[0].discard(key) if hasattr(connection[0], 'discard') else (
+                connection[0].remove(key) if key in connection[0] else None)
+            region_dependents = connection[0]
+            dep_src = connection[1]
+            dep_dst = connection[2]
+
+            if region_dependents == []:
+                processed.add(conn_id)
+                if dep_src["target"] == "One Way":
+                    dep_src_region_name = tag_to_region[dep_src["src_region"]]
+                    dep_dst_region_name = tag_to_region[dep_dst["region"]]
+                    dep_src_region = world.multiworld.get_region(dep_src_region_name, world.player)
+                    dep_dst_region = world.multiworld.get_region(dep_dst_region_name, world.player)
+                    dep_rule = build_rule_lambda(dep_src["rules"], world)
+                    add_edge(state, dep_src_region_name, dep_dst_region_name)
+                    print("Delayed One Way Entrance: ", dep_dst["name"])
+                    world.create_entrance(dep_src_region, dep_dst_region, dep_rule, dep_dst["name"])
+                else:
+                    dep_src_region_name = tag_to_region[dep_src["region"]]
+                    dep_dst_region_name = tag_to_region[dep_dst["region"]]
+                    dep_src_region = world.multiworld.get_region(dep_src_region_name, world.player)
+                    dep_dst_region = world.multiworld.get_region(dep_dst_region_name, world.player)
+                    dep_src_rule = build_rule_lambda(dep_src["rules"], world)
+                    add_edge(state, dep_src_region_name, dep_dst_region_name)
+                    print("Delayed Entrance: ", dep_dst["name"])
+                    world.create_entrance(dep_src_region, dep_dst_region, dep_src_rule, dep_dst["name"])
+
+    delayed_connections.clear()
+    reachable_regions = compute_reachable(state, "Menu")
+    unreached_regions = all_regions - reachable_regions - state.unneeded_regions
 
     # Process remaining zones
     remaining_zones = [

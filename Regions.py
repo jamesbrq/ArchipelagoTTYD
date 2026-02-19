@@ -263,6 +263,7 @@ def connect_regions(world: "TTYDWorld"):
     # Create fresh state for this generation
     state = RegionState()
     chapters = ["Prologue", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"]
+    chapters = ["Prologue", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"]
     one_way = []
     vanilla = []
     dungeon_entrance = []
@@ -378,6 +379,7 @@ def connect_regions(world: "TTYDWorld"):
     else:
         raise RuntimeError(f"Could not find valid one_way arrangement after {max_attempts} attempts")
 
+    print(one_way)
     for i in range(len(one_way)):
         a = one_way[i]
         b = one_way[(i + 1) % len(one_way)]
@@ -419,6 +421,9 @@ def connect_regions(world: "TTYDWorld"):
             dep in unreached_regions for dep in has_region_dependency(z.get("rules")))
     ]
     while unreached_regions:
+        if src_zone_contenders == []:
+            print(dst_zone_contenders)
+            print(unreached_regions)
         src_zone = random.choice(src_zone_contenders)
         if len(dst_zone_contenders) == 0:
             print(unreached_regions)
@@ -487,6 +492,40 @@ def connect_regions(world: "TTYDWorld"):
                 print("YOU LOSE GOOD DAY SIR")
                 break
             continue
+
+        if dst_region in delayed_connections.keys():
+            connections = delayed_connections.get(dst_region)
+            del delayed_connections[dst_region]
+            for connection in connections:
+                connection[0].remove(dst_region)
+                region_dependents = connection[0]
+                dep_src = connection[1]
+                dep_dst = connection[2]
+                if region_dependents == []:
+                    if dep_src["target"] == "One Way":
+                        print("One Way For The Win")
+                        dep_src_region_name = tag_to_region[dep_src["src_region"]]
+                        dep_dst_region_name = tag_to_region[dep_dst["region"]]
+                        dep_src_region = world.multiworld.get_region(dep_src_region_name, world.player)
+                        dep_dst_region = world.multiworld.get_region(dep_dst_region_name, world.player)
+                        dep_rule_dict = dep_src["rules"]
+                        dep_rule = build_rule_lambda(dep_rule_dict, world)
+                        add_edge(state, dep_src_region_name, dep_dst_region_name)
+                        print("Delayed One Way Entrance: ", dep_dst["name"])
+                        world.create_entrance(dep_src_region, dep_dst_region, dep_rule, dep_dst["name"])
+                    else:
+                        dep_src_region_name = tag_to_region[dep_src["region"]]
+                        dep_dst_region_name = tag_to_region[dep_dst["region"]]
+                        dep_src_region = world.multiworld.get_region(dep_src_region_name, world.player)
+                        dep_dst_region = world.multiworld.get_region(dep_dst_region_name, world.player)
+                        dep_src_rule_dict = dep_src["rules"]
+                        dep_src_rule = build_rule_lambda(dep_src_rule_dict, world)
+                        add_edge(state, dep_src_region_name, dep_dst_region_name)
+                        print("Delayed Entrance: ", dep_dst["name"])
+                        world.create_entrance(dep_src_region, dep_dst_region, dep_src_rule, dep_dst["name"])
+            reachable_regions = compute_reachable(state, "Menu")
+            unreached_regions = all_regions - reachable_regions - state.unneeded_regions
+
 
         if dst_region in delayed_connections.keys():
             connections = delayed_connections.get(dst_region)

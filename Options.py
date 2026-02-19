@@ -43,6 +43,12 @@ class LoadingZoneShuffle(Toggle):
     """
     display_name = "Loading Zone Shuffle"
 
+class DungeonShuffle(Toggle):
+    """
+    Randomizes Dungeon Entrances
+    """
+    display_name = "Dungeon Shuffle"
+
 
 class RequiredStarsToggle(Toggle):
     """
@@ -417,7 +423,6 @@ class TTYDOptions(PerGameCommonOptions):
     goal: Goal
     goal_stars: GoalStars
     palace_stars: PalaceStars
-    loading_zone: LoadingZoneShuffle
     required_stars_toggle: RequiredStarsToggle
     required_stars: RequiredStars
     star_shuffle: StarShuffle
@@ -454,3 +459,5 @@ class TTYDOptions(PerGameCommonOptions):
     starting_partner: StartingPartner
     yoshi_color: YoshiColor
     yoshi_name: YoshiName
+    loading_zone_shuffle: LoadingZoneShuffle
+    dungeon_shuffle: DungeonShuffle

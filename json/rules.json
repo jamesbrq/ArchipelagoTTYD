@@ -488,9 +488,6 @@
   "Keelhaul Key Town: Chuckola Cola": {
     "has": "Coconut"
   },
-  "Palace of Shadow Dark Bones Room: Palace Key": {
-    "function": "tube_curse"
-  },
   "Moon East Room 1: Volt Shroom": {
     "has": "Bobbery"
   },
@@ -509,221 +506,37 @@
   "Moon West Room 1: Courage Shell": {
     "has": "Bobbery"
   },
-  "Palace of Shadow Second Bullet Bill Hallway: Ultra Shroom": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      }
-    ]
-  },
-  "Palace of Shadow Large Open Room: Coin": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      }
-    ]
-  },
-  "Palace of Shadow Large Open Room: Jammin' Jelly": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      }
-    ]
-  },
-  "Palace of Shadow Large Open Room: P-Up, D-Down P": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      }
-    ]
-  },
-  "Palace of Shadow Gloomtail Room: Star Key": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      }
-    ]
-  },
   "Palace of Shadow Gloomtail Room: Jammin' Jelly": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      }
-    ]
+    "has": "Bobbery"
   },
   "Palace of Shadow Gloomtail Room: Ultra Shroom": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      }
-    ]
+    "has": "Bobbery"
   },
   "Riddle Tower Floor 1 NW: Palace Key (Tower)": {
     "and": [
       {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
-      },
-      {
         "function": "ultra_hammer"
-      }
-    ]
-  },
-  "Riddle Tower Floor 1 NE: Palace Key (Tower)": {
-    "and": [
-      {
-        "function": "tube_curse"
       },
       {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
-      }
-    ]
-  },
-  "Riddle Tower Floor 1 SW: Palace Key (Tower)": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
+        "can_reach_region": "Riddle Tower Second Floor NW Room"
       }
     ]
   },
   "Riddle Tower Floor 1 SE: Palace Key (Tower)": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
-      },
-      {
-        "has": "Flurrie"
-      }
-    ]
+    "has": "Flurrie"
   },
   "Riddle Tower Floor 2 NW: Palace Key (Tower)": {
     "and": [
       {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
-      },
-      {
         "function": "ultra_hammer"
-      }
-    ]
-  },
-  "Riddle Tower Floor 2 NE: Palace Key (Tower)": {
-    "and": [
-      {
-        "function": "tube_curse"
       },
       {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
-      }
-    ]
-  },
-  "Riddle Tower Floor 2 SW: Palace Key (Tower)": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
+        "can_reach_region": "Riddle Tower First Floor NW Room"
       }
     ]
   },
   "Riddle Tower Floor 2 SE: Palace Key (Tower)": {
-    "and": [
-      {
-        "function": "tube_curse"
-      },
-      {
-        "has": "Palace Key"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "has": "Boat Mode"
-      },
-      {
-        "has": "Vivian"
-      }
-    ]
+    "has": "Vivian"
   },
   "Petal Meadows Field: Happy Heart": {
     "or": [
@@ -936,6 +749,9 @@
       {
         "and": [
           {
+            "has": "Flurrie"
+          },
+          {
             "has": "Yoshi"
           },
           {
@@ -946,268 +762,23 @@
     ]
   },
   "Palace of Shadow Far Backroom 1: Repel Cape": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "or": [
-          {
-            "has": "Bobbery"
-          },
-          {
-            "has": "Koops"
-          }
-        ]
-      }
-    ]
-  },
-  "Palace of Shadow Far Backroom 2: Palace Key": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
+    "or": [
       {
         "has": "Bobbery"
       },
       {
-        "function": "ultra_boots"
+        "has": "Koops"
       }
     ]
   },
-  "Palace of Shadow Far Backroom 1: Life Shroom": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 2
-      }
-    ]
-  },
-  "Palace of Shadow Far Backroom 2: Life Shroom": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 2
-      },
-      {
-        "has": "Paper Mode"
-      }
-    ]
-  },
-  "Palace of Shadow Far Backroom 3: Coin": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 2
-      },
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Flurrie"
-      },
-      {
-        "function": "ultra_hammer"
-      }
-    ]
-  },
-  "Palace of Shadow Far Backroom 3: Point Swap": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 2
-      },
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Flurrie"
-      },
-      {
-        "function": "ultra_hammer"
-      }
-    ]
-  },
-  "Palace of Shadow Far Backroom 3: Palace Key": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 2
-      },
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Flurrie"
-      },
-      {
-        "function": "ultra_hammer"
-      },
-      {
-        "has": "Plane Mode"
-      }
-    ]
+  "Palace of Shadow Far Backroom 4: Palace Key": {
+    "has": "Yoshi"
   },
   "Palace of Shadow Far Hallway 4: Life Shroom": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 2
-      },
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Flurrie"
-      },
-      {
-        "function": "ultra_hammer"
-      },
-      {
-        "has": "Plane Mode"
-      }
-    ]
+    "has": "Plane Mode"
   },
   "Palace of Shadow Far Hallway 4: Shooting Star": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 2
-      },
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Flurrie"
-      },
-      {
-        "function": "ultra_hammer"
-      },
-      {
-        "has": "Plane Mode"
-      }
-    ]
-  },
-  "Palace of Shadow Final Staircase: Jammin' Jelly": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 3
-      },
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Flurrie"
-      },
-      {
-        "function": "ultra_hammer"
-      },
-      {
-        "has": "Plane Mode"
-      }
-    ]
-  },
-  "Palace of Shadow Final Staircase: Ultra Shroom": {
-    "and": [
-      {
-        "has": "Yoshi"
-      },
-      {
-        "has": "Bobbery"
-      },
-      {
-        "function": "ultra_boots"
-      },
-      {
-        "has": "Palace Key",
-        "count": 3
-      },
-      {
-        "has": "Paper Mode"
-      },
-      {
-        "has": "Flurrie"
-      },
-      {
-        "function": "ultra_hammer"
-      },
-      {
-        "has": "Plane Mode"
-      }
-    ]
+    "has": "Plane Mode"
   },
   "Riverside Station Tube Mode Maze: Dried Shroom": {
     "function": "tube_curse"

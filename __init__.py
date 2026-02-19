@@ -12,7 +12,7 @@ from .Data import starting_partners, stars, limit_pit, \
 from .Locations import all_locations, location_table, location_id_to_name, TTYDLocation, locationName_to_data, \
     get_locations_by_tags, get_vanilla_item_names, get_location_names, LocationData
 from .Options import Piecesanity, TTYDOptions, YoshiColor, StartingPartner, PitItems, LimitChapterEight, Goal, \
-    DazzleRewards, StarShuffle
+    DazzleRewards, StarShuffle, Keysanity, LoadingZoneShuffle
 from .Items import TTYDItem, itemList, item_table, ItemData, items_by_id
 from .Regions import create_regions, connect_regions, get_regions_dict
 from .Rom import TTYDProcedurePatch, write_files
@@ -128,7 +128,17 @@ class TTYDWorld(World):
                 self.options.disable_intermissions.value = slot_data["disable_intermissions"]
                 self.options.piecesanity.value = slot_data["piecesanity"]
                 self.options.shinesanity.value = slot_data["shinesanity"]
+                self.options.loading_zone_shuffle.value = slot_data["loading_zone_shuffle"]
+                self.options.dungeon_shuffle.value = slot_data["dungeon_shuffle"]
                 return
+        if self.options.loading_zone_shuffle and not self.options.keysanity:
+            logging.warning(f"{self.player}'s has enabled Loading Zone Shuffle and disabled Keysanity. "
+                            f"Enabling Keysanity due to incompatibility")
+            self.options.keysanity.value = Keysanity.option_true
+        if self.options.dungeon_shuffle and not self.options.loading_zone_shuffle:
+            logging.warning(f"{self.player}'s has enabled Dungeon Shuffle and disabled Loading Zone Shuffle. "
+                            f"Enabling Dungeon Shuffle due to incompatibility")
+            self.options.loading_zone_shuffle.value = LoadingZoneShuffle.option_true
         if self.options.limit_chapter_eight and self.options.palace_skip:
             logging.warning(f"{self.player_name}'s has enabled both Palace Skip and Limit Chapter 8. "
                             f"Disabling the Limit Chapter 8 option due to incompatibility.")
@@ -254,7 +264,6 @@ class TTYDWorld(World):
                 self.limited_chapter_locations[i][chapter_keysanity_tags[i]].update(locations)
         if self.options.tattlesanity:
             self.limit_tattle_locations()
-        visualize_regions(self.multiworld.get_region("Menu", self.player), 'my_world.puml', show_entrance_names = True)
 
     def limit_tattle_locations(self):
         for stars_required, locations in pit_exclusive_tattle_stars_required.items():
@@ -413,7 +422,9 @@ class TTYDWorld(World):
             "cutscene_skip": self.options.cutscene_skip.value,
             "death_link": self.options.death_link.value,
             "piecesanity": self.options.piecesanity.value,
-            "shinesanity": self.options.shinesanity.value
+            "shinesanity": self.options.shinesanity.value,
+            "loading_zone_shuffle": self.options.loading_zone_shuffle.value,
+            "dungeon_shuffle": self.options.dungeon_shuffle.value,
         }
 
     def create_item(self, name: str) -> TTYDItem:
@@ -505,9 +516,67 @@ class TTYDWorld(World):
         return change
 
     def generate_output(self, output_directory: str) -> None:
+        os.makedirs(output_directory, exist_ok=True)
+
+        self._generate_region_visualization()
+
         patch = TTYDProcedurePatch(player=self.player, player_name=self.multiworld.player_name[self.player])
         write_files(self, patch)
         rom_path = os.path.join(
-            output_directory, f"{self.multiworld.get_out_file_name_base(self.player)}" f"{patch.patch_file_ending}"
+            output_directory, f"{self.multiworld.get_out_file_name_base(self.player)}{patch.patch_file_ending}"
         )
         patch.write(rom_path)
+
+    def _generate_region_visualization(self) -> None:
+        """Highlight both unfilled and inaccessible locations"""
+        from Utils import visualize_regions
+
+        try:
+            # Get unfilled locations
+            unfilled = self.multiworld.get_unfilled_locations(self.player)
+            unfilled_set = set(unfilled)
+
+            # Get inaccessible locations (can't be reached)
+            inaccessible = set()
+            try:
+                state = self.multiworld.get_all_state(False)
+                state.update_reachable_regions(self.player)
+                reachable_regions = state.reachable_regions[self.player]
+
+                # Find locations in unreachable regions
+                for region in self.multiworld.get_regions(self.player):
+                    if region not in reachable_regions:
+                        for loc in region.locations:
+                            inaccessible.add(loc)
+            except Exception as e:
+                print(f"Could not check accessibility: {e}")
+
+            # Find all problematic regions (either unfilled OR inaccessible)
+            problematic_regions = set()
+            for region in self.multiworld.get_regions(self.player):
+                has_unfilled = any(loc in unfilled_set for loc in region.locations)
+                has_inaccessible = any(loc in inaccessible for loc in region.locations)
+
+                if has_unfilled or has_inaccessible:
+                    problematic_regions.add(region)
+
+
+            # Generate visualization
+            uml_list = visualize_regions(
+                self.multiworld.get_region("Menu", self.player),
+                "temp.puml",
+                show_entrance_names=True,
+                regions_to_highlight=problematic_regions,
+            )
+
+            print("===PUML_START===")
+            print('\n'.join(uml_list))
+            print("===PUML_END===")
+
+            # Print summary
+            print(f"DEBUG VIZ: {len(unfilled_set)} unfilled locations")
+            print(f"DEBUG VIZ: {len(inaccessible)} inaccessible locations")
+            print(f"DEBUG VIZ: {len(problematic_regions)} problematic regions highlighted")
+
+        except Exception as e:
+            print(f"ERROR: Failed to generate visualization: {e}")

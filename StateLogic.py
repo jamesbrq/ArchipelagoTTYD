@@ -143,19 +143,27 @@ def pit_westside_ground():
 
 @dataclasses.dataclass()
 class PalaceAccess(Rule["TTYDWorld"], game="Paper Mario TTYD"):
-    chapters: int
+    chapters: int | str
 
     def _instantiate(self, world: "TTYDWorld") -> Rule.Resolved:
+        if isinstance(self.chapters, str):
+            obj = world
+            for attr in self.chapters.split(".")[1:]:  # skip "world"
+                obj = getattr(obj, attr)
+            resolved_chapters = int(obj)
+        else:
+            resolved_chapters = self.chapters
+
         return self.Resolved(
             base_rule=ttyd().resolve(world),
-            chapters=self.chapters,
+            chapters=resolved_chapters,
             star_shuffle=world.options.star_shuffle.value,
             player=world.player,
         )
 
     class Resolved(Rule.Resolved):
-        base_rule: Rule.Resolved
         chapters: int
+        base_rule: Rule.Resolved
         star_shuffle: int
         player: int
 
@@ -173,10 +181,7 @@ class PalaceAccess(Rule["TTYDWorld"], game="Paper Mario TTYD"):
 
 def riddle_tower():
     return (
-        tube_curse()
-        & Has("Palace Key")
-        & Has("Bobbery")
-        & Has("Boat Mode")
+        CanReachRegion("Riddle Tower Main Room")
         & Has("Star Key")
         & Has("Palace Key (Tower)", count=8)
     )

@@ -258,7 +258,7 @@ async def _run_game(rom: str):
                 dolphin_path,
                 f"--exec={os.path.realpath(rom)}",
             ],
-            cwd=Utils.local_path("."),
+            cwd=Utils.local_path(""),
             stdin=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,

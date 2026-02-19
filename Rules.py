@@ -21,7 +21,7 @@ def set_rules(world: "TTYDWorld"):
 
     for location in ["Palace of Shadow Final Staircase: Ultra Shroom", "Palace of Shadow Final Staircase: Jammin' Jelly"]:
         if location not in world.disabled_locations:
-            world.set_rule(world.multiworld.get_location(location, world.player), Has("stars", world.options.goal_stars))
+            world.set_rule(world.multiworld.get_location(location, world.player), Has("stars", world.options.goal_stars.value))
 
     for location in get_locations_by_tags("shop"):
         if location.name in world.disabled_locations:
@@ -38,34 +38,43 @@ def set_tattle_rules(world: "TTYDWorld"):
         if location.name in world.disabled_locations:
             continue
         world.set_rule(world.get_location(location.name), Has("Goombella"))
+
     for location_name, locations in get_tattle_rules_dict().items():
         if location_name in world.disabled_locations:
             continue
+
         if len(locations) == 0:
-            # Require access to Shadow Queen
+            # Require access to the end of the game
             if world.options.palace_skip == PalaceSkip.option_true and world.options.goal != Goal.option_shadow_queen:
-                extra_condition = lambda state: state.has("stars", world.player, world.options.palace_stars)
+                extra_condition = Has("stars", count=world.options.palace_stars)
             elif world.options.goal == Goal.option_shadow_queen:
-                extra_condition = lambda state: state.can_reach("Shadow Queen", "Location", world.player)
+                extra_condition = CanReachLocation("Shadow Queen")
             else:
-                extra_condition = lambda state: state.can_reach("Palace of Shadow Final Staircase: Ultra Shroom", "Location", world.player)
+                extra_condition = CanReachLocation("Palace of Shadow Final Staircase: Ultra Shroom")
         else:
-            # Require access to any of the listed locations
+            # Filter out pit locations if pit items aren't fully randomized
             if world.options.pit_items != PitItems.option_all and location_name not in pit_exclusive_tattle_stars_required:
-                locations = [loc for loc in locations if loc not in get_location_ids(get_locations_by_tags("pit_floor"))]
+                pit_ids = set(get_location_ids(get_locations_by_tags("pit_floor")))
+                locations = [loc for loc in locations if loc not in pit_ids]
                 if len(locations) == 0:
                     continue
+
             valid_locations = [
-                location_id_to_name[loc] for loc in locations
-                if location_id_to_name[loc] not in world.disabled_locations
+                location_id_to_name[loc]
+                for loc in locations
+                if loc in location_id_to_name and location_id_to_name[loc] not in world.disabled_locations
             ]
             if len(valid_locations) == 0:
                 continue
-            extra_condition = lambda locs=valid_locations: any(
-                CanReachLocation(loc) for loc in locs
-            )
 
-        world.set_rule(world.get_location(location_name), extra_condition)
+            extra_condition = CanReachLocation(valid_locations[0])
+            for loc in valid_locations[1:]:
+                extra_condition = extra_condition | CanReachLocation(loc)
+
+        world.set_rule(
+            world.get_location(location_name),
+            Has("Goombella") & extra_condition
+        )
 
 
 def create_lambda_from_json(json_string: str, world: "TTYDWorld") -> typing.Dict[str, typing.Callable]:

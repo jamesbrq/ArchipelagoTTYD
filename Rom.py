@@ -104,7 +104,7 @@ class TTYDPatchExtension(APPatchExtension):
         caller.patcher.dol.data.seek(0x24B)
         caller.patcher.dol.data.write(seed_options["dazzle_rewards"].to_bytes(1, "big"))
         caller.patcher.dol.data.seek(0x24C)
-        caller.patcher.dol.data.write(seed_options["loading_zone"].to_bytes(1, "big"))
+        caller.patcher.dol.data.write(seed_options["loading_zone_shuffle"].to_bytes(1, "big"))
         # caller.patcher.dol.data.seek(0x24C)
         # caller.patcher.dol.data.write() RESERVED
         caller.patcher.dol.data.seek(0x24D)
@@ -279,7 +279,8 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         "shop_purchase_limit": world.options.shop_purchase_limit.value,
         "grubba_bribe_direction": world.options.grubba_bribe_direction.value,
         "grubba_bribe_cost": world.options.grubba_bribe_cost.value,
-        "blue_pipe_toggle": world.options.blue_pipe_toggle.value
+        "blue_pipe_toggle": world.options.blue_pipe_toggle.value,
+        "loading_zone_shuffle": world.options.loading_zone_shuffle.value
     }
 
     buffer = io.BytesIO()

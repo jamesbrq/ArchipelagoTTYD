@@ -6272,7 +6272,8 @@
     "vanilla_item": 77772182,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_swoopula_staircase"
     ]
   },
   {
@@ -6285,7 +6286,8 @@
     "vanilla_item": 77772164,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_bullet_hall"
     ]
   },
   {
@@ -6298,7 +6300,8 @@
     "vanilla_item": 77772002,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_spike_trap"
     ]
   },
   {
@@ -6311,7 +6314,8 @@
     "vanilla_item": 77772017,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_fire_trap"
     ]
   },
   {
@@ -6326,7 +6330,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "palace_dark_bones"
     ]
   },
   {
@@ -6339,7 +6344,8 @@
     "vanilla_item": 77772204,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_bullet_hall_two"
     ]
   },
   {
@@ -6352,7 +6358,8 @@
     "vanilla_item": 77772000,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_large_open"
     ]
   },
   {
@@ -6365,7 +6372,8 @@
     "vanilla_item": 77772101,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_large_open"
     ]
   },
   {
@@ -6378,7 +6386,8 @@
     "vanilla_item": 77772129,
     "tags": [
       "palace",
-      "chapter_8"
+      "chapter_8",
+      "palace_large_open"
     ]
   },
   {
@@ -6392,7 +6401,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_first_northwest"
     ]
   },
   {
@@ -6406,7 +6416,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_first_northeast"
     ]
   },
   {
@@ -6420,7 +6431,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_first_southwest"
     ]
   },
   {
@@ -6434,7 +6446,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_first_northwest"
     ]
   },
   {
@@ -6448,7 +6461,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_second_northwest"
     ]
   },
   {
@@ -6462,7 +6476,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_second_northeast"
     ]
   },
   {
@@ -6476,7 +6491,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_second_southwest"
     ]
   },
   {
@@ -6490,7 +6506,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "riddle_tower_second_southeast"
     ]
   },
   {
@@ -6503,7 +6520,8 @@
     "vanilla_item": 77772196,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_hallway_one_post_riddle"
     ]
   },
   {
@@ -6516,7 +6534,8 @@
     "vanilla_item": 77772108,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_backroom_one"
     ]
   },
   {
@@ -6529,7 +6548,8 @@
     "vanilla_item": 77772156,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_backroom_one"
     ]
   },
   {
@@ -6542,7 +6562,8 @@
     "vanilla_item": 77772108,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_backroom_two"
     ]
   },
   {
@@ -6556,7 +6577,8 @@
     "tags": [
       "riddle_tower",
       "chapter_8",
-      "key"
+      "key",
+      "palace_far_backroom_two"
     ]
   },
   {
@@ -6569,11 +6591,12 @@
     "vanilla_item": 77772164,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_backroom_two"
     ]
   },
   {
-    "name": "Palace of Shadow Far Backroom 3: Coin",
+    "name": "Palace of Shadow Far Backroom 4: Coin",
     "id": 78780628,
     "rel": "las",
     "offsets": [
@@ -6582,11 +6605,12 @@
     "vanilla_item": 77772000,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_backroom_four"
     ]
   },
   {
-    "name": "Palace of Shadow Far Backroom 3: Palace Key",
+    "name": "Palace of Shadow Far Backroom 4: Palace Key",
     "id": 78780629,
     "rel": "las",
     "offsets": [
@@ -6596,11 +6620,12 @@
     "tags": [
       "riddle_tower",
       "chapter_8",
-      "key"
+      "key",
+      "palace_far_backroom_four"
     ]
   },
   {
-    "name": "Palace of Shadow Far Backroom 3: Point Swap",
+    "name": "Palace of Shadow Far Backroom 4: Point Swap",
     "id": 78780630,
     "rel": "las",
     "offsets": [
@@ -6609,7 +6634,8 @@
     "vanilla_item": 77772138,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_backroom_four"
     ]
   },
   {
@@ -6622,7 +6648,8 @@
     "vanilla_item": 77772108,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_hallway_four_post_riddle"
     ]
   },
   {
@@ -6635,7 +6662,8 @@
     "vanilla_item": 77772164,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_far_hallway_four_post_riddle"
     ]
   },
   {
@@ -6648,7 +6676,8 @@
     "vanilla_item": 77772101,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_gloomtail"
     ]
   },
   {
@@ -6662,7 +6691,8 @@
     "tags": [
       "palace",
       "chapter_8",
-      "key"
+      "key",
+      "palace_gloomtail"
     ]
   },
   {
@@ -6675,7 +6705,8 @@
     "vanilla_item": 77772204,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_gloomtail"
     ]
   },
   {
@@ -6688,7 +6719,8 @@
     "vanilla_item": 77772101,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_gloomtail"
     ]
   },
   {
@@ -6701,7 +6733,8 @@
     "vanilla_item": 77772204,
     "tags": [
       "riddle_tower",
-      "chapter_8"
+      "chapter_8",
+      "palace_final_stair"
     ]
   },
   {

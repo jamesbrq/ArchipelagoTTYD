@@ -232,23 +232,17 @@
     {
         "name": "Shadow Queen",
         "tag": "shadow_queen",
-        "chapter": "Eight"
-    },
-    {
-        "name": "Palace of Shadow",
-        "tag": "palace"
-    },
-    {
-        "name": "Palace of Shadow (Post-Riddle Tower)",
-        "tag": "riddle_tower"
+        "chapter": "Goal"
     },
     {
         "name": "Pit of 100 Trials",
-        "tag": "pit"
+        "tag": "pit",
+        "chapter": "Prologue"
     },
     {
         "name": "Tattlesanity",
-        "tag": "tattle"
+        "tag": "tattle",
+        "chapter": "Prologue"
     },
     {
         "name": "Petal Meadows Entrance",
@@ -837,7 +831,8 @@
     },
     {
         "name": "Pirate's Grotto Handle Room Canal",
-        "tag": "grotto_handle_canal"
+        "tag": "grotto_handle_canal",
+        "chapter": "Five"
     },
     {
         "name": "Pirate's Grotto Bullet Bill Bridge",
@@ -1228,5 +1223,195 @@
         "name": "X-Naut Fortress Boss Room",
         "tag": "fortress_boss",
         "chapter": "Seven"
+    },
+    {
+        "name": "Palace of Shadow Entrance",
+        "tag": "palace_entrance",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Swoopula Staircase",
+        "tag": "palace_swoopula_staircase",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Bullet Bill Hallway",
+        "tag": "palace_bullet_hall",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Spike Trap Room",
+        "tag": "palace_spike_trap",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Fire Trap Room",
+        "tag": "palace_fire_trap",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Dark Bones Room",
+        "tag": "palace_dark_bones",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Second Bullet Bill Hallway",
+        "tag": "palace_bullet_hall_two",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Large Open Room",
+        "tag": "palace_large_open",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow First Torch Stairs Room",
+        "tag": "palace_torch_stair_one",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Riddle Tower Exterior",
+        "tag": "palace_riddle_exterior",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway One",
+        "tag": "palace_far_hallway_one",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway One Post Riddle Tower",
+        "tag": "palace_far_hallway_one_post_riddle",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway 2",
+        "tag": "palace_far_hallway_two",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway 2 Post Riddle",
+        "tag": "palace_far_hallway_two_post_riddle",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway 3",
+        "tag": "palace_far_hallway_three",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway 3 Post Riddle",
+        "tag": "palace_far_hallway_three_post_riddle",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway 4",
+        "tag": "palace_far_hallway_four",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Hallway 4 Post Riddle",
+        "tag": "palace_far_hallway_four_post_riddle",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Gloomtail Room",
+        "tag": "palace_gloomtail",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower Main Room",
+        "tag": "riddle_tower_main",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower First Floor SW Room",
+        "tag": "riddle_tower_first_southwest",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower First Floor NW Room",
+        "tag": "riddle_tower_first_northwest",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower First Floor NE Room",
+        "tag": "riddle_tower_first_northeast",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower First Floor SE Room",
+        "tag": "riddle_tower_first_southeast",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower Second Floor SW Room",
+        "tag": "riddle_tower_second_southwest",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower Second Floor NW Room",
+        "tag": "riddle_tower_second_northwest",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower Second Floor NE Room",
+        "tag": "riddle_tower_second_northeast",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Riddle Tower Second Floor SE Room",
+        "tag": "riddle_tower_second_southeast",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Backroom 1",
+        "tag": "palace_far_backroom_one",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Backroom 2",
+        "tag": "palace_far_backroom_two",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Backroom 2 Top",
+        "tag": "palace_far_backroom_two_top",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Backroom 1 Upper",
+        "tag": "palace_far_backroom_one_upper",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Far Backroom 3 Top",
+        "tag": "palace_far_backrrom_three_top",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Backroom 3 Bottom",
+        "tag": "palace_far_backroom_three_bottom",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shdaow Far Backroom 4",
+        "tag": "palace_far_backroom_four",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Pre Grodus Hallway",
+        "tag": "palace_pre_grodus",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Grodus Room",
+        "tag": "palace_grodus",
+        "chapter": "Eight"
+    },
+    {
+        "name": "Palace of Shadow Final Staircase",
+        "tag": "palace_final_stair",
+        "chapter": "Eight"
     }
 ]

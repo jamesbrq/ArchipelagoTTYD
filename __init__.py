@@ -297,6 +297,7 @@ class TTYDWorld(World):
         required_items = []
         useful_items = []
         filler_items = []
+        star_pieces = []
         self.limited_state = CollectionState(self.multiworld)
 
         precollected_item_names = [item.name for item in self.multiworld.precollected_items[self.player]]
@@ -310,7 +311,9 @@ class TTYDWorld(World):
                 precollected_item_names.remove(item_name)
                 continue
             self.limited_state.collect(item, prevent_sweep=True)
-            if ItemClassification.progression in item.classification:
+            if item_name == "Star Piece":
+                star_pieces.append(item)
+            elif ItemClassification.progression in item.classification:
                 required_items.append(item)
             elif ItemClassification.useful in item.classification:
                 useful_items.append(item)
@@ -348,7 +351,7 @@ class TTYDWorld(World):
         self.random.shuffle(useful_items)
         self.random.shuffle(required_items)
 
-        for item in required_items:
+        for item in required_items + star_pieces:
             self.multiworld.itempool.append(item)
             unfilled -= 1
 

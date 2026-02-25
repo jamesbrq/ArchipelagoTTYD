@@ -296,11 +296,13 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
 
     warp_buffer = io.BytesIO()
     for (src_map, src_bero), (target_map, target_bero) in warp_table.items():
-        key = f"{src_map}:{src_bero}"
-        value = f"{target_map}:{target_bero}"
-        warp_buffer.write(key.encode("utf-8"))
+        warp_buffer.write(src_map.encode("utf-8"))
         warp_buffer.write(b"\x00")
-        warp_buffer.write(value.encode("utf-8"))
+        warp_buffer.write(src_bero.encode("utf-8"))
+        warp_buffer.write(b"\x00")
+        warp_buffer.write(target_map.encode("utf-8"))
+        warp_buffer.write(b"\x00")
+        warp_buffer.write(target_bero.encode("utf-8"))
         warp_buffer.write(b"\x00")
     warp_buffer.write(b"\x00")
 

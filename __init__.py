@@ -7,16 +7,17 @@ from settings import UserFilePath, Group
 from BaseClasses import Tutorial, ItemClassification, CollectionState, Item, Location
 from worlds.AutoWorld import WebWorld, World
 from .Data import starting_partners, stars, limit_pit, \
-    pit_exclusive_tattle_stars_required, dazzle_counts, dazzle_location_names, star_locations, chapter_keysanity_tags, \
+    pit_exclusive_tattle_stars_required, dazzle_counts, dazzle_location_names, chapter_keysanity_tags, \
     chapter_keys, limited_tags, limited_tag_items
+from .Enemy import Encounter, parse_json_encounters, randomize_encounters
 from .Locations import all_locations, location_table, location_id_to_name, TTYDLocation, locationName_to_data, \
     get_locations_by_tags, get_vanilla_item_names, get_location_names, LocationData
 from .Options import Piecesanity, TTYDOptions, YoshiColor, StartingPartner, PitItems, LimitChapterEight, Goal, \
-    DazzleRewards, StarShuffle
+    DazzleRewards, StarShuffle, EnemyRandomizer
 from .Items import TTYDItem, itemList, item_table, ItemData, items_by_id
 from .Regions import create_regions, connect_regions, get_regions_dict, register_indirect_connections
 from .Rom import TTYDProcedurePatch, write_files
-from .Rules import set_rules, get_tattle_rules_dict, set_tattle_rules
+from .Rules import set_rules, get_tattle_rules_dict, set_tattle_rules, get_random_enemy_tattle_rules_dict
 from worlds.LauncherComponents import Component, SuffixIdentifier, Type, components, launch_subprocess
 
 
@@ -96,7 +97,9 @@ class TTYDWorld(World):
     limited_state: CollectionState = None
     locked_item_frequencies: Dict[str, int]
     in_pre_fill: bool
+    encounters: list[Encounter] = None
     ut_can_gen_without_yaml = True
+
 
     def generate_early(self) -> None:
         self.disabled_locations = set()
@@ -109,6 +112,7 @@ class TTYDWorld(World):
         self.limited_items = {chapter: {tag: list() for tag in limited_tags[chapter]} for chapter in range(1, 9)}
         self.limited_misc_locations = set()
         self.locked_item_frequencies = {}
+        self.encounters = parse_json_encounters()
         # implementing yaml-less UT support
         if hasattr(self.multiworld, "re_gen_passthrough"):
             if self.game in self.multiworld.re_gen_passthrough:
@@ -127,6 +131,8 @@ class TTYDWorld(World):
                 self.options.disable_intermissions.value = slot_data["disable_intermissions"]
                 self.options.piecesanity.value = slot_data["piecesanity"]
                 self.options.shinesanity.value = slot_data["shinesanity"]
+                self.options.blue_pipe_toggle.value = slot_data["blue_pipe_toggle"]
+                self.options.enemy_randomizer.value = slot_data["enemy_randomizer"]
                 return
         if self.options.limit_chapter_eight and self.options.palace_skip:
             logging.warning(f"{self.player_name}'s has enabled both Palace Skip and Limit Chapter 8. "
@@ -146,7 +152,7 @@ class TTYDWorld(World):
                 self.required_chapters.append(chapters.pop(self.multiworld.random.randint(0, len(chapters) - 1)))
         else:
             star_names = self.options.required_stars.value
-            self.required_chapters = [chapter for chapter, star in stars.items() if star in star_names][:self.options.goal_stars.value]
+            self.required_chapters = [chapter for name in star_names for chapter, star in stars.items() if star == name][:self.options.goal_stars.value]
             if len(self.required_chapters) < self.options.goal_stars.value:
                 remaining_chapters = [i for i in range(1, 8) if i not in self.required_chapters]
                 for _ in range(self.options.goal_stars.value - len(self.required_chapters)):
@@ -166,6 +172,8 @@ class TTYDWorld(World):
                 self.disabled_locations.update(["Tattle: Shadow Queen"])
         if self.options.tattlesanity and self.options.disable_intermissions:
             self.disabled_locations.update(["Tattle: Lord Crump"])
+        if self.options.enemy_randomizer != EnemyRandomizer.option_vanilla:
+            randomize_encounters(self)
         if self.options.tattlesanity:
             extra_disabled = [location.name for name, locations in get_regions_dict().items()
                               if name in self.excluded_regions for location in locations]
@@ -253,39 +261,69 @@ class TTYDWorld(World):
         if self.options.tattlesanity:
             self.limit_tattle_locations()
 
-    def limit_tattle_locations(self):
+    def limit_tattle_locations(self) -> None:
+        # Existing pit-exclusive logic unchanged
         for stars_required, locations in pit_exclusive_tattle_stars_required.items():
             if stars_required > len(self.required_chapters):
                 self.limited_misc_locations.update(
-                    [self.get_location(location) for location in locations if location not in self.disabled_locations])
-        all_limited_locations = set()
-        _ = {all_limited_locations.update(locations) for chapter_locs in self.limited_chapter_locations.values() for
-             locations in chapter_locs.values()}
-        for location_name, locations in get_tattle_rules_dict().items():
+                    self.get_location(loc)
+                    for loc in locations
+                    if loc not in self.disabled_locations
+                )
+
+        # Flatten limited chapter location-ids
+        all_limited_locations: set[int] = {
+            loc.address
+            for chapter_locs in self.limited_chapter_locations.values()
+            for locs in chapter_locs.values()
+            for loc in locs
+        }
+
+        base_rules = get_tattle_rules_dict()
+
+        # Use randomized rules if enabled; otherwise base.
+        # IMPORTANT: your get_random_enemy_tattle_rules_dict() should already do the
+        # "if no matches -> use base rule" fallback.
+        rules_dict = (
+            get_random_enemy_tattle_rules_dict(self)
+            if self.options.enemy_randomizer != EnemyRandomizer.option_vanilla
+            else base_rules
+        )
+
+        for location_name, locations in rules_dict.items():
             if location_name in self.disabled_locations:
                 continue
-            if self.options.limit_chapter_eight and len(locations) == 0:
+
+            # Chapter 8 clamp: if a tattle location has no gating locations, force-limit it.
+            if self.options.limit_chapter_eight and not locations:
                 self.limited_misc_locations.add(self.get_location(location_name))
                 continue
-            enabled_locations = [location for location in locations if
-                                 location_id_to_name[location] not in self.disabled_locations]
-            if len(enabled_locations) == 0:
+
+            enabled_locations = [
+                loc_id
+                for loc_id in locations
+                if location_id_to_name[loc_id] not in self.disabled_locations
+            ]
+            if not enabled_locations:
                 continue
+
             if self.options.pit_items != PitItems.option_all:
-                if all(location in limit_pit for location in enabled_locations):
+                if all(loc_id in limit_pit for loc_id in enabled_locations):
                     self.limited_misc_locations.add(self.get_location(location_name))
+
             if self.options.limit_chapter_logic:
-                if len(locations) == 1 and locations[0] == 78780511:
+                # Keep your special-case, but apply it to the *effective* rules being used.
+                if len(enabled_locations) == 1 and enabled_locations[0] == 78780511:
                     if 5 in self.limited_chapters:
                         self.limited_misc_locations.add(self.get_location(location_name))
-                if all(location in all_limited_locations for location in enabled_locations):
+
+                if all(loc_id in all_limited_locations for loc_id in enabled_locations):
                     self.limited_misc_locations.add(self.get_location(location_name))
 
     def create_items(self) -> None:
         required_items = []
         useful_items = []
         filler_items = []
-        star_pieces = []
         self.limited_state = CollectionState(self.multiworld)
 
         precollected_item_names = [item.name for item in self.multiworld.precollected_items[self.player]]
@@ -299,9 +337,7 @@ class TTYDWorld(World):
                 precollected_item_names.remove(item_name)
                 continue
             self.limited_state.collect(item, prevent_sweep=True)
-            if item_name == "Star Piece":
-                star_pieces.append(item)
-            elif ItemClassification.progression in item.classification:
+            if ItemClassification.progression in item.classification:
                 required_items.append(item)
             elif ItemClassification.useful in item.classification:
                 useful_items.append(item)
@@ -339,7 +375,7 @@ class TTYDWorld(World):
         self.random.shuffle(useful_items)
         self.random.shuffle(required_items)
 
-        for item in required_items + star_pieces:
+        for item in required_items:
             self.multiworld.itempool.append(item)
             unfilled -= 1
 
@@ -410,7 +446,12 @@ class TTYDWorld(World):
             "cutscene_skip": self.options.cutscene_skip.value,
             "death_link": self.options.death_link.value,
             "piecesanity": self.options.piecesanity.value,
-            "shinesanity": self.options.shinesanity.value
+            "shinesanity": self.options.shinesanity.value,
+            "blue_pipe_toggle": self.options.blue_pipe_toggle.value,
+            "enemy_randomizer": self.options.enemy_randomizer.value,
+            "tattle_rules": get_random_enemy_tattle_rules_dict(self)
+            if self.options.enemy_randomizer != EnemyRandomizer.option_vanilla
+            else get_tattle_rules_dict(),
         }
 
     def create_item(self, name: str) -> TTYDItem:
@@ -476,13 +517,8 @@ class TTYDWorld(World):
                 state.prog_items[item.player]["stars"] += 1
             for star in self.required_chapters:
                 if item.location is not None:
-                    if item.name == stars[star] and self.options.star_shuffle == StarShuffle.option_vanilla:
+                    if item.name == stars[star]:
                         state.prog_items[item.player]["required_stars"] += 1
-                        break
-                    elif item.location.name == star_locations[
-                        star - 1] and self.options.star_shuffle == StarShuffle.option_stars_only:
-                        state.prog_items[item.player]["required_stars"] += 1
-                        break
         return change
 
     def remove(self, state: "CollectionState", item: "Item") -> bool:
@@ -492,13 +528,8 @@ class TTYDWorld(World):
                 state.prog_items[item.player]["stars"] -= 1
             for star in self.required_chapters:
                 if item.location is not None:
-                    if item.name == stars[star] and self.options.star_shuffle == StarShuffle.option_vanilla:
+                    if item.name == stars[star]:
                         state.prog_items[item.player]["required_stars"] -= 1
-                        break
-                    elif item.location == star_locations[
-                        star - 1] and self.options.star_shuffle == StarShuffle.option_stars_only:
-                        state.prog_items[item.player]["required_stars"] -= 1
-                        break
         return change
 
     def generate_output(self, output_directory: str) -> None:

@@ -1,6 +1,7 @@
 import io
 import json
 import pkgutil
+import struct
 
 import bsdiff4
 import random
@@ -113,6 +114,18 @@ class TTYDPatchExtension(APPatchExtension):
         caller.patcher.dol.data.write(seed_options["grubba_bribe_cost"].to_bytes(1, "big"))
         caller.patcher.dol.data.seek(0x250)
         caller.patcher.dol.data.write(seed_options["blue_pipe_toggle"].to_bytes(1, "big"))
+        caller.patcher.dol.data.seek(0x251)
+        caller.patcher.dol.data.write(seed_options["enemy_randomizer"].to_bytes(1, "big"))
+        caller.patcher.dol.data.seek(0x252)
+        caller.patcher.dol.data.write(seed_options["enemy_stat_scaling"].to_bytes(1, "big"))
+        caller.patcher.dol.data.seek(0x253)
+        caller.patcher.dol.data.write(seed_options["shuffle_chapter_stats"].to_bytes(1, "big"))
+        caller.patcher.dol.data.seek(0x258)
+        caller.patcher.dol.data.write(seed_options["badge_bp"].to_bytes(1, "big"))
+        caller.patcher.dol.data.seek(0x259)
+        caller.patcher.dol.data.write(seed_options["badge_fp"].to_bytes(1, "big"))
+        caller.patcher.dol.data.seek(0x25A)
+        caller.patcher.dol.data.write(seed_options["partner_fp"].to_bytes(1, "big"))
         caller.patcher.dol.data.seek(0x260)
         caller.patcher.dol.data.write(seed_options["yoshi_name"].encode("utf-8")[0:8] + b"\x00")
         caller.patcher.dol.data.seek(0xEB6B6)
@@ -121,11 +134,15 @@ class TTYDPatchExtension(APPatchExtension):
         caller.patcher.dol.data.write(pkgutil.get_data(__name__, "data/US.bin"))
         caller.patcher.dol.data.seek(0x6CE38)
         caller.patcher.dol.data.write(int.to_bytes(0x4BF94A50, 4, "big"))
+        caller.patcher.dol.data.seek(0x3C25FC)
+        caller.patcher.dol.data.write(int.to_bytes(0x2198, 4, "big"))
         caller.patcher.iso.add_new_directory("files/mod")
         caller.patcher.iso.add_new_directory("files/mod/subrels")
         for file in [file for file in rel_filepaths if file != "mod"]:
             caller.patcher.iso.add_new_file(f"files/mod/subrels/{file}.rel", io.BytesIO(pkgutil.get_data(__name__, f"data/{file}.rel")))
         caller.patcher.iso.add_new_file("files/mod/mod.rel", io.BytesIO(pkgutil.get_data(__name__, f"data/mod.rel")))
+        caller.patcher.iso.add_new_file("files/mod/custom.rel", io.BytesIO(pkgutil.get_data(__name__, f"data/custom.rel")))
+        caller.patcher.iso.add_new_file("files/mod/enemies.bin", io.BytesIO(caller.get_file("enemies.bin")))
         caller.patcher.iso.add_new_file("files/msg/US/mod.txt", io.BytesIO(pkgutil.get_data(__name__, f"data/mod.txt")))
         caller.patcher.iso.add_new_file("files/msg/US/desc.txt", io.BytesIO(caller.get_file("desc.txt")))
 
@@ -276,7 +293,13 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         "shop_purchase_limit": world.options.shop_purchase_limit.value,
         "grubba_bribe_direction": world.options.grubba_bribe_direction.value,
         "grubba_bribe_cost": world.options.grubba_bribe_cost.value,
-        "blue_pipe_toggle": world.options.blue_pipe_toggle.value
+        "blue_pipe_toggle": world.options.blue_pipe_toggle.value,
+        "enemy_randomizer": world.options.enemy_randomizer.value,
+        "enemy_stat_scaling": world.options.enemy_stat_scaling.value,
+        "shuffle_chapter_stats": world.options.shuffle_chapter_stats.value,
+        "badge_bp": world.options.badge_bp.value,
+        "badge_fp": world.options.badge_fp.value,
+        "partner_fp": world.options.partner_fp.value
     }
 
     buffer = io.BytesIO()
@@ -290,9 +313,19 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         buffer.write(b'\x00')
     buffer.write(b'\x00')  # null terminator for the end of the table
 
+    enemy_buffer = io.BytesIO()
+    encounters = world.encounters
+    enemy_buffer.write(struct.pack(">H", len(encounters)))
+    for entry in encounters:
+        ids = entry.enemy_ids
+        enemy_buffer.write(struct.pack("B", len(ids)))
+        for eid in ids:
+            enemy_buffer.write(struct.pack("B", eid))
+
     patch.write_file("desc.txt", buffer.getvalue())
     patch.write_file("options.json", json.dumps(options_dict).encode("UTF-8"))
     patch.write_file(f"locations.json", json.dumps(locations_to_dict(world.multiworld.get_locations(world.player))).encode("UTF-8"))
+    patch.write_file("enemies.bin", enemy_buffer.getvalue())
 
 def classification_to_color(classification: ItemClassification = ItemClassification.filler) -> str:
     if classification & ItemClassification.progression:

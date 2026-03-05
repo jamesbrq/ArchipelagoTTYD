@@ -2335,21 +2335,7 @@
     ]
   },
   "Rogueport Sewers Boggly Woods Pipe: Star Piece": {
-    "and": [
-      {
-        "function": "super_boots"
-      },
-      {
-        "or": [
-          {
-            "has": "Paper Mode"
-          },
-          {
-            "function": "super_hammer"
-          }
-        ]
-      }
-    ]
+    "function": "super_boots"
   },
   "Rogueport Sewers Boggly Woods Pipe: Damage Dodge": {
     "has": "Paper Mode"

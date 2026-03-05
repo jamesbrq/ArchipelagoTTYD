@@ -10,7 +10,7 @@ from BaseClasses import Location, ItemClassification
 from worlds.Files import APProcedurePatch, APTokenMixin, APPatchExtension, AutoPatchExtensionRegister
 from .Items import items_by_id, ItemData
 from .Locations import locationName_to_data, location_table, location_id_to_name
-from .Data import Rels, shop_items, item_prices, rel_filepaths, location_to_unit, shop_names, warp_table
+from .Data import Rels, shop_items, item_prices, rel_filepaths, location_to_unit, shop_names
 from .TTYDPatcher import TTYDPatcher
 
 if TYPE_CHECKING:
@@ -103,8 +103,6 @@ class TTYDPatchExtension(APPatchExtension):
         caller.patcher.dol.data.write(seed_options["star_shuffle"].to_bytes(1, "big"))
         caller.patcher.dol.data.seek(0x24B)
         caller.patcher.dol.data.write(seed_options["dazzle_rewards"].to_bytes(1, "big"))
-        caller.patcher.dol.data.seek(0x24C)
-        caller.patcher.dol.data.write((1 if seed_options["loading_zone_shuffle"] or seed_options["dungeon_shuffle"] else 0).to_bytes(1, "big"))
         # caller.patcher.dol.data.seek(0x24C)
         # caller.patcher.dol.data.write() RESERVED
         caller.patcher.dol.data.seek(0x24D)
@@ -130,7 +128,6 @@ class TTYDPatchExtension(APPatchExtension):
         caller.patcher.iso.add_new_file("files/mod/mod.rel", io.BytesIO(pkgutil.get_data(__name__, f"data/mod.rel")))
         caller.patcher.iso.add_new_file("files/msg/US/mod.txt", io.BytesIO(pkgutil.get_data(__name__, f"data/mod.txt")))
         caller.patcher.iso.add_new_file("files/msg/US/desc.txt", io.BytesIO(caller.get_file("desc.txt")))
-        caller.patcher.iso.add_new_file("files/msg/US/warp.txt", io.BytesIO(caller.get_file("warp.txt")))
 
 
 
@@ -279,8 +276,7 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         "shop_purchase_limit": world.options.shop_purchase_limit.value,
         "grubba_bribe_direction": world.options.grubba_bribe_direction.value,
         "grubba_bribe_cost": world.options.grubba_bribe_cost.value,
-        "blue_pipe_toggle": world.options.blue_pipe_toggle.value,
-        "loading_zone_shuffle": world.options.loading_zone_shuffle.value
+        "blue_pipe_toggle": world.options.blue_pipe_toggle.value
     }
 
     buffer = io.BytesIO()
@@ -294,21 +290,7 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         buffer.write(b'\x00')
     buffer.write(b'\x00')  # null terminator for the end of the table
 
-    warp_buffer = io.BytesIO()
-    for (src_map, src_bero), (target_map, target_bero) in warp_table.items():
-        warp_buffer.write(src_map.encode("utf-8"))
-        warp_buffer.write(b"\x00")
-        warp_buffer.write(src_bero.encode("utf-8"))
-        warp_buffer.write(b"\x00")
-        warp_buffer.write(target_map.encode("utf-8"))
-        warp_buffer.write(b"\x00")
-        warp_buffer.write(target_bero.encode("utf-8"))
-        warp_buffer.write(b"\x00")
-    warp_buffer.write(b"\x00")
-
-
     patch.write_file("desc.txt", buffer.getvalue())
-    patch.write_file("warp.txt", warp_buffer.getvalue())
     patch.write_file("options.json", json.dumps(options_dict).encode("UTF-8"))
     patch.write_file(f"locations.json", json.dumps(locations_to_dict(world.multiworld.get_locations(world.player))).encode("UTF-8"))
 

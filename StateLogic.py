@@ -1,249 +1,130 @@
 from .Data import star_locations
 from .Options import StarShuffle
-from rule_builder.rules import Rule, Has, CanReachRegion
-from BaseClasses import CollectionState
-import dataclasses
 
 
-
-def westside():
-    return Has("Contact Lens") | Has("Bobbery") | tube_curse() | ultra_hammer()
-
-def fallen_pipe():
-    return Has("Bobbery") | tube_curse()
+def westside(state, player):
+    return state.has("Contact Lens", player) or state.has("Bobbery", player) or tube_curse(state, player) or ultra_hammer(state, player)
 
 
-def super_hammer():
-    return Has("Progressive Hammer", count=1)
+def super_hammer(state, player):
+    return state.has("Progressive Hammer", player, 1)
 
 
-def ultra_hammer():
-    return Has("Progressive Hammer", count=2)
+def ultra_hammer(state, player):
+    return state.has("Progressive Hammer", player, 2)
 
 
-def super_boots():
-    return Has("Progressive Boots", count=1)
+def super_boots(state, player):
+    return state.has("Progressive Boots", player, 1)
 
 
-def ultra_boots():
-    return Has("Progressive Boots", count=2)
+def ultra_boots(state, player):
+    return state.has("Progressive Boots", player, 2)
 
 
-
-def tube_curse():
-    return Has("Paper Mode") & Has("Tube Mode")
-
-
-def petal_left():
-    return Has("Plane Mode")
+def tube_curse(state, player):
+    return state.has("Paper Mode", player) and state.has("Tube Mode", player)
 
 
-def hooktails_castle():
-    return Has("Sun Stone") & Has("Moon Stone") & (Has("Koops") | Has("Bobbery"))
+def petal_left(state, player):
+    return state.has("Plane Mode", player)
 
 
-def boggly_woods():
-    return Has("Paper Mode")
+def hooktails_castle(state, player):
+    return state.has("Sun Stone", player) and state.has("Moon Stone", player) and (state.has("Koops", player) or state.has("Bobbery", player))
 
 
-def great_tree():
-    return Has("Flurrie")
+def boggly_woods(state, player):
+    return state.has("Paper Mode", player)
 
 
-def glitzville():
-    return Has("Blimp Ticket")
+def great_tree(state, player):
+    return state.has("Flurrie", player)
 
-def twilight_town():
+
+def glitzville(state, player):
+    return state.has("Blimp Ticket", player)
+
+def twilight_town(state, player):
     return (
-        (sewer_westside() & Has("Yoshi"))
-        | (sewer_westside_ground() & ultra_boots())
+        (sewer_westside(state, player) and state.has("Yoshi", player)) or
+        (sewer_westside_ground(state, player) and ultra_boots(state, player))
     )
 
 
-
-def twilight_trail():
-    return twilight_town() & tube_curse()
-
-
-def steeple():
-    return Has("Paper Mode") & Has("Flurrie") & super_boots()
+def twilight_trail(state, player):
+    return twilight_town(state, player) and tube_curse(state, player)
 
 
-def keelhaul_key():
-    return Has("Yoshi") & tube_curse() & Has("Old Letter")
+def steeple(state, player):
+    return state.has("Paper Mode", player) and state.has("Flurrie", player) and super_boots(state, player)
 
 
-def pirates_grotto():
-    return Has("Yoshi") & Has("Bobbery") & Has("Skull Gem") & super_boots()
+def keelhaul_key(state, player):
+    return state.has("Yoshi", player) and tube_curse(state, player) and state.has("Old Letter", player)
 
 
-def excess_express():
-    return Has("Train Ticket")
+def pirates_grotto(state, player):
+    return state.has("Yoshi", player) and state.has("Bobbery", player) and state.has("Skull Gem", player) and super_boots(state, player)
 
 
-def riverside():
-    return (
-        Has("Vivian")
-        & Has("Autograph")
-        & Has("Ragged Diary")
-        & Has("Blanket")
-        & Has("Vital Paper")
-        & Has("Train Ticket")
-    )
+def excess_express(state, player):
+    return state.has("Train Ticket", player)
 
 
-def poshley_heights():
-    return (
-        Has("Station Key 1")
-        & Has("Elevator Key (Station)")
-        & super_hammer()
-        & ultra_boots()
-    )
+def riverside(state, player):
+    return state.has("Vivian", player) and state.has("Autograph", player) and state.has("Ragged Diary", player) and state.has("Blanket", player) and state.has("Vital Paper", player) and state.has("Train Ticket", player)
 
 
-def fahr_outpost():
-    return ultra_hammer() & twilight_town()
+def poshley_heights(state, player):
+    return state.has("Station Key 1", player) and state.has("Elevator Key (Station)", player) and super_hammer(state, player) and ultra_boots(state, player)
 
 
-def moon():
-    return Has("Bobbery") & Has("Goldbob Guide")
+def fahr_outpost(state, player):
+    return ultra_hammer(state, player) and twilight_town(state, player)
 
 
-def ttyd():
-    return (
-        Has("Plane Mode")
-        | super_hammer()
-        | (
-            Has("Flurrie")
-            & (
-                Has("Bobbery")
-                | tube_curse()
-                | (Has("Contact Lens") & Has("Paper Mode"))
-            )
-        )
-    )
+def moon(state, player):
+    return state.has("Bobbery", player) and state.has("Goldbob Guide", player)
 
 
-def pit():
-    return Has("Paper Mode") & Has("Plane Mode")
+def ttyd(state, player):
+    return (state.has("Plane Mode", player) or super_hammer(state, player)
+            or (state.has("Flurrie", player) and (state.has("Bobbery", player) or tube_curse(state, player)
+            or (state.has("Contact Lens", player) and state.has("Paper Mode", player)))))
 
 
-def pit_westside_ground():
-    return (
-        Has("Flurrie")
-        & (
-            (Has("Contact Lens") & Has("Paper Mode"))
-            | Has("Bobbery")
-            | tube_curse()
-            | ultra_hammer()
-        )
-    )
+def pit(state, player):
+    return state.has("Paper Mode", player) and state.has("Plane Mode", player)
 
 
-
-@dataclasses.dataclass()
-class PalaceAccess(Rule["TTYDWorld"], game="Paper Mario TTYD"):
-    chapters: int | str
-
-    def _instantiate(self, world: "TTYDWorld") -> Rule.Resolved:
-        if isinstance(self.chapters, str):
-            obj = world
-            for attr in self.chapters.split(".")[1:]:  # skip "world"
-                obj = getattr(obj, attr)
-            resolved_chapters = int(obj)
-        else:
-            resolved_chapters = self.chapters
-
-        return self.Resolved(
-            base_rule=ttyd().resolve(world),
-            chapters=resolved_chapters,
-            star_shuffle=world.options.star_shuffle.value,
-            player=world.player,
-        )
-
-    class Resolved(Rule.Resolved):
-        chapters: int
-        base_rule: Rule.Resolved
-        star_shuffle: int
-        player: int
-
-        def _evaluate(self, state: CollectionState) -> bool:
-            if not self.base_rule(state):
-                return False
-
-            if self.star_shuffle == StarShuffle.option_all:
-                return state.has("stars", self.player, self.chapters)
-
-            return state.has("required_stars", self.player, self.chapters)
+def pit_westside_ground(state, player):
+    return state.has("Flurrie", player) and ((state.has("Contact Lens", player) and state.has("Paper Mode", player)) or state.has("Bobbery", player) or tube_curse(state, player) or ultra_hammer(state, player))
 
 
+def palace(state, player, chapters: int, star_shuffle: int):
+    return ttyd(state, player) and (state.has("stars", player, chapters) if star_shuffle == StarShuffle.option_all else state.has("required_stars", player, chapters))
 
 
-def riddle_tower():
-    return (
-        CanReachRegion("Riddle Tower Main Room")
-        & Has("Star Key")
-        & Has("Palace Key (Tower)", count=8)
-    )
+def riddle_tower(state, player):
+    return tube_curse(state, player) and state.has("Palace Key", player) and state.has("Bobbery", player) and state.has("Boat Mode", player) and state.has("Star Key", player) and state.has("Palace Key (Tower)", player, 8)
 
 
-def sewer_westside():
-    return (
-        tube_curse()
-        | Has("Bobbery")
-        | (Has("Paper Mode") & Has("Contact Lens"))
-        | (ultra_hammer() & (Has("Paper Mode") | (ultra_boots() & Has("Yoshi"))))
-    )
+def sewer_westside(state, player):
+    return tube_curse(state, player) or state.has("Bobbery", player) or (state.has("Paper Mode", player) and state.has("Contact Lens", player)) or (ultra_hammer(state, player) and (state.has("Paper Mode", player) or (ultra_boots(state, player) and state.has("Yoshi", player))))
 
 
-def sewer_westside_ground():
-    return (
-        (Has("Contact Lens") & Has("Paper Mode"))
-        | Has("Bobbery")
-        | tube_curse()
-        | ultra_hammer()
-    )
+def sewer_westside_ground(state, player):
+    return (state.has("Contact Lens", player) and state.has("Paper Mode", player)) or state.has("Bobbery", player) or tube_curse(state, player) or ultra_hammer(state, player)
 
+def key_any(state, player):
+    return state.has("Red Key", player) or state.has("Blue Key", player)
 
-def key_any():
-    return (
-        (Has("Red Key") | Has("Blue Key"))
-    )
+def chapter_completions(state, player, count):
+    return len([location for location in star_locations if state.can_reach(location, "Location", player)]) >= count
 
+def super_blue_pipes(state, player):
+    return super_hammer(state, player) and super_boots(state, player)
 
-def key_both():
-    return (
-        Has("Red Key")
-        & Has("Blue Key")
-    )
-
-
-@dataclasses.dataclass()
-class ChapterCompletions(Rule["TTYDWorld"], game="Paper Mario TTYD"):
-    count: int
-
-    def _instantiate(self, world: "TTYDWorld") -> Rule.Resolved:
-        return self.Resolved(
-            count=self.count,
-            player=world.player,
-        )
-
-    class Resolved(Rule.Resolved):
-        count: int
-        player: int
-
-        def _evaluate(self, state: CollectionState) -> bool:
-            return (
-                len([l for l in star_locations if state.can_reach(l, "Location", self.player)])
-                >= self.count
-            )
-
-def partner_press_switch():
-    return Has("Koops") | Has("Bobbery")
-
-def super_blue_pipes():
-    return super_hammer() & super_boots()
-
-
-def ultra_blue_pipes():
-    return ultra_hammer() & super_boots()
+def ultra_blue_pipes(state, player):
+    return ultra_hammer(state, player) and super_boots(state, player)

@@ -172,8 +172,3 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-
-#project specific files
-image.png.url
-notes.txt
-Checker.py

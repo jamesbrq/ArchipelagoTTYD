@@ -37,18 +37,6 @@ class PalaceStars(Range):
     range_end = 7
     default = 7
 
-class LoadingZoneShuffle(Toggle):
-    """
-    Randomizes loading zones.
-    """
-    display_name = "Loading Zone Shuffle"
-
-class DungeonShuffle(Toggle):
-    """
-    Randomizes Dungeon Entrances
-    """
-    display_name = "Dungeon Shuffle"
-
 
 class RequiredStarsToggle(Toggle):
     """
@@ -459,5 +447,3 @@ class TTYDOptions(PerGameCommonOptions):
     starting_partner: StartingPartner
     yoshi_color: YoshiColor
     yoshi_name: YoshiName
-    loading_zone_shuffle: LoadingZoneShuffle
-    dungeon_shuffle: DungeonShuffle

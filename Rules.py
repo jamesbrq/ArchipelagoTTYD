@@ -2,13 +2,12 @@ import json
 import pkgutil
 import typing
 
-from rule_builder.rules import Rule, False_, Has, CanReachLocation, CanReachRegion, CanReachEntrance
+from worlds.generic.Rules import add_rule, forbid_items_for_player
 from . import StateLogic
 from .Options import Goal, PitItems
 from .Data import stars, pit_exclusive_tattle_stars_required
 from .Locations import get_location_ids, get_locations_by_tags, location_id_to_name
 from .Options import PalaceSkip
-from worlds.generic.Rules import forbid_items_for_player
 
 if typing.TYPE_CHECKING:
     from . import TTYDWorld
@@ -17,11 +16,11 @@ if typing.TYPE_CHECKING:
 def set_rules(world: "TTYDWorld"):
     for location, rule in create_lambda_from_json(pkgutil.get_data(__name__, "json/rules.json").decode(), world).items():
         if location not in world.disabled_locations:
-            world.set_rule(world.get_location(location), rule)
+            add_rule(world.multiworld.get_location(location, world.player), rule)
 
     for location in ["Palace of Shadow Final Staircase: Ultra Shroom", "Palace of Shadow Final Staircase: Jammin' Jelly"]:
         if location not in world.disabled_locations:
-            world.set_rule(world.multiworld.get_location(location, world.player), Has("stars", world.options.goal_stars.value))
+            add_rule(world.multiworld.get_location(location, world.player), lambda state: state.has("stars", world.player, world.options.goal_stars))
 
     for location in get_locations_by_tags("shop"):
         if location.name in world.disabled_locations:
@@ -37,72 +36,53 @@ def set_tattle_rules(world: "TTYDWorld"):
     for location in get_locations_by_tags("tattle"):
         if location.name in world.disabled_locations:
             continue
-        world.set_rule(world.get_location(location.name), Has("Goombella"))
-
+        add_rule(world.get_location(location.name), lambda state: state.has("Goombella", world.player))
     for location_name, locations in get_tattle_rules_dict().items():
         if location_name in world.disabled_locations:
             continue
-
         if len(locations) == 0:
-            # Require access to the end of the game
+            # Require access to Shadow Queen
             if world.options.palace_skip == PalaceSkip.option_true and world.options.goal != Goal.option_shadow_queen:
-                extra_condition = Has("stars", count=world.options.palace_stars)
+                extra_condition = lambda state: state.has("stars", world.player, world.options.palace_stars)
             elif world.options.goal == Goal.option_shadow_queen:
-                extra_condition = CanReachLocation("Shadow Queen")
+                extra_condition = lambda state: state.can_reach("Shadow Queen", "Location", world.player)
             else:
-                extra_condition = CanReachLocation("Palace of Shadow Final Staircase: Ultra Shroom")
+                extra_condition = lambda state: state.can_reach("Palace of Shadow Final Staircase: Ultra Shroom", "Location", world.player)
         else:
-            # Filter out pit locations if pit items aren't fully randomized
+            # Require access to any of the listed locations
             if world.options.pit_items != PitItems.option_all and location_name not in pit_exclusive_tattle_stars_required:
-                pit_ids = set(get_location_ids(get_locations_by_tags("pit_floor")))
-                locations = [loc for loc in locations if loc not in pit_ids]
+                locations = [loc for loc in locations if loc not in get_location_ids(get_locations_by_tags("pit_floor"))]
                 if len(locations) == 0:
                     continue
-
             valid_locations = [
-                location_id_to_name[loc]
-                for loc in locations
-                if loc in location_id_to_name and location_id_to_name[loc] not in world.disabled_locations
+                location_id_to_name[loc] for loc in locations
+                if location_id_to_name[loc] not in world.disabled_locations
             ]
             if len(valid_locations) == 0:
                 continue
+            extra_condition = lambda state, locs=valid_locations: any(
+                state.can_reach(loc, "Location", world.player) for loc in locs
+            )
 
-            extra_condition = CanReachLocation(valid_locations[0])
-            for loc in valid_locations[1:]:
-                extra_condition = extra_condition | CanReachLocation(loc)
-
-        world.set_rule(
-            world.get_location(location_name),
-            Has("Goombella") & extra_condition
-        )
+        add_rule(world.get_location(location_name), extra_condition)
 
 
 def create_lambda_from_json(json_string: str, world: "TTYDWorld") -> typing.Dict[str, typing.Callable]:
     lambda_functions = {}
     for location, requirements in json.loads(json_string).items():
-        lambda_functions[location] = _build_single_rule(requirements, world)
+        lambda_functions[location] = _build_single_lambda(requirements, world)
     return lambda_functions
 
 
-def _build_single_rule(req: typing.Dict, world: "TTYDWorld") -> Rule:
-    def build_rule(r) -> Rule:
+def _build_single_lambda(req: typing.Dict, world: "TTYDWorld") -> typing.Callable:
+    def build_expression(r):
         if "or" in r:
-            children = [build_rule(c) for c in r["or"]]
-            if not children:
-                return False_()
-            rule = children[0]
-            for child in children[1:]:
-                rule = rule | child
-            return rule
+            conditions = [build_expression(condition) for condition in r["or"]]
+            return f"({' or '.join(conditions)})"
 
         elif "and" in r:
-            children = [build_rule(c) for c in r["and"]]
-            if not children:
-                return False_()
-            rule = children[0]
-            for child in children[1:]:
-                rule = rule & child
-            return rule
+            conditions = [build_expression(condition) for condition in r["and"]]
+            return f"({' and '.join(conditions)})"
 
         elif "has" in r:
             has_value = r["has"]
@@ -117,47 +97,34 @@ def _build_single_rule(req: typing.Dict, world: "TTYDWorld") -> Rule:
                 item = str(has_value)
                 count = r.get("count", 1)
 
-            return Has(item, count=count)
+            # Escape quotes in item names by using repr() which handles escaping properly
+            escaped_item = repr(item)
+
+            if count == 1:
+                return f'state.has({escaped_item}, world.player)'
+            else:
+                return f'state.has({escaped_item}, world.player, {count})'
 
         elif "function" in r:
-            function_data = r["function"]
-
-            if isinstance(function_data, dict):
-                name = function_data.get("name", "")
-                count = function_data.get("count", 0)
-            else:
-                name = function_data
-                count = None
-
-            logic_obj = getattr(StateLogic, name)
-
-            # Case 1: Rule class (ChapterCompletions, PalaceAccess)
-            if isinstance(logic_obj, type) and issubclass(logic_obj, Rule):
-                if count is not None:
-                    return logic_obj(count)
-                return logic_obj()
-
-            # Case 2: helper returning a Rule (fahr_outpost, westside, etc.)
-            if callable(logic_obj):
-                if count is not None:
-                    return logic_obj(count)
-                return logic_obj()
-
-            raise Exception(f"Invalid logic function: {name}")
+            function_name = r["function"]
+            count = 0
+            if isinstance(function_name, dict):
+                count = function_name.get("count", 0)
+                function_name = function_name.get("name", "")
+            if count > 0:
+                return f'StateLogic.{function_name}(state, world.player, {count})'
+            return f'StateLogic.{function_name}(state, world.player)'
 
         elif "can_reach" in r:
-            return CanReachLocation(r["can_reach"])
+            location = r["can_reach"]
+            return f'state.can_reach({repr(location)}, "Location", world.player)'
 
-        elif "can_reach_region" in r:
-            return CanReachRegion(r["can_reach_region"])
-
-        elif "can_reach_entrance" in r:
-            return CanReachEntrance(r["can_reach_entrance"])
         else:
-            return False_()
+            return "False"
 
-    return build_rule(req)
-
+    expression = build_expression(req)
+    # Capture world and StateLogic in the lambda's closure
+    return eval(f"lambda state: {expression}", {"world": world, "StateLogic": StateLogic})
 
 
 def get_tattle_rules_dict() -> dict[str, typing.List[int]]:

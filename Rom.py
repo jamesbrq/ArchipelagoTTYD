@@ -135,7 +135,7 @@ class TTYDPatchExtension(APPatchExtension):
         caller.patcher.dol.data.seek(0x6CE38)
         caller.patcher.dol.data.write(int.to_bytes(0x4BF94A50, 4, "big"))
         caller.patcher.dol.data.seek(0x3C25FC)
-        caller.patcher.dol.data.write(int.to_bytes(0x1F40, 4, "big"))
+        #caller.patcher.dol.data.write(int.to_bytes(0x1D84, 4, "big"))
         caller.patcher.iso.add_new_directory("files/mod")
         caller.patcher.iso.add_new_directory("files/mod/subrels")
         for file in [file for file in rel_filepaths if file != "mod"]:

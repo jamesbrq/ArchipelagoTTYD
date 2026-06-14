@@ -122,7 +122,7 @@ class Piecesanity(Choice):
 class Shopsanity(DefaultOnToggle):
     """
     Shop items will be randomized.
-    This includes only regular shops.
+    This only includes regular shops.
     """
     display_name = "Shopsanity"
 
@@ -170,20 +170,6 @@ class DazzleRewards(Choice):
     option_filler = 2
     option_all = 3
     default = 3
-
-
-class PartnerShuffle(Choice):
-    """
-    This determines how partners are shuffled.
-    vanilla: Partners will be in their original locations.
-    shuffled: Partners will be shuffled among each other, but not with other items.
-    full_random: Partners can be shuffled into any location.
-    """
-    display_name = "Partner Shuffle"
-    option_vanilla = 1
-    option_shuffled = 2
-    option_full_random = 3
-    default = 1
 
 
 class StartingPartner(Choice):
@@ -541,7 +527,6 @@ class TTYDOptions(PerGameCommonOptions):
     limit_chapter_eight: LimitChapterEight
     blue_pipe_toggle: BluePipeToggle
     palace_skip: PalaceSkip
-    #partner_shuffle: PartnerShuffle
     cutscene_skip: CutsceneSkip
     disable_intermissions: DisableIntermissions
     fast_travel: FastTravel

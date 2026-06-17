@@ -11,9 +11,10 @@ avoid a load-time import cycle.
 import asyncio
 import struct
 import typing
+import uuid
 
 from CommonClient import logger
-import dolphin_memory_engine as dolphin
+from .TTYDPatcher import dolphin
 from NetUtils import SlotType
 
 from . import Ghosts
@@ -37,6 +38,10 @@ def _client_ROOM() -> int:
 
 MARIO_PTR_ADDR = 0x8041E900
 
+ANIM_WP_ADDR = 0x803D9470
+ANIM_POSE_STRIDE = 0x170
+ANIM_POSE_FRAME_OFFSET = 0x20
+
 SFX_RING_CAPACITY    = 32
 
 SFX_EVENT_BYTES      = 4
@@ -44,17 +49,16 @@ SFX_EVENT_BYTES      = 4
 HIT_KIND_HAMMER = 1
 
 def _resolve_ghost_addresses(ctx) -> bool:
-    """Read APSettings.ghostStatePtr from RAM and populate
-    ctx._ghost_addrs with computed absolute addresses for every
-    ghost-peer scratch region. Cached for the session - the GhostState
-    pointer is allocated once at game boot and never moves.
+    """Read APSettings.ghostStatePtr and populate ctx._ghost_addrs.
 
-    Returns True on success (addresses now cached), False if the
-    pointer hasn't been published yet (mod's Init() hasn't run, or
-    the game hasn't booted to the relevant state). Callers should
-    treat False as "skip this tick" - it'll succeed on a later tick."""
-    if getattr(ctx, "_ghost_addrs", None) is not None:
-        return True
+    Re-reads the pointer every call and recomputes the address table only
+    when it CHANGES. Caching it for the whole client-process lifetime was a
+    corruption bug: on an in-place game reset (recovering from a crash screen
+    without closing Dolphin) DME stays hooked, the mod's Init() re-allocates
+    GhostState at a possibly different address, but the stale cached address
+    kept receiving the peer block + scratch every frame.
+
+    Returns False ("skip this tick") until the pointer is valid."""
     try:
         ptr = int.from_bytes(
             dolphin.read_bytes(Ghosts.APSETTINGS_GHOST_STATE_PTR, 4), "big"
@@ -64,15 +68,39 @@ def _resolve_ghost_addresses(ctx) -> bool:
     # Treat zero as "not yet published". The mod writes a non-zero
     # pointer in mod::ghosts::Init() at boot.
     if ptr == 0:
+        ctx._ghost_addrs = None
+        ctx._ghost_state_ptr = 0
         return False
+    if (getattr(ctx, "_ghost_addrs", None) is not None
+            and getattr(ctx, "_ghost_state_ptr", 0) == ptr):
+        return True
     try:
         ctx._ghost_addrs = Ghosts.compute_ghost_state_addresses(ptr)
+        ctx._ghost_state_ptr = ptr
     except ValueError as e:
         # Pointer out of plausible range; usually means the game just
         # hasn't booted far enough yet. Try again next tick.
         logger.debug(f"ghost-state pointer not yet valid: {e}")
+        ctx._ghost_addrs = None
+        ctx._ghost_state_ptr = 0
         return False
     return True
+
+def _read_pose_frame(pose_id: int) -> float | None:
+    if pose_id < 0:
+        return None
+    try:
+        arr = int.from_bytes(
+            dolphin.read_bytes(ANIM_WP_ADDR + 0x10, 4), "big"
+        )
+        if not (0x80000000 <= arr < 0x81800000):
+            return None
+        addr = arr + pose_id * ANIM_POSE_STRIDE + ANIM_POSE_FRAME_OFFSET
+        (frame,) = struct.unpack(">f", dolphin.read_bytes(addr, 4))
+        return frame
+    except Exception:
+        return None
+
 
 def _read_self_state(ctx) -> dict | None:
     """Read the local Player struct in ONE IPC call and parse offsets
@@ -106,12 +134,6 @@ def _read_self_state(ctx) -> dict | None:
 
         paper_anim_ptr = int.from_bytes(buf[0x1C:0x20], "big")
         (motion_timer,) = struct.unpack_from(">H", buf, 0x28)
-        # mp+0x29 is the low byte of the u16 above. The engine writes
-        # 0x18 to it at *both* Vivian sink-entry (via sth at 0x28-29)
-        # and Vivian rise-entry (a separate write to just the low byte
-        # by the un-Veil handler). Used by the kVivian paper-time pin
-        # below as a phase-edge detector.
-        (vivian_phase_byte,) = struct.unpack_from(">B", buf, 0x29)
 
         (motion_id,) = struct.unpack_from(">H", buf, 0x2E)
 
@@ -171,50 +193,16 @@ def _read_self_state(ctx) -> dict | None:
             (mp_2d3,) = struct.unpack_from(">b", buf, 0x2D3)
             paper_local_time = float(mp_2d3)
         elif anim_name == "M_B_3" or paper_anim == "PM_B_1":
-            # MarioMotion::kVivian (Veil) — Sink phase syncs correctly
-            # with this branch; Rise phase still does NOT render right
-            # on receivers. See PROJECT_STATE.md for full TODO notes.
-            #
-            # Current state: sink uses edge-pin to 24.0 (matches
-            # N_marioForceVivianAnime's animPoseSetLocalTime call at
-            # sink entry). Rise tries per-frame scrub to mp+0xA8
-            # (wAnimPosition.y) — gets the *direction* right but the
-            # paper anim still doesn't visually match what the
-            # publisher shows. Several other approaches also failed:
-            # see PROJECT_STATE.md "Vivian rise still wrong" TODO.
-            #
-            # Suspected real fix: the publisher's actual paper-anim
-            # time scrub uses `vivianState[0x182]` (a half-word in
-            # Vivian's *party state* struct, NOT Mario's player
-            # struct). vivian_use:1801 calls
-            #   animPoseSetLocalTime(paperPose, float(vivianState[0x182]))
-            # each frame. We can't currently read that field from
-            # Python because we don't have the Vivian state-struct
-            # address — would need a mod-side scratch publish.
-            prev_phase_byte = getattr(ctx, "_prev_vivian_phase_byte",
-                                       0) if ctx is not None else 0
-            if anim_name == "M_S_1" and int(vivian_phase_byte) != 0:
-                # TODO(vivian-rise): see notes above. Current best
-                # guess (mp+0xA8 / wAnimPosition.y); known not fully
-                # correct. Left in place so the receiver gets *some*
-                # decreasing value rather than nothing.
-                paper_local_time = float(ofs2_y)
-            elif int(vivian_phase_byte) != 0 and int(prev_phase_byte) == 0:
-                # Sink-entry edge: pin once at 24.0, let engine tick.
-                # This branch works correctly.
-                paper_local_time = float(vivian_phase_byte)
-            # else: held / sinking countdown with anim still M_B_3 —
-            # leave at -1.0 so the engine ticks naturally.
+            # Vivian Veil: the engine scrubs the paper pose (mp+0x240)
+            # playhead every frame for both sink and rise. Read that
+            # pose's live frame position directly so receivers match
+            # exactly, instead of reconstructing it from phase bytes.
+            (paper_pose_id,) = struct.unpack_from(">i", buf, 0x240)
+            pf = _read_pose_frame(paper_pose_id)
+            if pf is not None:
+                paper_local_time = pf
     except Exception:
         return None
-
-    # Snapshot mp+0x29 for the next call's edge-detect (covers both
-    # Vivian sink-entry and rise-entry as a single rising-edge event).
-    if ctx is not None:
-        try:
-            ctx._prev_vivian_phase_byte = int(vivian_phase_byte)
-        except Exception:
-            pass
 
     map_name = _client_read_string(_client_ROOM(), 16)
     if not map_name:
@@ -236,11 +224,6 @@ def _read_self_state(ctx) -> dict | None:
         "scale_y": scale_y,
         "scale_z": scale_z,
         "stretch_y": stretch_y,
-        # flags1 reads as 0 during room transitions (the player struct
-        # is in a torn-down state mid-kMapChange). Receivers gate on
-        # this in pack_peer_block and write active=0 so the ghost
-        # tears down for the duration of the transition instead of
-        # snapping to (0,0,0) at world origin.
         "flags1": flags1,
         "flags2": flags2,
         "flags3": flags3,
@@ -254,8 +237,6 @@ def _read_self_state(ctx) -> dict | None:
     }
 
 def _write_peer_block(ctx) -> None:
-    """Pack the current peer table into the binary block format and write
-    it to Dolphin. Called from the sync loop each tick."""
     if ctx.team is None or ctx.slot is None:
         return
     if not _resolve_ghost_addresses(ctx):
@@ -270,20 +251,6 @@ def _write_peer_block(ctx) -> None:
         logger.warning(f"Failed to write ghost block to Dolphin: {e}")
 
 async def _drain_sfx_ring(ctx) -> list:
-    """Read the mod's SFX event ring and return up to SFX_EVENTS_PER_SLOT
-    most-recent events as a list of {sfx_id, seq, flags} dicts. Advances
-    the ring's tail to mark events as consumed.
-
-    The ring is SPSC: mod pushes on every psndSFXOn[/3D] call (filtered),
-    Python pops once per publish tick. Capacity is 16 events; if more
-    than 4 fired since the last drain we keep only the most recent 4.
-
-    Returns [] on read failure or empty ring.
-
-    NOTE: dolphin_memory_engine's read/write_bytes are SYNCHRONOUS. Do
-    NOT wrap them in asyncio.wait_for - it raises TypeError silently
-    swallowed by bare except, leaving the ring undrained. (Was the bug
-    that stalled SFX sync v22-v23.)"""
     if not _resolve_ghost_addresses(ctx):
         return []
     addrs = ctx._ghost_addrs
@@ -339,15 +306,6 @@ async def _drain_sfx_ring(ctx) -> list:
 
 
 def _publish_ghost_state_scratch(ctx):
-    """Write the per-tick bytes the mod reads out of GhostState:
-    team_id and friendly_fire. ALWAYS runs (independent of whether we
-    can read the local Player struct).
-
-    Returns (addrs, team_id) so the caller can reuse the resolved
-    values when it builds the published peer-state dict. `addrs` is
-    None when the GhostState pointer hasn't been published yet (mod
-    hasn't booted) — in that case no Dolphin writes happen but the
-    resolved team_id is still useful for the peer publish path."""
     addrs = ctx._ghost_addrs if _resolve_ghost_addresses(ctx) else None
 
     team_id = int(getattr(ctx, "_ghost_team_id", Ghosts.TEAM_NONE)) & 0xFF
@@ -364,10 +322,6 @@ def _publish_ghost_state_scratch(ctx):
 
 
 def _on_ghost_disconnect(ctx) -> None:
-    """Reset subscription state, clear known peers, and zero the magic in
-    Dolphin so the mod stops rendering Ghosts immediately. Tolerates
-    the ghost-state container not being resolved (e.g. disconnect
-    before AP fully connected) - a no-op write is harmless."""
     ctx._ghost_subscribed = False
     ctx._ghost_peers = {}
     ctx._vlink = None
@@ -379,60 +333,27 @@ def _on_ghost_disconnect(ctx) -> None:
             pass
 
 def _peer_index_to_ap_slot(ctx, peer_index: int) -> typing.Optional[int]:
-    """Translate a 0..31 peer-block index back to its AP slot ID.
-
-    The mod-side hit detector returns "I hit slot N" where N is the
-    position of the peer in the 32-slot block. Ghosts.pack_peer_block
-    sorts peers by key (ttyd_ghost_<team>_<slot>) before packing, so
-    we replicate the same sort here and pick the entry at index N.
-
-    Returns None if the index is out of range or the peer dict has
-    fewer entries than the index, or if we can't parse the slot from
-    the key. The caller should treat None as "drop the event."
-    """
     peers = getattr(ctx, "_ghost_peers", None) or {}
     sorted_keys = sorted(peers.keys())
     if peer_index < 0 or peer_index >= len(sorted_keys):
         return None
-    key = sorted_keys[peer_index]
     try:
+        return Ghosts.slot_from_key(sorted_keys[peer_index])
+    except (ValueError, IndexError):
+        return None
 
-        return int(key.rsplit("_", 1)[-1])
+
+def _peer_index_to_cid(ctx, peer_index: int) -> typing.Optional[int]:
+    peers = getattr(ctx, "_ghost_peers", None) or {}
+    sorted_keys = sorted(peers.keys())
+    if peer_index < 0 or peer_index >= len(sorted_keys):
+        return None
+    try:
+        return Ghosts.cid_from_key(sorted_keys[peer_index])
     except (ValueError, IndexError):
         return None
 
 async def _drain_outbound_hits(ctx) -> None:
-    """Poll the mod's outbound-hit scratch slot. If non-zero, decode the
-    event, look up the AP slot ID for the targeted peer, send a Bounce
-    packet, and clear the slot.
-
-    Wire format (matches GhostPeers.h's PackOutboundHit):
-      byte 0 = hit kind (HIT_KIND_HAMMER = 1)
-      byte 1 = peer block index (0..31)
-      byte 2-3 = reserved (0)
-
-    Bounce packet shape:
-      {
-        "cmd": "Bounce",
-        "slots": [<victim AP slot id>],
-        "data": {
-          "ttyd_hit": True,    # discriminator - distinguishes our
-                               # bounces from DeathLink and other
-                               # generic Bounce traffic
-          "from": <our slot>,
-          "kind": "hammer",
-        }
-      }
-
-    The discriminator key is critical: Bounce is a free-form generic
-    relay, so DeathLink bounces, other mods' bounces, and ours all
-    arrive in the same on_package handler. We tag with "ttyd_hit" so
-    the receiver can filter cheaply.
-
-    No-ops if not connected to a slot, or if the lookup fails (we
-    silently clear the scratch and move on - dropping rare events is
-    better than blocking the loop).
-    """
     if ctx.team is None or ctx.slot is None:
         return
     if not _resolve_ghost_addresses(ctx):
@@ -458,6 +379,7 @@ async def _drain_outbound_hits(ctx) -> None:
         return
 
     target_slot = _peer_index_to_ap_slot(ctx, peer_index)
+    target_cid = _peer_index_to_cid(ctx, peer_index)
     if target_slot is None:
 
         logger.debug(
@@ -467,6 +389,7 @@ async def _drain_outbound_hits(ctx) -> None:
         _on_inbound_hit(ctx, {"ttyd_hit": True, "kind": "hammer", "from": ctx.slot})
         return
 
+    my_cid = _vlink_state(ctx)["cid"]
     try:
         await ctx.send_msgs([{
             "cmd":   "Bounce",
@@ -474,6 +397,8 @@ async def _drain_outbound_hits(ctx) -> None:
             "data":  {
                 "ttyd_hit": True,
                 "from":     ctx.slot,
+                "from_cid": my_cid,
+                "to_cid":   target_cid,
                 "kind":     "hammer",
             },
         }])
@@ -481,18 +406,13 @@ async def _drain_outbound_hits(ctx) -> None:
         logger.exception("failed to send hammer hit Bounce")
 
 def _on_inbound_hit(ctx, data: dict) -> None:
-    """Handle an inbound 'ttyd_hit' Bounce. Writes a kind code to the
-    mod's PENDING_HIT scratch slot; the mod's per-frame consumer reads
-    that on the next tick, plays the configured pose, and triggers the
-    sound.
-
-    Optional opt-out: if ctx._ghost_hammer_optout is set, ignore the
-    incoming hit. (The /ghost_hammer command flips this flag; it
-    lets a player turn off receiving stagger animations entirely.)
-    Note that opt-out is only advisory - the attacker can still send
-    Bounces; we just don't play the reaction.
-    """
+    if not getattr(ctx, "_ghost_multiplayer", True):
+        return
     if getattr(ctx, "_ghost_hammer_optout", False):
+        return
+
+    to_cid = data.get("to_cid")
+    if to_cid is not None and to_cid != _vlink_state(ctx)["cid"]:
         return
 
     kind = data.get("kind")
@@ -514,12 +434,6 @@ GHOST_RENDER_INTERVAL_S = 1.0 / 60.0
 
 
 def _read_self_active_loops(ctx) -> list:
-    """v26: read the mod's selfActiveLoops scratch (mod-written every
-    frame, sampled from g_localChannelMap). Returns a list of u16
-    sfxIds currently playing on the local Mario. Receivers diff this
-    against their tracked set to derive start/stop actions for loops.
-
-    Returns [] on read failure or if the scratch isn't resolved yet."""
     addrs = getattr(ctx, "_ghost_addrs", None)
     if addrs is None:
         if not _resolve_ghost_addresses(ctx):
@@ -550,22 +464,6 @@ def _read_self_active_loops(ctx) -> list:
         return []
 
 
-# ===========================================================================
-# VisionLink: sparse-presence + batched-history movement over AP Bounce.
-#
-#   presence  -> Bounce by tag (all VisionLink clients), on room change,
-#                a keepalive, or a new-peer handshake. Carries a full pose
-#                so an idle peer still renders.
-#   move      -> Bounce by slots (co-located peers only), at MOVE rate,
-#                carrying the new 20 Hz samples since the last write plus a
-#                short overlap for single-drop resilience. Deduped: an
-#                identical motion sample is never sampled or sent twice.
-#
-# Receivers buffer each peer's samples and play them back INTERP_DELAY
-# behind the wall clock (pure interpolation; extrapolation off by default),
-# so motion is smooth and a stopped peer holds at its true last sample.
-# ===========================================================================
-
 VL_SAMPLE_INTERVAL_S    = 1.0 / 20.0
 VL_MOVE_INTERVAL_S      = 0.20
 VL_PRESENCE_KEEPALIVE_S = 5.0
@@ -581,6 +479,7 @@ def _vlink_state(ctx):
     s = getattr(ctx, "_vlink", None)
     if s is None:
         s = {
+            "cid": uuid.uuid4().int & 0xFFFFFFFFFFFFFFFF,
             "samples": [],
             "sent_t": -1.0,
             "last_sample_t": 0.0,
@@ -615,6 +514,9 @@ def _vlink_discrete(ctx, state: dict, team_id: int, active_loops: list, sfx_even
         own_name = (ctx.player_names.get(ctx.slot, "") or "")[:16]
     except Exception:
         pass
+    override = getattr(ctx, "_ghost_display_name", None)
+    if override:
+        own_name = override[:16]
     optout = 1 if getattr(ctx, "_ghost_hammer_optout", False) else 0
     grace = 0
     addrs = getattr(ctx, "_ghost_addrs", None)
@@ -656,10 +558,6 @@ def _vlink_discrete(ctx, state: dict, team_id: int, active_loops: list, sfx_even
 
 
 def _vlink_discrete_signature(d: dict) -> tuple:
-    # Visual/categorical fields only. Excludes motion_timer and camera_angle
-    # (both advance on their own every frame, so including them would defeat
-    # change-gating) and sfx_events/active_loops (gated separately). d values
-    # are already rounded by _vlink_discrete, so float jitter won't false-trip.
     return (
         d.get("anim", ""),
         d.get("flags1", 0), d.get("flags2", 0), d.get("flags3", 0),
@@ -692,13 +590,13 @@ def _vlink_colocated_slots(ctx, my_map: str, now: float) -> list:
     if not my_map:
         return []
     s = _vlink_state(ctx)
-    out = []
-    for slot, p in s["peers"].items():
+    out = set()
+    for cid, p in s["peers"].items():
         if (now - p.get("last_seen", 0.0)) > VL_PRESENCE_TIMEOUT_S:
             continue
         if p.get("map", "") == my_map:
-            out.append(slot)
-    return out
+            out.add(int(p.get("slot", 0)))
+    return list(out)
 
 
 async def _vlink_send_presence(ctx, state: dict, team_id: int, now: float) -> None:
@@ -707,8 +605,12 @@ async def _vlink_send_presence(ctx, state: dict, team_id: int, now: float) -> No
         name = (ctx.player_names.get(ctx.slot, "") or "")[:16]
     except Exception:
         pass
+    override = getattr(ctx, "_ghost_display_name", None)
+    if override:
+        name = override[:16]
     d = _vlink_discrete(ctx, state, team_id, _read_self_active_loops(ctx), [])
-    payload = Ghosts.build_presence(ctx.slot, team_id, state.get("map", ""), name, d["hammerable"])
+    payload = Ghosts.build_presence(ctx.slot, team_id, state.get("map", ""), name, d["hammerable"],
+                                    _vlink_state(ctx)["cid"])
     payload["x"] = round(float(state["x"]), 2)
     payload["y"] = round(float(state["y"]), 2)
     payload["z"] = round(float(state["z"]), 2)
@@ -723,14 +625,13 @@ async def _vlink_send_presence(ctx, state: dict, team_id: int, now: float) -> No
 
 
 async def _vlink_send_part(ctx) -> None:
-    # Broadcast a one-shot 'part' on clean disconnect / game-close so peers
-    # drop our ghost immediately instead of waiting out VL_PRESENCE_TIMEOUT_S.
-    # Best-effort: if the socket is already gone, peers' timeout still clears us.
     if getattr(ctx, "slot", None) is None:
+        return
+    if not getattr(ctx, "_ghost_multiplayer", True):
         return
     try:
         await ctx.send_msgs([{"cmd": "Bounce", "tags": [Ghosts.VLINK_TAG],
-                              "data": Ghosts.build_part(ctx.slot)}])
+                              "data": Ghosts.build_part(ctx.slot, _vlink_state(ctx)["cid"])}])
     except Exception:
         logger.debug("vlink part send failed (socket likely closed)")
 
@@ -759,7 +660,7 @@ async def _vlink_send_move(ctx, state: dict, team_id: int, targets: list, now: f
     s["pending_sfx"] = s["pending_sfx"][Ghosts.SFX_EVENTS_PER_SLOT:]
     if sfx:
         d["sfx_events"] = sfx
-    payload = Ghosts.build_move(ctx.slot, state.get("map", ""), d, batch)
+    payload = Ghosts.build_move(ctx.slot, state.get("map", ""), d, batch, s["cid"])
     if new:
         s["sent_t"] = new[-1][0]
     s["last_loops"] = list(loops)
@@ -786,22 +687,24 @@ def _vlink_on_bounce(ctx, data: dict) -> None:
         return
     try:
         slot = int(data.get("s"))
+        cid = int(data.get("c", 0))
     except (TypeError, ValueError):
         return
-    if ctx.slot is not None and slot == ctx.slot:
-        return
     s = _vlink_state(ctx)
+    if cid == s["cid"]:
+        return
     if kind == Ghosts.VLINK_PART:
-        s["peers"].pop(slot, None)
-        s["known"].discard(slot)
+        s["peers"].pop(cid, None)
+        s["known"].discard(cid)
         return
     now = asyncio.get_event_loop().time()
-    peer = s["peers"].get(slot)
+    peer = s["peers"].get(cid)
     if peer is None:
         peer = {"pb": Ghosts.PlaybackBuffer(VL_PLAYBACK_BUFFER_S),
                 "discrete": {}, "map": "", "name": "", "team": 0,
-                "hammerable": 0, "last_seen": now}
-        s["peers"][slot] = peer
+                "slot": slot, "hammerable": 0, "last_seen": now}
+        s["peers"][cid] = peer
+    peer["slot"] = slot
     peer["last_seen"] = now
 
     if kind == Ghosts.VLINK_PRESENCE:
@@ -817,8 +720,8 @@ def _vlink_on_bounce(ctx, data: dict) -> None:
             peer["pb"].append([Ghosts.make_sample(
                 now, x, data.get("y", 0.0), data.get("z", 0.0),
                 data.get("ry", 0.0), data.get("rx", 0.0), data.get("rz", 0.0))], now)
-        if slot not in s["known"]:
-            s["known"].add(slot)
+        if cid not in s["known"]:
+            s["known"].add(cid)
             s["force_presence"] = True   # reply with our presence next tick
     elif kind == Ghosts.VLINK_MOVE:
         if data.get("mp"):
@@ -838,9 +741,9 @@ def _vlink_playback(ctx, now: float) -> None:
     render_time = now - VL_INTERP_DELAY_S
     out = {}
     dead = []
-    for slot, peer in s["peers"].items():
+    for cid, peer in s["peers"].items():
         if (now - peer.get("last_seen", 0.0)) > VL_PRESENCE_TIMEOUT_S:
-            dead.append(slot)
+            dead.append(cid)
             continue
         pose = peer["pb"].sample(render_time, VL_EXTRAP_CAP_S)
         if pose is None:
@@ -854,11 +757,37 @@ def _vlink_playback(ctx, now: float) -> None:
         if not entry.get("slot_name"):
             entry["slot_name"] = peer.get("name", "")
         Ghosts.stamp_peer(entry)
-        out[Ghosts.ghost_key(peer.get("team", 0), slot)] = entry
-    for slot in dead:
-        s["peers"].pop(slot, None)
-        s["known"].discard(slot)
+        out[Ghosts.ghost_key(peer.get("team", 0), peer.get("slot", 0), cid)] = entry
+    for cid in dead:
+        s["peers"].pop(cid, None)
+        s["known"].discard(cid)
     ctx._ghost_peers = out
+
+
+GHOST_TEST_CID = 0x7E57
+GHOST_TEST_OFFSET = 100.0
+
+
+def _inject_ghost_test(ctx, state: dict, team_id: int) -> None:
+    if not getattr(ctx, "_ghost_test", False) or state is None:
+        return
+    entry = _vlink_discrete(ctx, state, team_id, _read_self_active_loops(ctx), [])
+    entry["map"] = state.get("map", "")
+    entry["x"] = float(state.get("x", 0.0)) + GHOST_TEST_OFFSET
+    entry["y"] = float(state.get("y", 0.0))
+    entry["z"] = float(state.get("z", 0.0))
+    entry["rot_y"] = float(state.get("rot_y", 0.0))
+    entry["rot_x"] = float(state.get("rot_x", 0.0))
+    entry["rot_z"] = float(state.get("rot_z", 0.0))
+    entry["team_id"] = int(team_id)
+    if not entry.get("slot_name"):
+        entry["slot_name"] = "TEST"
+    Ghosts.stamp_peer(entry)
+    peers = getattr(ctx, "_ghost_peers", None)
+    if peers is None:
+        peers = {}
+        ctx._ghost_peers = peers
+    peers[Ghosts.ghost_key(team_id, ctx.slot or 0, GHOST_TEST_CID)] = entry
 
 
 async def ttyd_ghost_sync_task(ctx):
@@ -874,6 +803,9 @@ async def ttyd_ghost_sync_task(ctx):
         except Exception:
             in_game = False
         if not in_game:
+            continue
+
+        if not getattr(ctx, "_ghost_multiplayer", True):
             continue
 
         try:
@@ -924,6 +856,7 @@ async def ttyd_ghost_sync_task(ctx):
                         logger.exception("vlink move error")
 
         _vlink_playback(ctx, now)
+        _inject_ghost_test(ctx, state, team_id)
 
         try:
             _write_peer_block(ctx)

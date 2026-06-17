@@ -14,15 +14,13 @@ Place the TTYD apworld in the `custom_worlds` folder of your Archipelago install
 
 ## Dolphin Configuration
 
-In your TTYD Properties (Accessed by Right Clicking on the game in Dolphin and selecting Properties), change the following settings:
-- In Game Config > General, make sure Enable Dual Core is unchecked
-- In Game Config > General, make sure Enable MMU is checked. This is **required** — the game will not boot correctly without it. On Windows the Archipelago client enables this for you automatically every time it launches (it writes an `MMU = True` override into Dolphin's per-game config for `G8ME01`, found in `Documents\Dolphin Emulator\GameSettings\G8ME01.ini`, or `User\GameSettings\G8ME01.ini` for a portable Dolphin install). On macOS/Linux, or if you keep your Dolphin user folder in a non-standard location, check this box yourself.
-- In Game Config > Graphics, set your Backend to either OpenGL or Vulkan (Direct3D can often cause errors that may lead to crashes)
-
 In your Dolphin settings (Accessed by going to Options > Configuration up top), change the following settings:
 
-- In Advanced > Clock Override, make sure that Enable Emulated CPU Clock Override is unchecked
-- In Advanced > Memory Override, make sure that Enable Emulated Memory Size Override is unchecked
+- In Game Config > General, make sure Enable Dual Core is unchecked
+- In Game Config > Graphics, set your Backend to either OpenGL or Vulkan (Direct3D can often cause errors that may lead to crashes)
+- In Game Config > Advanced, make sure that Enable Emulated CPU Clock Override is unchecked
+- In Game Config > Advanced, check 'Enable Emulated Memory Size Override' and set 'MEM1' to 64 MB. This is required for the mod's expanded memory usage. On Windows the Archipelago client sets this for you automatically every time it launches. On macOS/Linux, or if you do not use auto-launch when playing, this setting must be enabled manually.
+- In Game Config > Advanced, make sure Enable MMU is checked. This is required, the game will not boot correctly without it. On Windows the Archipelago client enables this for you automatically every time it launches. On macOS/Linux, or if you do not use auto-launch when playing, this setting must be enabled manually.
 
 ## Configuring your YAML file
 

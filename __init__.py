@@ -454,6 +454,8 @@ class TTYDWorld(World):
             "tattle_rules": get_random_enemy_tattle_rules_dict(self)
             if self.options.enemy_randomizer != EnemyRandomizer.option_vanilla
             else get_tattle_rules_dict(),
+            "multiplayer": self.options.multiplayer.value,
+            "remote_items": self.options.remote_items.value,
         }
 
     def create_item(self, name: str) -> TTYDItem:

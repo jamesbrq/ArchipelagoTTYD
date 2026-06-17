@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional
 from CommonClient import logger
 
 GHOST_MAGIC  = 0x47484F53
-VERSION      = 0
+VERSION      = 1
 
 APSETTINGS_ADDR             = 0x80003220
 APSETTINGS_GHOST_STATE_PTR  = APSETTINGS_ADDR + 0x3C  # mod::ghosts::GhostState *
@@ -14,7 +14,7 @@ APSETTINGS_GHOST_STATE_PTR  = APSETTINGS_ADDR + 0x3C  # mod::ghosts::GhostState 
 # Peer block (SharedBlock): 16-byte header + 32 PeerSlots.
 GS_OFF_PEER_BLOCK = 0x0000
 
-MAX_PEERS    = 16
+MAX_PEERS    = 32
 PEER_SIZE    = 212  # v26: +12 for activeLoops[6] uint16 + activeLoopCount byte + alignment
 HEADER_SIZE  = 16
 BLOCK_SIZE   = HEADER_SIZE + MAX_PEERS * PEER_SIZE   # 6800
@@ -62,14 +62,6 @@ GS_TOTAL_SIZE = GS_OFF_RESERVED_TAIL + RESERVED_TAIL_SIZE                    # 0
 
 
 def compute_ghost_state_addresses(ghost_state_ptr: int) -> dict:
-    """Given the GhostState base pointer (read from APSettings),
-    return a dict mapping logical scratch-region names to absolute
-    Dolphin RAM addresses. Used by TTYDClient to drive its writes.
-
-    Validates the pointer looks plausible (in main RAM) and raises
-    ValueError otherwise so callers can fail loudly rather than
-    silently corrupting random memory.
-    """
     if not (0x80000000 <= ghost_state_ptr < 0x81800000):
         raise ValueError(
             f"GhostState pointer 0x{ghost_state_ptr:08X} out of game RAM range; "
@@ -132,8 +124,16 @@ assert struct.calcsize(_HEADER_FMT) == HEADER_SIZE, "header fmt size mismatch"
 
 KEY_PREFIX = "ttyd_ghost_"
 
-def ghost_key(team: int, slot: int) -> str:
-    return f"{KEY_PREFIX}{team}_{slot}"
+def ghost_key(team: int, slot: int, cid: int = 0) -> str:
+    return f"{KEY_PREFIX}{team}_{slot}_{cid}"
+
+
+def slot_from_key(key: str) -> int:
+    return int(key.rsplit("_", 2)[-2])
+
+
+def cid_from_key(key: str) -> int:
+    return int(key.rsplit("_", 1)[-1])
 
 _PALETTE = [
     (255, 128, 128),
@@ -151,12 +151,7 @@ def color_for_slot(slot: int) -> tuple:
     r, g, b = _PALETTE[slot % len(_PALETTE)]
     return (r, g, b, _GHOST_ALPHA)
 
-# Heartbeat-based presence: pack_peer_block drops any peer whose
-# `_last_seen` (monotonic timestamp stamped on ingest / synth) is older
-# than this threshold. Avoids rendering a stuck ghost at the last known
-# position when the publishing client disconnects or stalls. Picked to
-# survive a single dropped publish at the 1 Hz heartbeat rate without
-# leaving a stuck ghost behind when a client goes idle.
+
 PEER_PRESENCE_TIMEOUT_S = 4.0
 
 def stamp_peer(peer: dict) -> None:
@@ -179,18 +174,6 @@ def ingest_peer_update(peers: dict, key: str, value) -> None:
     peers[key] = value
 
 def pack_peer_block(peers: dict) -> bytes:
-    """Pack peers (dict of key -> state-dict) into the binary peer block.
-
-    Returns exactly BLOCK_SIZE bytes. Excess peers beyond MAX_PEERS
-    are dropped; missing fields default to zero / empty string. Malformed
-    individual peers are logged and skipped without breaking the rest of
-    the block.
-
-    Also prunes stale entries: any peer whose `_last_seen` is older
-    than PEER_PRESENCE_TIMEOUT_S is skipped from the binary output AND
-    evicted from `peers` so the dict doesn't grow unboundedly when a
-    publisher disconnects. The mod's per-slot `if (!peer.active)` gate
-    handles the visual teardown on the next frame."""
     buf = struct.pack(_HEADER_FMT, GHOST_MAGIC, VERSION, 0, 0)
 
     sorted_keys = sorted(peers.keys())
@@ -207,25 +190,13 @@ def pack_peer_block(peers: dict) -> bytes:
         if last_seen is not None and (now - last_seen) > PEER_PRESENCE_TIMEOUT_S:
             expired_keys.append(key)
             continue
-        # Mid-transition gate: the publisher's player struct reads
-        # flags1 == 0 only while a kMapChange is in progress (the
-        # struct is in a torn-down state). Pack a zero slot so the
-        # mod's `if (!peer.active)` gate tears down the rendered
-        # ghost cleanly instead of letting it snap to (0,0,0) at
-        # world origin between frames. Pad rather than skip so the
-        # slot's array index stays stable across frames (mod's
-        # g_slots[i] is keyed by index, not by peer slot id, so
-        # shifting other peers down would re-bind the mod render
-        # state to the wrong player). Entry stays in the dict —
-        # _last_seen is fresh, slot reappears the moment a non-zero
-        # flags1 publish lands.
         if isinstance(peer, dict) and int(peer.get("flags1", 1) or 0) == 0:
             buf += b"\x00" * PEER_SIZE
             written += 1
             continue
         try:
-            slot = int(key.rsplit("_", 1)[-1])
-            r, g, b, a = color_for_slot(slot)
+            cid = cid_from_key(key)
+            r, g, b, a = color_for_slot(cid)
 
             map_bytes  = (peer.get("map",  "") or "").encode("ascii", errors="replace")[:15]
             anim_bytes = (peer.get("anim", "") or "").encode("ascii", errors="replace")[:16]
@@ -326,20 +297,6 @@ def pack_peer_block(peers: dict) -> bytes:
 
 CLEAR_MAGIC = b"\x00" * 4
 
-
-# ---------------------------------------------------------------------------
-# VisionLink: sparse-presence + batched-history movement over AP Bounce.
-#
-# Wire protocol (all over a single Bounce tag so it never collides with the
-# hammer Bounce or other games). Each payload carries a kind discriminator:
-#   presence: {VL: "p", s, tm, mp, nm, hm}
-#   move:     {VL: "m", s, mp, d:{<discrete render fields>}, sm:[[t,x,y,z,ry,rx,rz],...]}
-# Movement samples carry only the continuously-varying channels; discrete
-# render state (anim, flags, paper, scale, ...) rides in `d` at the write
-# rate. Positions are deduped at the source — a sample identical to the
-# previous one is never emitted.
-# ---------------------------------------------------------------------------
-
 VLINK_TAG       = "TTYDBounce"
 VLINK_KIND      = "VL"
 VLINK_PRESENCE  = "p"
@@ -366,18 +323,18 @@ def samples_differ(a, b) -> bool:
     return a[1:] != b[1:]
 
 
-def build_presence(slot, team, map_name, name, hammerable) -> dict:
-    return {VLINK_KIND: VLINK_PRESENCE, "s": int(slot), "tm": int(team),
+def build_presence(slot, team, map_name, name, hammerable, cid=0) -> dict:
+    return {VLINK_KIND: VLINK_PRESENCE, "s": int(slot), "c": int(cid), "tm": int(team),
             "mp": map_name or "", "nm": (name or "")[:16], "hm": int(hammerable)}
 
 
-def build_move(slot, map_name, discrete: dict, samples: list) -> dict:
-    return {VLINK_KIND: VLINK_MOVE, "s": int(slot), "mp": map_name or "",
+def build_move(slot, map_name, discrete: dict, samples: list, cid=0) -> dict:
+    return {VLINK_KIND: VLINK_MOVE, "s": int(slot), "c": int(cid), "mp": map_name or "",
             "d": discrete, "sm": samples}
 
 
-def build_part(slot) -> dict:
-    return {VLINK_KIND: VLINK_PART, "s": int(slot)}
+def build_part(slot, cid=0) -> dict:
+    return {VLINK_KIND: VLINK_PART, "s": int(slot), "c": int(cid)}
 
 
 def _lerp(a, b, f):
@@ -399,14 +356,6 @@ def _lerp_angle(a, b, f):
 
 
 class PlaybackBuffer:
-    """Per-peer timeline of motion samples, played back against the wall
-    clock. Each arriving batch is re-anchored so its newest sample maps to
-    the arrival instant; this absorbs network jitter and keeps playback
-    current without synced clocks. `sample()` interpolates inside the
-    buffered window and extrapolates a bounded amount past the head so the
-    head can be rendered at near-zero perceived lag, snapping back to truth
-    as the next batch lands."""
-
     __slots__ = ("buf", "hold", "_buffer_s")
 
     def __init__(self, buffer_s: float = 1.5):

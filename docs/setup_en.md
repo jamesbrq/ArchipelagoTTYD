@@ -19,8 +19,8 @@ In your Dolphin settings (Accessed by going to Options > Configuration up top), 
 - In Game Config > General, make sure Enable Dual Core is unchecked
 - In Game Config > Graphics, set your Backend to either OpenGL or Vulkan (Direct3D can often cause errors that may lead to crashes)
 - In Game Config > Advanced, make sure that Enable Emulated CPU Clock Override is unchecked
-- In Game Config > Advanced, check 'Enable Emulated Memory Size Override' and set 'MEM1' to 64 MB. This is required for the mod's expanded memory usage. On Windows the Archipelago client sets this for you automatically every time it launches. On macOS/Linux, or if you do not use auto-launch when playing, this setting must be enabled manually.
-- In Game Config > Advanced, make sure Enable MMU is checked. This is required, the game will not boot correctly without it. On Windows the Archipelago client enables this for you automatically every time it launches. On macOS/Linux, or if you do not use auto-launch when playing, this setting must be enabled manually.
+- In Game Config > Advanced, check 'Enable Emulated Memory Size Override' and set 'MEM1' to 64 MB. This is required for the mod's expanded memory usage. The Archipelago client enables this for you automatically every time it launches.
+- In Game Config > Advanced, make sure Enable MMU is checked. This is required, the game will not boot correctly without it. The Archipelago client enables this for you automatically every time it launches.
 
 ## Configuring your YAML file
 

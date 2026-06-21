@@ -46,7 +46,7 @@ ROOM = 0x803DF728
 GAME_ID_ADDRESS = 0x80000000
 EXPECTED_GAME_ID = b"G8ME01"
 
-RECV_FLAG_RING = 0x80003C00
+RECV_FLAG_RING = 0x80004600
 RECV_FLAG_HEAD = RECV_FLAG_RING + 0x0
 RECV_FLAG_TAIL = RECV_FLAG_RING + 0x2
 RECV_FLAG_EVENTS = RECV_FLAG_RING + 0x4
@@ -439,6 +439,14 @@ class TTYDContext(cmmCtx):
             if info is None or info[0] != GSWType.GSWF:
                 continue
             flag = info[1]
+            # Tattle locations don't use the placeholder flag stored in
+            # location_gsw_info; the game tracks them at 0x117A + unit_id.
+            # Mirror the translation done in check_ttyd_locations so we push
+            # the real in-game GSWF bit, not the AP-internal placeholder.
+            if 78780850 <= item.location <= 78780973:
+                flag = 0x117A + location_to_unit[item.location][0]
+            if flag <= 0:
+                continue  # no valid flag to set; never push 0 into the ring
             if flag in self._pushed_recv_flags:
                 continue
             if gswf_check(flag):
@@ -485,38 +493,32 @@ class TTYDContext(cmmCtx):
         if value > 1:
             return False
         return value > 0
-def _dolphin_user_dir(dolphin_path: str) -> str:
+
+
+def _dolphin_sys_gamesettings_dir(dolphin_path: str) -> str:
+    """Resolve <Dolphin install>/Sys/GameSettings from the same path used to
+    launch the emulator. We don't run the exe for this - we just walk from it
+    to the Sys folder that ships beside it (inside the .app bundle on macOS)."""
     import os
     import sys
 
     exe_dir = os.path.dirname(os.path.abspath(dolphin_path))
-    if os.path.isfile(os.path.join(exe_dir, "portable.txt")):  # portable build
-        return os.path.join(exe_dir, "User")
 
-    env = os.environ.get("DOLPHIN_EMU_USERPATH")
-    if env:
-        return env
-
-    home = os.path.expanduser("~")
     if sys.platform == "darwin":
-        # macOS: a .app bundle may also carry its own portable User dir.
-        app = exe_dir
+        # dolphin_path may be the .app bundle itself or the inner binary.
+        app = os.path.abspath(dolphin_path)
         while app and not app.endswith(".app"):
             parent = os.path.dirname(app)
             if parent == app:
                 app = ""
                 break
             app = parent
-        if app and os.path.isfile(os.path.join(app, "Contents", "Resources", "portable.txt")):
-            return os.path.join(app, "Contents", "Resources", "User")
-        return os.path.join(home, "Library", "Application Support", "Dolphin")
-    if sys.platform.startswith("linux"):
-        legacy = os.path.join(home, ".dolphin-emu")
-        if os.path.isdir(legacy):
-            return legacy
-        xdg = os.environ.get("XDG_DATA_HOME") or os.path.join(home, ".local", "share")
-        return os.path.join(xdg, "dolphin-emu")
-    return os.path.join(home, "Documents", "Dolphin Emulator")
+        if app:
+            return os.path.join(app, "Contents", "Resources", "Sys", "GameSettings")
+        # Fall through to exe-relative if not a bundle.
+
+    return os.path.join(exe_dir, "Sys", "GameSettings")
+
 
 
 def _apply_dolphin_game_settings(dolphin_path: str) -> None:
@@ -528,7 +530,7 @@ def _apply_dolphin_game_settings(dolphin_path: str) -> None:
         "MEM1Size": "67108864",  # 0x04000000 = 64 MB
     }
     try:
-        ini_path = os.path.join(_dolphin_user_dir(dolphin_path), "GameSettings", "G8ME01.ini")
+        ini_path = os.path.join(_dolphin_sys_gamesettings_dir(dolphin_path), "G8ME01.ini")
         os.makedirs(os.path.dirname(ini_path), exist_ok=True)
 
         lines = []
@@ -608,7 +610,45 @@ async def _patch_and_run_game(patch_file: str):
     Utils.async_start(_run_game(output_file))
     return metadata
 
+def _installed_world_version():
+    """world_version of the apworld currently running this client."""
+    import pkgutil
+    import json
+    try:
+        data = pkgutil.get_data(__name__, "archipelago.json")
+        if data is None:
+            return None
+        return json.loads(data.decode("utf-8")).get("world_version")
+    except Exception:
+        return None
+
+
+def _patch_world_version(patch_file: str):
+    """world_version that was baked into the patch's options.json at generation.
+    The .apttyd is a zip archive; read the member directly without patching."""
+    import zipfile
+    import json
+    try:
+        with zipfile.ZipFile(patch_file) as zf:
+            with zf.open("options.json") as f:
+                return json.loads(f.read().decode("utf-8")).get("world_version")
+    except Exception:
+        return None
+
+
 async def ttyd_sync_task(ctx: TTYDContext):
+    if getattr(ctx, "patch_provided", False):
+        patch_version = getattr(ctx, "patch_world_version", None)
+        current_version = _installed_world_version()
+        if patch_version is None:
+            logger.warning("This patch is missing a world version - it was generated with an "
+                           "older apworld. The client will still connect, but behavior may be "
+                           "incorrect; regenerate with a matching apworld if you hit issues.")
+        elif current_version is not None and patch_version != current_version:
+            logger.warning(f"Patch world version ({patch_version}) does not match the installed "
+                           f"apworld version ({current_version}). The client will still connect, "
+                           f"but behavior may be incorrect; use the matching apworld version or "
+                           f"regenerate your patch if you hit issues.")
     logger.info("Starting Dolphin connector...")
     while not ctx.exit_event.is_set():
         try:
@@ -712,10 +752,10 @@ async def ttyd_sync_task(ctx: TTYDContext):
 
 
 def trigger_death(ctx):
-    """Receive a deathlink from another world: write 1 to the AP
-    scratch death byte so the game kills the player on next tick."""
     try:
-        dolphin.write_byte(0x80003240, 1)
+        if ctx.slot is not None and dolphin.is_hooked() and ctx.dolphin_connected and validate_connection():
+            ctx.death_sent = True
+            dolphin.write_byte(0x8000323F, 1)
     except Exception:
         logger.exception("trigger_death: write failed")
 
@@ -729,6 +769,10 @@ def launch(*args):
         if args.patch_file:
             await asyncio.create_task(_patch_and_run_game(args.patch_file))
         ctx = TTYDContext(args.connect, args.password)
+        ctx.patch_world_version = None
+        ctx.patch_provided = bool(args.patch_file)
+        if args.patch_file:
+            ctx.patch_world_version = _patch_world_version(args.patch_file)
         ctx.server_task = asyncio.create_task(server_loop(ctx), name="ServerLoop")
         if gui_enabled:
             if tracker_loaded:

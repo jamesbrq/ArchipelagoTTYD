@@ -497,16 +497,20 @@ class TTYDWorld(World):
                      locations.keys() if chapters != chapter for item in self.limited_items[chapters][tag]}
                 if len(self.limited_items[chapter][tag]) == 0:
                     continue
+                fill_locations = sorted(locs, key=lambda loc: loc.name)
+                self.random.shuffle(fill_locations)
                 fill_restrictive(
                     self.multiworld,
                     state,
-                    list(locs),
+                    fill_locations,
                     self.limited_items[chapter][tag],
                     single_player_placement=True,
                     lock=True
                 )
         self.in_pre_fill = False
-        fast_fill(self.multiworld, self.limited_misc_items, list(self.limited_misc_locations))
+        misc_locations = sorted(self.limited_misc_locations, key=lambda loc: loc.name)
+        self.random.shuffle(misc_locations)
+        fast_fill(self.multiworld, self.limited_misc_items, misc_locations)
 
     def fill_hook(self, progitempool: List[Item], usefulitempool: List[Item],
                   filleritempool: List[Item], fill_locations: List[Location]) -> None:

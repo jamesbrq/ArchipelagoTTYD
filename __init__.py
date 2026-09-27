@@ -239,7 +239,7 @@ class TTYDWorld(World):
             self.disable_remove_from_pool(get_locations_by_tags("pit_floor"))
         if self.options.piecesanity == Piecesanity.option_vanilla:
             self.disable_remove_from_pool(get_locations_by_tags(["star_piece", "panel"]))
-        if self.options.piecesanity == Piecesanity.option_nonpanel_only:
+        elif self.options.piecesanity == Piecesanity.option_nonpanel_only:
             self.disable_remove_from_pool(get_locations_by_tags("panel"))
         if not self.options.shinesanity:
             self.disable_remove_from_pool(get_locations_by_tags("shine"))

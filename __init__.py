@@ -237,10 +237,6 @@ class TTYDWorld(World):
                         self.disabled_locations.update([location_name])
         if self.options.pit_items == PitItems.option_vanilla:
             self.disable_remove_from_pool(get_locations_by_tags("pit_floor"))
-        if self.options.piecesanity == Piecesanity.option_vanilla:
-            self.disable_remove_from_pool(get_locations_by_tags(["star_piece", "panel"]))
-        elif self.options.piecesanity == Piecesanity.option_nonpanel_only:
-            self.disable_remove_from_pool(get_locations_by_tags("panel"))
         if not self.options.shinesanity:
             self.disable_remove_from_pool(get_locations_by_tags("shine"))
         if not self.options.shopsanity:
@@ -281,6 +277,10 @@ class TTYDWorld(World):
             self.locked_item_frequencies["Palace Key"] = 3
             self.locked_item_frequencies["Palace Key (Tower)"] = 8
             self.locked_item_frequencies["Star Key"] = 1
+        if self.options.piecesanity == Piecesanity.option_vanilla: # can't be disabled because of dazzle
+            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags(["star_piece", "panel"]))
+        elif self.options.piecesanity == Piecesanity.option_nonpanel_only:
+            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("panel"))
         if self.options.pit_items == PitItems.option_filler:
             self.lock_filler_items_remove_from_pool(get_locations_by_tags("pit_floor"))
         if self.options.dazzle_rewards == DazzleRewards.option_filler:

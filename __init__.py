@@ -204,12 +204,6 @@ class TTYDWorld(World):
                 "Poshley Heights Station: Bub's Trouble Reward",
                 "Fahr Outpost Town: Swob's Trouble Reward",
             ])
-        if not self.options.cooksanity:
-            self.disabled_locations.update(
-                location.name for location in get_locations_by_tags("cooking"))
-        if not self.options.troublesanity:
-            self.disabled_locations.update(
-                location.name for location in get_locations_by_tags("trouble"))
         if not self.options.tattlesanity:
             self.excluded_regions.update(["Tattlesanity"])
         if self.options.goal != Goal.option_shadow_queen:
@@ -284,8 +278,12 @@ class TTYDWorld(World):
             self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("shine"))
         if not self.options.shopsanity:
             self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("shop"))
+        if not self.options.cooksanity:
+            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("cooking"))
         if not self.options.troublesanity:
             self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("trouble"))
+            for item_name in self.trouble_only_items:
+                self.locked_item_frequencies[item_name] = self.locked_item_frequencies.get(item_name, 0) + 1
         if self.options.pit_items == PitItems.option_filler:
             self.lock_filler_items_remove_from_pool(get_locations_by_tags("pit_floor"))
         if self.options.dazzle_rewards == DazzleRewards.option_vanilla:
@@ -402,6 +400,10 @@ class TTYDWorld(World):
         "Ice Storm", "Jammin' Jelly", "Maple Syrup", "Mushroom", "Point Swap",
         "Ruin Powder", "Shooting Star", "Slow Shroom", "Super Shroom", "Tasty Tonic",
         "Turtley Leaf", "Ultra Shroom", "Volt Shroom", "Whacka Bump",
+    })
+
+    trouble_only_items = frozenset({
+        "Battle Trunk Pack", "Courage Shell Pack", "Walrus Whiskers",
     })
 
     def create_items(self) -> None:

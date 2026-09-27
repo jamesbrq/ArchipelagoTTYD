@@ -185,17 +185,12 @@ class TTYDWorld(World):
             all_piece_locations = get_locations_by_tags(["star_piece", "panel"])
             limited_piece_locations = [location for location in all_piece_locations
                                        if limited_area_tags & set(location.tags)]
-            for location in limited_piece_locations:
-                self.disabled_locations.add(location.name)
-                self.rom_fallback_locations[location.name] = location.vanilla_item
+            self.disable_remove_from_pool(limited_piece_locations)
             self.unavailable_star_pieces = len(limited_piece_locations)
-            self.locked_item_frequencies["Star Piece"] = (
-                self.locked_item_frequencies.get("Star Piece", 0) + self.unavailable_star_pieces)
             available_pieces = len(all_piece_locations) - self.unavailable_star_pieces
-            for i, location_name in enumerate(dazzle_location_names):
-                if dazzle_counts[i] > available_pieces:
-                    self.disabled_locations.add(location_name)
-                    self.rom_fallback_locations[location_name] = locationName_to_data[location_name].vanilla_item
+            self.disable_remove_from_pool([locationName_to_data[location_name]
+                                           for i, location_name in enumerate(dazzle_location_names)
+                                           if dazzle_counts[i] > available_pieces])
         if self.options.palace_skip:
             self.excluded_regions.update(["Palace of Shadow", "Palace of Shadow (Post-Riddle Tower)"])
             self.disabled_locations.update([
@@ -240,6 +235,24 @@ class TTYDWorld(World):
                         location] in extra_disabled or (pit_out_of_logic and location in limit_pit)
                             for location in locations]):
                         self.disabled_locations.update([location_name])
+        if self.options.pit_items == PitItems.option_vanilla:
+            self.disable_remove_from_pool(get_locations_by_tags("pit_floor"))
+        if self.options.piecesanity == Piecesanity.option_vanilla:
+            self.disable_remove_from_pool(get_locations_by_tags(["star_piece", "panel"]))
+        if self.options.piecesanity == Piecesanity.option_nonpanel_only:
+            self.disable_remove_from_pool(get_locations_by_tags("panel"))
+        if not self.options.shinesanity:
+            self.disable_remove_from_pool(get_locations_by_tags("shine"))
+        if not self.options.shopsanity:
+            self.disable_remove_from_pool(get_locations_by_tags("shop"))
+        if not self.options.cooksanity:
+            self.disable_remove_from_pool(get_locations_by_tags("cooking"))
+        if not self.options.troublesanity:
+            self.disable_remove_from_pool(get_locations_by_tags("trouble"))
+            for item_name in self.trouble_only_items:
+                self.locked_item_frequencies[item_name] = self.locked_item_frequencies.get(item_name, 0) + 1
+        if self.options.dazzle_rewards == DazzleRewards.option_vanilla:
+            self.disable_remove_from_pool(get_locations_by_tags("dazzle"))
 
     def create_regions(self) -> None:
         create_regions(self)
@@ -268,27 +281,9 @@ class TTYDWorld(World):
             self.locked_item_frequencies["Palace Key"] = 3
             self.locked_item_frequencies["Palace Key (Tower)"] = 8
             self.locked_item_frequencies["Star Key"] = 1
-        if self.options.pit_items == PitItems.option_vanilla:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("pit_floor"))
-        if self.options.piecesanity == Piecesanity.option_vanilla:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags(["star_piece", "panel"]))
-        if self.options.piecesanity == Piecesanity.option_nonpanel_only:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("panel"))
-        if not self.options.shinesanity:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("shine"))
-        if not self.options.shopsanity:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("shop"))
-        if not self.options.cooksanity:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("cooking"))
-        if not self.options.troublesanity:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("trouble"))
-            for item_name in self.trouble_only_items:
-                self.locked_item_frequencies[item_name] = self.locked_item_frequencies.get(item_name, 0) + 1
         if self.options.pit_items == PitItems.option_filler:
             self.lock_filler_items_remove_from_pool(get_locations_by_tags("pit_floor"))
-        if self.options.dazzle_rewards == DazzleRewards.option_vanilla:
-            self.lock_vanilla_items_remove_from_pool(get_locations_by_tags("dazzle"))
-        elif self.options.dazzle_rewards == DazzleRewards.option_filler:
+        if self.options.dazzle_rewards == DazzleRewards.option_filler:
             self.lock_filler_items_remove_from_pool(get_locations_by_tags("dazzle"))
         if self.options.pit_items != PitItems.option_all:
             # These troubles require pit dives to complete (Pine T. is rescued on floor 18,
@@ -627,6 +622,17 @@ class TTYDWorld(World):
             item = self.create_item(item_name)
             item.location = self.get_location(location)
             self.get_location(location).place_locked_item(item)
+
+    def disable_remove_from_pool(self, locations: LocationData | List[LocationData]) -> None:
+        if isinstance(locations, LocationData):
+            locations = [locations]
+        for location in locations:
+            if location.name not in self.disabled_locations:
+                self.locked_item_frequencies[
+                    items_by_id[location.vanilla_item].item_name] = self.locked_item_frequencies.get(
+                    items_by_id[location.vanilla_item].item_name, 0) + 1
+                self.disabled_locations.add(location.name)
+                self.rom_fallback_locations[location.name] = location.vanilla_item
 
     def get_filler_item_name(self) -> str:
         return self.random.choice(

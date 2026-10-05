@@ -88,6 +88,7 @@ class TTYDWorld(World):
     location_name_to_id = {loc_data.name: loc_data.id for loc_data in all_locations}
     required_client_version = (0, 6, 2)
     disabled_locations: set
+    vanilla_logic_locations: set[str]
     excluded_regions: set
     required_chapters: List[int]
     limited_chapters: List[int]
@@ -107,6 +108,7 @@ class TTYDWorld(World):
 
     def generate_early(self) -> None:
         self.disabled_locations = set()
+        self.vanilla_logic_locations = set()
         self.excluded_regions = set()
         self.required_chapters = []
         self.limited_chapters = []
@@ -145,6 +147,7 @@ class TTYDWorld(World):
                 self.options.boss_randomizer.value = slot_data["boss_randomizer"]
                 self.options.cooksanity.value = slot_data["cooksanity"]
                 self.options.troublesanity.value = slot_data["troublesanity"]
+                self.configure_vanilla_locations()
                 return
         if self.options.limit_chapter_eight and self.options.palace_skip:
             logging.warning(f"{self.player_name}'s has enabled both Palace Skip and Limit Chapter 8. "
@@ -215,6 +218,7 @@ class TTYDWorld(World):
             randomize_encounters(self)
         if self.options.boss_randomizer != BossRandomizer.option_vanilla:
             randomize_bosses(self)
+        self.configure_vanilla_locations()
         if self.options.tattlesanity:
             extra_disabled = [location.name for name, locations in get_regions_dict().items()
                               if name in self.excluded_regions for location in locations]
@@ -232,26 +236,36 @@ class TTYDWorld(World):
                     if "Palace of Shadow (Post-Riddle Tower)" in self.excluded_regions:
                         self.disabled_locations.update([location_name])
                 else:
-                    if all([location_id_to_name[location] in self.disabled_locations or location_id_to_name[
+                    if all([(location_id_to_name[location] in self.disabled_locations and
+                             location_id_to_name[location] not in self.vanilla_logic_locations) or location_id_to_name[
                         location] in extra_disabled or (pit_out_of_logic and location in limit_pit)
                             for location in locations]):
                         self.disabled_locations.update([location_name])
+
+    def configure_vanilla_locations(self) -> None:
         if self.options.pit_items == PitItems.option_vanilla:
-            self.disable_remove_from_pool(get_locations_by_tags("pit_floor"))
+            self.disable_remove_from_pool(get_locations_by_tags("pit_floor"), keep_in_logic=True)
         if not self.options.shinesanity:
-            self.disable_remove_from_pool(get_locations_by_tags("shine"))
+            self.disable_remove_from_pool(get_locations_by_tags("shine"), keep_in_logic=True)
         if not self.options.shopsanity:
-            self.disable_remove_from_pool(get_locations_by_tags("shop"))
+            self.disable_remove_from_pool(get_locations_by_tags("shop"), keep_in_logic=True)
         if not self.options.cooksanity:
-            self.disable_remove_from_pool(get_locations_by_tags("cooking"))
+            for location in get_locations_by_tags("cooking"):
+                item_name = items_by_id[location.vanilla_item].item_name
+                if (self.options.shopsanity and self.options.troublesanity
+                        and item_name in self.trouble_cooked_progression):
+                    self.disabled_locations.add(location.name)
+                    self.rom_fallback_locations[location.name] = location.vanilla_item
+                else:
+                    self.disable_remove_from_pool(location, keep_in_logic=True)
         if not self.options.troublesanity:
-            self.disable_remove_from_pool(get_locations_by_tags("trouble"))
+            self.disable_remove_from_pool(get_locations_by_tags("trouble"), keep_in_logic=True)
             for item_name in self.trouble_only_items:
                 self.locked_item_frequencies[item_name] = self.locked_item_frequencies.get(item_name, 0) + 1
         if self.options.dazzle_rewards == DazzleRewards.option_vanilla:
-            self.disable_remove_from_pool(get_locations_by_tags("dazzle"))
+            self.disable_remove_from_pool(get_locations_by_tags("dazzle"), keep_in_logic=True)
             if self.options.piecesanity == Piecesanity.option_vanilla:
-                self.disable_remove_from_pool(get_locations_by_tags(["star_piece", "panel"]))
+                self.disable_remove_from_pool(get_locations_by_tags(["star_piece", "panel"]), keep_in_logic=True)
 
 
     def create_regions(self) -> None:
@@ -365,6 +379,7 @@ class TTYDWorld(World):
                 loc_id
                 for loc_id in locations
                 if location_id_to_name[loc_id] not in self.disabled_locations
+                or location_id_to_name[loc_id] in self.vanilla_logic_locations
             ]
             if not enabled_locations:
                 continue
@@ -405,6 +420,8 @@ class TTYDWorld(World):
         "Battle Trunk Pack", "Courage Shell Pack", "Walrus Whiskers",
     })
 
+    trouble_cooked_progression = frozenset({"Honey Candy"})
+
     def create_items(self) -> None:
         required_items = []
         useful_items = []
@@ -419,7 +436,11 @@ class TTYDWorld(World):
         single_progression_seen = set()
         for item_name in item_names:
             item = self.create_item(item_name)
-            if not self.options.cooksanity and item_name in self.cooking_only_progression:
+            # With vanilla shops, Gob's Honey Candy is obtained through vanilla cooking.
+            honey_candy_ingredient = (self.options.troublesanity and not self.options.shopsanity
+                                     and item_name == "Honey Syrup")
+            if (not self.options.cooksanity and item_name in self.cooking_only_progression
+                    and not honey_candy_ingredient):
                 item.classification = ItemClassification.filler
             elif item_name in self.single_progression_copy_consumables:
                 if item_name in single_progression_seen:
@@ -632,7 +653,8 @@ class TTYDWorld(World):
             item.location = self.get_location(location)
             self.get_location(location).place_locked_item(item)
 
-    def disable_remove_from_pool(self, locations: LocationData | List[LocationData]) -> None:
+    def disable_remove_from_pool(self, locations: LocationData | List[LocationData],
+                                 *, keep_in_logic: bool = False) -> None:
         if isinstance(locations, LocationData):
             locations = [locations]
         for location in locations:
@@ -642,6 +664,8 @@ class TTYDWorld(World):
                     items_by_id[location.vanilla_item].item_name, 0) + 1
                 self.disabled_locations.add(location.name)
                 self.rom_fallback_locations[location.name] = location.vanilla_item
+                if keep_in_logic:
+                    self.vanilla_logic_locations.add(location.name)
 
     def get_filler_item_name(self) -> str:
         return self.random.choice(

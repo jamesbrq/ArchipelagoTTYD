@@ -577,6 +577,8 @@ def classification_to_color(classification: ItemClassification = ItemClassificat
 def locations_to_dict(locations: Iterable[Location]) -> Dict[str, Tuple]:
     result = {}
     for location in locations:
+        if location.address is None:
+            continue
         if location.item is not None:
             item_code = location.item.code
             item_player = location.item.player

@@ -221,6 +221,7 @@ class LimitChapterLogic(Toggle):
     """
     Progression items will only appear in required chapters, and in common areas. You will not need to
     check the chapters that are out of logic whatsoever. You can still visit them for local items (badges, consumables, etc) if you want or need to.
+    To view what chapters are expected of you, you're able to check what stars are illuminated on the Thousand-Year Door.
     """
     display_name = "Limit Chapter Logic"
 

@@ -311,6 +311,18 @@ class EnemyRandomizer(Choice):
     default = 0
 
 
+class EnemyFormations(Choice):
+    """
+    Determines how many formations each fight can use when Enemy Randomizer is enabled.
+    Multiple: Randomize every formation separately.
+    Singular: Enemy encounters will be reduced to 1 singular, randomized formation.
+    """
+    display_name = "Enemy Formations"
+    option_multiple = 0
+    option_singular = 1
+    default = 1
+
+
 class EncounterShuffleType(Choice):
     """
     This determines how enemies are grouped when randomizing.
@@ -674,6 +686,7 @@ class TTYDOptions(PerGameCommonOptions):
     grubba_bribe_direction: GrubbaBribeDirection
     grubba_bribe_cost: GrubbaBribeCost
     enemy_randomizer: EnemyRandomizer
+    enemy_formations: EnemyFormations
     encounter_shuffle_type: EncounterShuffleType
     enemy_stat_scaling: EnemyStatScaling
     shuffle_chapter_stats: ShuffleChapterStats

@@ -158,7 +158,6 @@ class TTYDCommandProcessor(ClientCommandProcessor):
     def __init__(self, ctx):
         super().__init__(ctx)
 
-
     def _cmd_ghost(self, *args):
         """Manage ghost peer settings.
 
@@ -402,26 +401,12 @@ class TTYDContext(cmmCtx):
             return
         if index > len(self.items_received):
             return
-        # 15 per batch: with at most 15 items there are at most 15 distinct
-        # senders, so the name ring's slots 0-14 always cover the whole batch.
-        # The mod consumes a batch per frame, so backlogs still drain quickly.
         items = min(len(self.items_received) - index, 15)
         if items <= 0:
             return
 
         dirty_run(DIRTY_ITEM_REPLAY)
         if dolphin.read_word(MOD_PROTOCOL) >= 3:
-            # Protocol 3 mailbox entries: rom id in bits 0-8, bits 9-12 = slot in
-            # the sender-name ring at SENDER_NAME_RING, bit 13 = announce in the
-            # in-game received-item feed, bits 14-15 = AP classification
-            # (0 filler, 1 useful, 2 progression, 3 trap).
-            #
-            # Every item from another player is announced; the mod streams large
-            # catch-up backlogs through its feed batch by batch and collapses
-            # what never fits into a "+N more" row. Ring slots are assigned per
-            # batch (the mod copies names out of the ring while consuming the
-            # batch, before releasing the mailbox); a batch is capped at 15
-            # items, so slots 0-14 always cover every sender by name.
             batch_slots: dict = {}
             item_ids = []
             for i in range(index, index + items):
@@ -454,7 +439,7 @@ class TTYDContext(cmmCtx):
             head = struct.unpack(">H", dolphin.read_bytes(RECV_FLAG_HEAD, 2))[0]
             tail = struct.unpack(">H", dolphin.read_bytes(RECV_FLAG_TAIL, 2))[0]
             next_head = (head + 1) & 0xFFFF
-            if next_head == tail:
+            if ((head - tail) & 0xFFFF) >= RECV_FLAG_CAPACITY:
                 return False  # ring full
             slot = head % RECV_FLAG_CAPACITY
             dolphin.write_bytes(RECV_FLAG_EVENTS + slot * 2, struct.pack(">H", flag & 0xFFFF))
@@ -467,10 +452,10 @@ class TTYDContext(cmmCtx):
     async def set_received_item_flags(self):
         if not self.slot_data.get("remote_items"):
             return
-            
+
         if not self.save_loaded():
             return
-            
+
         for location in self.checked_locations:
             info = location_gsw_info.get(location)
             if info is None or info[0] != GSWType.GSWF:
@@ -491,11 +476,19 @@ class TTYDContext(cmmCtx):
             else:
                 break
 
+    def _applied_received_items(self):
+        # The mod advances the index before clearing the batch length. Wait
+        # for that acknowledgement before backfilling ownership or counters.
+        if dolphin.read_word(RECEIVED_LENGTH) != 0:
+            return []
+        index = dolphin.read_word(self.received_index_addr)
+        return self.items_received[:min(index, len(self.items_received))]
+
     async def set_ingredient_unlock_flags(self):
         if not self.save_loaded():
             return
 
-        for item in self.items_received:
+        for item in self._applied_received_items():
             flag = INGREDIENT_UNLOCK_FLAGS.get(get_rom_item_id(item))
             if flag is None or flag in self._pushed_recv_flags:
                 continue
@@ -508,12 +501,13 @@ class TTYDContext(cmmCtx):
                 break
 
     async def set_ever_obtained_flags(self):
-        # Backfill the mod's ever-obtained ledger from received-items history.
+        # Backfill only delivered items; the mod records pending items when
+        # granting them, so counting those here would count them twice.
         if not self.save_loaded():
             return
 
         counts = {}
-        for item in self.items_received:
+        for item in self._applied_received_items():
             rom = get_rom_item_id(item)
             if rom < 1 or rom > 255:
                 continue
@@ -807,10 +801,10 @@ async def ttyd_sync_task(ctx: TTYDContext):
                             "want_reply": False,
                             "operations": [{"operation": "replace", "value": current_room}]
                         }])
-                    await ctx.receive_items()
                     await ctx.set_received_item_flags()
                     await ctx.set_ingredient_unlock_flags()
                     await ctx.set_ever_obtained_flags()
+                    await ctx.receive_items()
                     await ctx.check_ttyd_locations()
                     goal = ctx.slot_data.get("goal", 0)
                     if goal == 1: # Shadow Queen

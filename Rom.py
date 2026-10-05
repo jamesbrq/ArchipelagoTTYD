@@ -14,6 +14,7 @@ from .Items import items_by_id, ItemData
 from .Locations import locationName_to_data, location_table, location_id_to_name
 from .Data import Rels, shop_items, item_prices, rel_filepaths, location_to_unit, shop_names, SEED_OBFUSCATION_KEY
 from .TTYDPatcher import TTYDPatcher
+from .Options import EnemyFormations, EnemyRandomizer
 
 if TYPE_CHECKING:
     from . import TTYDWorld
@@ -471,6 +472,7 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         "grubba_bribe_cost": world.options.grubba_bribe_cost.value,
         "blue_pipe_toggle": world.options.blue_pipe_toggle.value,
         "enemy_randomizer": world.options.enemy_randomizer.value,
+        "enemy_formations": world.options.enemy_formations.value,
         "boss_randomizer": world.options.boss_randomizer.value,
         "boss_stat_scaling": world.options.boss_stat_scaling.value,
         "boss_scaling_nerfs": world.options.boss_scaling_nerfs.value,
@@ -507,6 +509,17 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
         enemy_buffer.write(struct.pack("B", len(ids)))
         for eid in ids:
             enemy_buffer.write(struct.pack("B", eid))
+
+    if (world.options.enemy_formations == EnemyFormations.option_singular
+            and world.options.enemy_randomizer != EnemyRandomizer.option_vanilla):
+        # Optional trailer: vanilla stat-template source for each formation.
+        # Keeping the original lineup table intact preserves older mod readers.
+        first_formations = {(entry.rel, entry.formation_group): index
+                            for index, entry in enumerate(encounters) if entry.formation == 1}
+        enemy_buffer.write(b"EFM1")
+        for entry in encounters:
+            source = first_formations[(entry.rel, entry.formation_group)]
+            enemy_buffer.write(struct.pack(">H", source))
 
     boss_buffer = io.BytesIO()
     bosses = world.bosses

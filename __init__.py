@@ -141,6 +141,7 @@ class TTYDWorld(World):
                 self.options.shinesanity.value = slot_data["shinesanity"]
                 self.options.blue_pipe_toggle.value = slot_data["blue_pipe_toggle"]
                 self.options.enemy_randomizer.value = slot_data["enemy_randomizer"]
+                self.options.enemy_formations.value = slot_data.get("enemy_formations", 0)
                 self.options.boss_randomizer.value = slot_data["boss_randomizer"]
                 self.options.cooksanity.value = slot_data["cooksanity"]
                 self.options.troublesanity.value = slot_data["troublesanity"]
@@ -560,6 +561,7 @@ class TTYDWorld(World):
             "shinesanity": self.options.shinesanity.value,
             "blue_pipe_toggle": self.options.blue_pipe_toggle.value,
             "enemy_randomizer": self.options.enemy_randomizer.value,
+            "enemy_formations": self.options.enemy_formations.value,
             "boss_randomizer": self.options.boss_randomizer.value,
             "tattle_rules": get_random_enemy_tattle_rules_dict(self)
             if self.options.enemy_randomizer != EnemyRandomizer.option_vanilla

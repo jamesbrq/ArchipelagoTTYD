@@ -491,14 +491,15 @@ def write_files(world: "TTYDWorld", patch: TTYDProcedurePatch) -> None:
     }
 
     buffer = io.BytesIO()
-    for i in range(len(shop_items)):
-        location = world.get_location(location_id_to_name[shop_items[i]])
-        player_name = sanitize_string(world.multiworld.player_name[location.item.player]) if location.item is not None else "Unknown Player"
-        item_name = sanitize_string(location.item.name)
-        buffer.write(f"ap_{shop_names[i // 6]}_{i % 6}".encode('utf-8'))
-        buffer.write(b'\x00')
-        buffer.write(f"{player_name}'s\n<col {classification_to_color(location.item.classification)}ff>{item_name}</col>".encode('utf-8'))
-        buffer.write(b'\x00')
+    if world.options.shopsanity:
+        for i in range(len(shop_items)):
+            location = world.get_location(location_id_to_name[shop_items[i]])
+            player_name = sanitize_string(world.multiworld.player_name[location.item.player]) if location.item is not None else "Unknown Player"
+            item_name = sanitize_string(location.item.name)
+            buffer.write(f"ap_{shop_names[i // 6]}_{i % 6}".encode('utf-8'))
+            buffer.write(b'\x00')
+            buffer.write(f"{player_name}'s\n<col {classification_to_color(location.item.classification)}ff>{item_name}</col>".encode('utf-8'))
+            buffer.write(b'\x00')
     buffer.write(b'\x00')  # null terminator for the end of the table
 
     enemy_buffer = io.BytesIO()
@@ -576,6 +577,8 @@ def classification_to_color(classification: ItemClassification = ItemClassificat
 def locations_to_dict(locations: Iterable[Location]) -> Dict[str, Tuple]:
     result = {}
     for location in locations:
+        if location.address is None:
+            continue
         if location.item is not None:
             item_code = location.item.code
             item_player = location.item.player

@@ -16,7 +16,7 @@ if typing.TYPE_CHECKING:
 
 def set_rules(world: "TTYDWorld"):
     for location, rule in create_lambda_from_json(pkgutil.get_data(__name__, "json/rules.json").decode(), world).items():
-        if location not in world.disabled_locations:
+        if location not in world.disabled_locations or location in world.vanilla_logic_locations:
             if location == "Glitzville Promoter's Office: Jolene's Trouble Reward" and not world.options.troublesanity:
                 add_rule(world.multiworld.get_location(location, world.player), lambda state: state.has("Battle Trunks", world.player, 20))
                 continue
@@ -71,7 +71,8 @@ def set_tattle_rules(world: "TTYDWorld"):
             else:
                 extra_condition = lambda state: state.can_reach("Palace of Shadow Final Staircase: Ultra Shroom", "Location", world.player)
         else:
-            locations = [loc for loc in locations if location_id_to_name[loc] not in world.disabled_locations]
+            locations = [loc for loc in locations if location_id_to_name[loc] not in world.disabled_locations
+                         or location_id_to_name[loc] in world.vanilla_logic_locations]
             if len(locations) == 0:
                 continue
             pit_exclusive_names = {name for names in pit_exclusive_tattle_stars_required.values() for name in names}
@@ -305,7 +306,7 @@ BOSS_ARENA_INFO: dict[str, tuple[typing.Optional[int], list[str]]] = {
     "btlgrp_muj_muj_kanbu":            (78780511, ["Tattle: Lord Crump"]),
     "btlgrp_muj_muj_cortez":           (78780511, ["Tattle: Cortez"]),
     "btlgrp_rsh_rsh_06_01_off_1":      (78780554, ["Tattle: Smorg"]),
-    "btlgrp_tik_tik_gesso":            (78780133, ["Tattle: Blooper"]),
+    "btlgrp_tik_tik_gesso":            (78780183, ["Tattle: Blooper"]),
     "btlgrp_tou_tou_boss":             (78780287, ["Tattle: Macho Grubba"]),
     "btlgrp_tou_tou_champ":            (78780295, ["Tattle: Rawk Hawk"]),
     "btlgrp_tou_tou_koopa":            (78780287, ["Tattle: Bowser"]),

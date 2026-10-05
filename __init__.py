@@ -1,5 +1,7 @@
 import logging
 import os
+import json
+import pkgutil
 
 from Fill import fill_restrictive, fast_fill
 from typing import List, Dict, ClassVar, Any, Set
@@ -148,6 +150,7 @@ class TTYDWorld(World):
                 self.options.cooksanity.value = slot_data["cooksanity"]
                 self.options.troublesanity.value = slot_data["troublesanity"]
                 self.configure_vanilla_locations()
+                self.retain_required_vanilla_logic()
                 return
         if self.options.limit_chapter_eight and self.options.palace_skip:
             logging.warning(f"{self.player_name}'s has enabled both Palace Skip and Limit Chapter 8. "
@@ -242,6 +245,56 @@ class TTYDWorld(World):
                             for location in locations]):
                         self.disabled_locations.update([location_name])
 
+        self.retain_required_vanilla_logic()
+
+    def retain_required_vanilla_logic(self) -> None:
+        rules = json.loads(pkgutil.get_data(__name__, "json/rules.json").decode("utf-8"))
+        needed_items: set[str] = set()
+        needed_locations: set[str] = set()
+
+        def read_requirements(requirements):
+            if isinstance(requirements, dict):
+                if "has" in requirements:
+                    item = requirements["has"]
+                    needed_items.add(item if isinstance(item, str) else item["item"])
+                if "can_reach" in requirements:
+                    needed_locations.add(requirements["can_reach"])
+                for value in requirements.values():
+                    read_requirements(value)
+            elif isinstance(requirements, list):
+                for value in requirements:
+                    read_requirements(value)
+
+        for name, requirements in rules.items():
+            if name not in self.disabled_locations:
+                read_requirements(requirements)
+        if self.options.goal == Goal.option_bonetail:
+            needed_locations.add("Pit of 100 Trials Floor 100: Return Postage")
+        if self.options.tattlesanity:
+            tattle_rules = (get_random_enemy_tattle_rules_dict(self)
+                            if self.options.enemy_randomizer != EnemyRandomizer.option_vanilla
+                            or self.options.boss_randomizer != BossRandomizer.option_vanilla
+                            else get_tattle_rules_dict())
+            for name, locations in tattle_rules.items():
+                if name not in self.disabled_locations:
+                    needed_locations.update(location_id_to_name[loc] for loc in locations
+                                            if self.options.pit_items == PitItems.option_all or loc not in limit_pit)
+
+        # Follow dependencies of vanilla rewards that enabled checks actually use.
+        remaining = self.vanilla_logic_locations.copy()
+        retained: set[str] = set()
+        while remaining:
+            required = {name for name in remaining
+                        if name in needed_locations or
+                        items_by_id[locationName_to_data[name].vanilla_item].item_name in needed_items}
+            if not required:
+                break
+            remaining.difference_update(required)
+            retained.update(required)
+            for name in required:
+                read_requirements(rules.get(name, {}))
+        self.vanilla_logic_locations = retained
+
     def configure_vanilla_locations(self) -> None:
         if self.options.pit_items == PitItems.option_vanilla:
             self.disable_remove_from_pool(get_locations_by_tags("pit_floor"), keep_in_logic=True)
@@ -259,7 +312,7 @@ class TTYDWorld(World):
                 else:
                     self.disable_remove_from_pool(location, keep_in_logic=True)
         if not self.options.troublesanity:
-            self.disable_remove_from_pool(get_locations_by_tags("trouble"), keep_in_logic=True)
+            self.disable_remove_from_pool(get_locations_by_tags("trouble"))
             for item_name in self.trouble_only_items:
                 self.locked_item_frequencies[item_name] = self.locked_item_frequencies.get(item_name, 0) + 1
         if self.options.dazzle_rewards == DazzleRewards.option_vanilla:

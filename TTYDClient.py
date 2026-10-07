@@ -323,6 +323,16 @@ class TTYDContext(cmmCtx):
 
     _ghost_addrs: typing.Optional[dict] = None
 
+    patch_server_address: typing.Optional[str] = None
+
+    @property
+    def suggested_address(self) -> str:
+        if self.server_address:
+            return self.server_address
+        if self.patch_server_address:
+            return self.patch_server_address
+        return super().suggested_address
+
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
         self.items_handling = 0b101
@@ -875,9 +885,13 @@ def launch(*args):
             _apply_dolphin_game_settings(settings.get_settings().ttyd_options.dolphin_path, console_mode)
         except Exception:
             pass
+        patch_server = None
         if args.patch_file:
-            await asyncio.create_task(_patch_and_run_game(args.patch_file))
+            metadata = await _patch_and_run_game(args.patch_file)
+            if metadata and metadata.get("server"):
+                patch_server = metadata["server"]
         ctx = TTYDContext(args.connect, args.password)
+        ctx.patch_server_address = patch_server
         ctx.patch_world_version = None
         ctx.patch_provided = bool(args.patch_file)
         if args.patch_file:

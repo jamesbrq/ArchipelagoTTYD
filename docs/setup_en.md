@@ -16,8 +16,8 @@ Place the TTYD apworld in the `custom_worlds` folder of your Archipelago install
 
 ## Settings
 
-- In Game Config > General, make sure Enable Cheats is unchecked
-- In Game Config > General, make sure Enable Dual Core is unchecked
+- In Config > General, make sure Enable Cheats is unchecked
+- In Config > General, make sure Enable Dual Core is unchecked
 - In Game Config > Graphics, set your Backend to either OpenGL or Vulkan (Direct3D can often cause errors that may lead to crashes)
 - In Game Config > Advanced, make sure that Enable Emulated CPU Clock Override is unchecked
 
@@ -27,6 +27,18 @@ The archipelago client will automatically configure Dolphin for you, you do not 
 
 - In Game Config > Advanced, check 'Enable Emulated Memory Size Override' and set 'MEM1' to 64 MB. This is required for the mod's expanded memory usage. The Archipelago client enables this for you automatically every time it launches.
 - In Game Config > Advanced, make sure Enable MMU is checked. This is required, the game will not boot correctly without it. The Archipelago client enables this for you automatically every time it launches.
+
+On Linux, the Archipelago client cannot automatically set these settings. Instead, open Game Config -> Editor and put this into the "User Config" section (`G8ME01.ini`):
+
+```ini
+[Core]
+EnableCheats = False
+CPUThread = False
+OverclockEnable = False
+MMU = True
+RAMOverrideEnable = True
+MEM1Size = 67108864
+```
 
 ## Configuring your YAML file
 
